@@ -1,0 +1,68 @@
+<section class="page favorites category">
+    <div class="butonBack">
+        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+    </div>
+    <div class="titlePage ">
+        <h3>Cupones</h3>
+    </div>
+    <div class="container-fluid cuadro-modal animated fadeInUp">
+        <div class="lineamedio"></div>
+        <div>
+            <!----info-->
+            <div class="areablanc areablanc-interna animated fadeInUp">
+                <div class="div-responsive1">
+                    <!---Slider-->
+                    <app-slider></app-slider>
+                    <!---Slider-->
+                    <br>
+
+                    <div class="carousel-inner-data">
+                        <div class="post navTabs scrollable">
+                            <table class="table table-sm ">
+                                <thead class="thead-dark">
+                                    <tr>
+
+                                        <th>Código</th>
+                                        <th>Descuento</th>
+                                        <th>Copiar</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let cupon of cupones">
+                                    <tr>
+
+                                        <td>
+                                            <blockquote class="blockquote">
+                                                <p class="mb-2">{{cupon.codigo}}</p>
+                                               
+                                            </blockquote>
+                                        </td>
+                                        <td>
+                                            {{cupon.tipo}} del {{cupon.descuento}}%
+                                        </td>
+                                        <td>
+                                            <div #container>
+                                                <button class="btn btn-outline-success" (click)="copyText(cupon.codigo)" title="Copy to Clipboard"><i class="fa fa-copy"></i></button>
+                                              </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="div-responsive2">
+
+                    <!-- <app-lateral></app-lateral> -->
+                </div>
+
+
+            </div>
+
+            <!---info-->
+        </div>
+
+    </div>
+</section>

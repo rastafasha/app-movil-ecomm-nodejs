@@ -1,0 +1,13 @@
+<div class="animated fadeInRight swiffy-slider slider-item-show6 slider-item-reveal slider-item-ratio slider-item-ratio-2x1">
+    <div class="categorylist">
+        <div class="item" *ngFor="let cat of categorias">
+            <a [routerLink]="['/app/category', cat._id]">
+                <h2>{{cat.subcategorias}}</h2>
+            </a>
+        </div>
+    </div>
+
+    <button type="button" class="slider-nav"></button>
+    <button type="button" class="slider-nav slider-nav-next"></button>
+
+</div>

@@ -1,0 +1,119 @@
+<section class="user page">
+    <div class="butonBack">
+        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+    </div>
+    <div class="titlePage">
+        <h3>User Edit</h3>
+    </div>
+    <div class="container-fluid cuadro-modal">
+        <div class="lineamedio"></div>
+        <div class="row">
+
+            <div class="areagris">
+            </div>
+
+            <div class="areablanc areablanc-interna animated fadeInUp">
+
+
+                <div class="div-responsive1">
+
+
+
+                    <div class="post-inner">
+                        <div class="container">
+
+                            <form class=" p-t-20 col-xs-12" [formGroup]="perfilForm" (submit)="actualizarPerfil()">
+                                <div class="form-group col-xs-12 ">
+                                    <label for="exampleInputuname"> <i class="fa fa-user"></i> Nombre</label>
+                                    <div class="input-group">
+                                        <input type="text" formControlName="first_name" class="form-control" id="exampleInputuname" placeholder="nombre">
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-12 ">
+                                    <label for="exampleInputuname"><i class="fa fa-user"></i> Apellido</label>
+                                    <div class="input-group">
+                                        <input type="text" formControlName="last_name" class="form-control" id="exampleInputuname" placeholder="Apellido">
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-12 ">
+                                    <label for="exampleInputEmail1"><i class="fa fa-envelope"></i> Email</label>
+                                    <div class="input-group">
+                                        <input type="email" formControlName="email" [readOnly]="usuario.google" class="form-control" id="exampleInputEmail1" placeholder="email">
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-12 ">
+                                    <label for="Id"><i class="fa fa-user"></i> Id number</label>
+                                    <div class="input-group">
+                                        <input type="number" formControlName="numdoc" class="form-control" id="Id" placeholder="numdoc">
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-12 ">
+                                    <label for="pais"><i class="fa fa-globe"></i> Pais</label>
+                                    <div class="input-group">
+                                        <input type="text" formControlName="pais" class="form-control" id="exampleInputEmail1" placeholder="pais">
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-12 ">
+                                    <label for="telefono"><i class="fa fa-phone"></i> Telefono</label>
+                                    <div class="input-group">
+                                        <input type="phone" formControlName="telefono" class="form-control" id="telefono" placeholder="telefono">
+                                    </div>
+                                </div>
+
+                                <button type="submit" [disabled]="perfilForm.invalid" class="btn btn-full-dark btn-block">
+                         <i class="fa fa-save"></i> Guardar cambios
+                        </button>
+                            </form>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Avatar</h4>
+                                    <h6 class="card-subtitle">Imagen de usuario</h6>
+                                    <div class="text-center">
+                                        <img *ngIf="!imgTemp" [src]="usuario.imagenUrl" class="img-avatar">
+                                        <img *ngIf="imgTemp" [src]="imgTemp" class="img-avatar">
+                                    </div>
+                                    <input type="file" (change)="cambiarImagen($event.target.files[0])">
+                                    <br>
+                                    <br>
+                                    <button type="button" [disabled]="!imagenSubir" (click)="subirImagen()" class="btn btn-full-dark btn-block">
+                            <i class="fa fa-save"></i> Cambiar imagen
+                           </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="div-responsive2">
+
+                    <div class="lateral">
+                        <div class="group  itemFav shadow">
+                            <img src="assets/users/1.jpg" alt="">
+                            <div class="div1">
+                                <p>John Doe.</p>
+                                <p>Johndoe@gmail.com</p>
+                                <p>User</p>
+
+                            </div>
+                        </div>
+
+                        <div class="banner-c">
+                            <img src="https://picsum.photos/seed/car/500/500" alt="">
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+</section>

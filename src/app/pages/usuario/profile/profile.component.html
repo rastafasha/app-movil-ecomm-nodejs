@@ -1,0 +1,100 @@
+<section class="page user">
+    <div class="butonBack">
+        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+    </div>
+    <div class="titlePage animated fadeIn">
+        <h3>User Detail</h3>
+    </div>
+
+
+
+    <!--cuadromodal-->
+    <div class="container-fluid cuadro-modal animated fadeInUp">
+        <div class="lineamedio"></div>
+        <div class="row">
+
+            <div class="areagris">
+            </div>
+
+            <div class="areablanc areablanc-interna animated fadeInUp">
+
+
+                <div class="div-responsive1">
+
+                    <div class="cardsmall group  itemFav shadow">
+
+                        <div class="div1">
+                            <img src="{{usuario.imagenUrl}}" alt="">
+
+                        </div>
+                        <div class="div2">
+                            <p>{{usuario.first_name}} {{usuario.last_name}}</p>
+                            <p>{{usuario.email}}</p>
+                            <p>{{usuario.role}}</p>
+                            <p>Status: <span class="badge bg-success">Activo</span></p>
+                        </div>
+                    </div>
+                    <div class="info-product animated fadeInUp">
+                        <p>Dirección Principal: Caracas, Norte </p>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="admin-services">
+                        <a routerLink="/app/user/profile/edit">
+                            <div class="option-admin">
+                                <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                <p>Edit Profile</p>
+                            </div>
+                        </a>
+                        <a routerLink="/app/settings">
+                            <div class="option-admin">
+                                <i class="fa fa-adjust" aria-hidden="true"></i>
+                                <p>Compartir</p>
+                            </div>
+                        </a>
+                        <a routerLink="/app/user/tickets">
+                            <div class="option-admin">
+                                <i class="fa fa-comments"></i>
+                                <p>Chat</p>
+                            </div>
+                        </a>
+                        <a routerLink="/app/wallet">
+                            <div class="option-admin">
+                                <i class="fa fa-wallet"></i>
+                                <p>Wallet</p>
+                            </div>
+                        </a>
+                        <a routerLink="/app/user/direcciones">
+                            <div class="option-admin">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <p>Direcciones</p>
+                            </div>
+                        </a>
+                        <!-- <div class="option-admin">
+                            <i class="fa fa-user"></i>
+                            <p>Notifications</p>
+                        </div> -->
+                        <a (click)="logout()" class="cursor">
+                            <div class="option-admin">
+                                <i class="fas fa-power-off "></i>
+                                <p>Logout</p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="div-responsive2">
+
+                    <!-- <app-lateral></app-lateral> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--cuadromodal-->
+
+
+
+
+
+
+</section>

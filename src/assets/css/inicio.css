@@ -1,0 +1,21 @@
+.inicio {
+    width: 100w;
+    height: 100vh;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    position: relative
+}
+
+.inicio .logo {
+    position: relative;
+    z-index: 9;
+    height: 230px;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    width: auto;
+}

@@ -1,0 +1,368 @@
+.cart {
+    -webkit-animation: cartanimation 1s 1 ease;
+    -moz-animation: cartanimation 1s 1 ease;
+    -o-animation: cartanimation 1s 1 ease;
+    -ms-animation: cartanimation 1s 1 ease;
+    animation: cartanimation 1s 1 ease;
+    background-color: var(--dark-brown);
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
+    background: rgb(125, 185, 232);
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #3c2415) -10%, #000000 70%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #3c2415 -10%, #000000 70%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #3c2415 -10%, #000000 70%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
+    /* IE6-9 */
+}
+
+@keyframes cartanimation {
+    0% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+    100% {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
+        background: rgb(125, 185, 232);
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #3c2415) -10%, #000000 70%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #3c2415 -10%, #000000 70%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #3c2415 -10%, #000000 70%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
+        /* IE6-9 */
+    }
+}
+
+@-webkit-keyframes cartanimation {
+    0% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+    100% {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
+        background: rgb(125, 185, 232);
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #3c2415) -10%, #000000 70%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #3c2415 -10%, #000000 70%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #3c2415 -10%, #000000 70%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
+        /* IE6-9 */
+    }
+}
+
+.cart .cuadro-modal {
+    bottom: 0%;
+    transform: translate(0px, 0%);
+    background-color: var(--lighter-brown);
+    padding: 20px;
+    height: 50vh;
+    -webkit-animation: cuadro-modal 1s 1 ease;
+    -moz-animation: cuadro-modal 1s 1 ease;
+    -o-animation: cuadro-modal 1s 1 ease;
+    -ms-animation: cuadro-modal 1s 1 ease;
+    animation: cuadro-modal 1s 1 ease;
+}
+
+@keyframes cuadro-modal {
+    0% {
+        transform: translate(0px, 100%);
+    }
+    100% {
+        transform: translate(0px, 50%);
+    }
+}
+
+@-webkit-keyframes cuadro-modal {
+    0% {
+        transform: translate(0px, 100%);
+    }
+    100% {
+        transform: translate(0px, 50%);
+    }
+}
+
+.listProducts {
+    position: relative;
+    top: 3%;
+    left: 10px;
+    height: 250px;
+    width: 94%;
+    z-index: 20;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-radius: 10px;
+}
+
+.product {
+    width: 100%;
+    height: 120px;
+    border-radius: 4px;
+}
+
+.product .itemProduct img {
+    width: 70%;
+    height: auto;
+    display: flex;
+    align-self: center;
+    margin: auto;
+    flex-direction: column;
+}
+
+.product {
+    display: grid;
+    /*grid-template-columns: repeat(2, 1fr);*/
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: 100px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    box-shadow: var(--shadow);
+}
+
+.product .itemProductdiv1 {
+    grid-area: 1 / 1 / 2 / 2;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-right: 2px;
+}
+
+.product .itemProductdiv2 {
+    grid-area: 1 / 2 / 2 / 3;
+    background-color: var(--green-gray);
+    border-radius: 4px;
+    padding-left: 10px;
+}
+
+.product p {
+    font-family: var(--fontFamily);
+    font-size: var(--texto-size);
+    margin: 0;
+    padding: 0;
+}
+
+.addCompra {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.addCompradiv1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.addCompradiv2 {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.addCompradiv3 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.addCompradiv4 {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.nameProduct p {
+    font-family: var(--fontFamily);
+    color: var(--dark-brown);
+    font-size: var(--texto-size);
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 5px;
+}
+
+.addInfo p {
+    font-family: var(--fontFamily);
+    color: var(--dark-brown);
+    font-weight: 300;
+    font-size: 14px
+}
+
+.buttonsAdd {
+    background-color: var(--light-brown);
+    border-radius: var(--border-interno);
+    height: 30px;
+    box-shadow: var(--shadow);
+    width: 94%;
+    margin-left: 0px;
+    margin-top: 5px;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.buttonsAdd .btn:nth-child(2) {
+    border-left: 1px solid var(--dark-brown);
+    border-right: 1px solid var(--dark-brown);
+}
+
+.buttonsAdd .btn {
+    color: var(--dark-brown);
+    font-size: var(--texto-size);
+    float: right;
+    padding-right: 20px
+}
+
+.subtotal p {
+    font-family: var(--fontFamily);
+    color: var(--dark-brown);
+    font-size: var(--texto-size);
+    text-align: right;
+    padding-right: 20px
+}
+
+.subtotal p:nth-child(1) {
+    font-size: var(--subtituloh5-size);
+    margin-bottom: -8px
+}
+
+.cart .cuadro-modal .total p {
+    font-family: var(--fontFamily);
+    color: var(--dark-brown);
+    display: block;
+    text-align: right;
+    font-size: var(--subtituloh5-size);
+    position: absolute;
+    z-index: 22;
+    float: right;
+    right: 20px;
+    top: 0px
+}
+
+.cart .cuadro-modal .total i {
+    font-family: var(--fontFamily);
+    color: var(--dark-brown);
+    display: block;
+    text-align: left;
+    font-size: var(--icon-size-s);
+    position: absolute;
+    z-index: 22;
+    float: left;
+    left: 20px;
+    top: 0px
+}
+
+.cuponInput {
+    padding: 5px;
+    height: 60px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border: 4px dashed var(--dark-brown);
+}
+
+.shippingMethod {}
+
+.shippingMethod {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.shippingMethod1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.shippingMethod2 {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.shippingMethod3 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.shippingMethod4 {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.infoCompraTotal {
+    display: grid;
+    grid-template-columns: 80% 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    font-family: var(--fontFamily);
+    background-color: var(--green-gray);
+    padding: 10px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+}
+
+.infoCompraTotal1 p,
+.infoCompraTotal3 p,
+.infoCompraTotal5 p,
+.infoCompraTotal7 p {
+    color: var(--dark-brown);
+    font-size: var(--texto-size);
+    font-weight: 400;
+    text-align: right;
+    padding-right: 15px;
+}
+
+.infoCompraTotal2 p,
+.infoCompraTotal4 p,
+.infoCompraTotal6 p,
+.infoCompraTotal8 p {
+    color: var(--dark-brown);
+    font-size: var(--texto-size);
+}
+
+.infoCompraTotal1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.infoCompraTotal2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.infoCompraTotal3 {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.infoCompraTotal4 {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.infoCompraTotal5 {
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+.infoCompraTotal6 {
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+.infoCompraTotal7 {
+    grid-area: 4 / 1 / 5 / 2;
+}
+
+.infoCompraTotal8 {
+    grid-area: 4 / 2 / 5 / 3;
+}

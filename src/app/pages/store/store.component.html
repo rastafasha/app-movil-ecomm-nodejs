@@ -1,0 +1,193 @@
+<section class="page store">
+    <div class="butonBack">
+        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+    </div>
+    <div class="titlePage animated fadeIn">
+        <h3>Store</h3>
+    </div>
+    <div class="container-fluid cuadro-modal animated fadeInUp">
+        <div class="lineamedio"></div>
+        <div class="container">
+            <!-- mensaje -->
+            <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="msm_success">
+                Artículo agregado al <a [routerLink]="['/app/cart']"><b>Carrito!</b></a>.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <!-- mensaje -->
+            <!-- mensaje -->
+            <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="msm_success_fav">
+                Artículo agregado a <a [routerLink]="['/app/user/favorites']"><b>Favoritos!</b></a>.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <!-- mensaje -->
+            </div>
+        <div>
+
+            <!----info-->
+            <div class="areablanc areablanc-interna animated fadeInUp">
+                <div class="div-responsive1">
+
+                    <!---Slider-->
+                    <!-- <h5>Cupones de descuento</h5>
+                    <div class="swiffy-slider slider-item-reveal slider-nav-round slider-item-ratio slider-item-ratio-21x9">
+                        <ul class="slider-container ">
+                            <li>
+                                <div class="info-slider">
+                                    <h1>JKLm345</h1>
+                                    <h2>Descuento de 30%</h2>
+                                    <div class="div1-home">
+
+                                        <div class="stars">
+                                            <ul>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <img src="https://swiffyslider.com/assets/img/photos/img4.webp" loading="lazy" alt="..."></li>
+                            <li>
+                                <div class="info-slider">
+                                    <h1>JKLm345</h1>
+                                    <h2>Descuento de 30%</h2>
+                                    <div class="div1-home">
+
+                                        <div class="stars">
+                                            <ul>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <img src="https://swiffyslider.com/assets/img/photos/img5.webp" loading="lazy" alt="..."></li>
+                            <li>
+                                <div class="info-slider">
+                                    <h1>JKLm345</h1>
+                                    <h2>Descuento de 30%</h2>
+                                    <div class="div1-home">
+
+                                        <div class="stars">
+                                            <ul>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <img src="https://swiffyslider.com/assets/img/photos/img6.webp" loading="lazy" alt="..."></li>
+                            <li>
+                                <div class="info-slider">
+                                    <h1>JKLm345</h1>
+                                    <h2>Descuento de 30%</h2>
+                                    <div class="div1-home">
+
+                                        <div class="stars">
+                                            <ul>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <img src="https://swiffyslider.com/assets/img/photos/img7.webp" loading="lazy" alt="..."></li>
+                        </ul>
+
+                        <button type="button" class="slider-nav" aria-label="Go left"></button>
+                        <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+                        <div class="slider-indicators slider-indicators-square d-none d-md-flex">
+                            <button class="active" aria-label="Go to slide"></button>
+                            <button aria-label="Go to slide"></button>
+                            <button aria-label="Go to slide"></button>
+                            <button aria-label="Go to slide"></button>
+                        </div>
+
+                        <div class="slider-indicators slider-indicators-sm slider-indicators-dark slider-indicators-round d-md-none slider-indicators-highlight">
+                            <button class="active" aria-label="Go to slide"></button>
+                            <button aria-label="Go to slide"></button>
+                            <button aria-label="Go to slide"></button>
+                            <button aria-label="Go to slide"></button>
+                        </div>
+                    </div> -->
+
+
+                    <!---Slider-->
+                    <br>
+                    <br>
+                    <h5>Productos </h5>
+                    <div class="post-inner">
+                        <div class="carousel-inner-data">
+                            <div class="post navTabs" *ngFor="let producto of productos">
+    
+                                <div class=" itemStore">
+                                    <div class="group   productoitem">
+                                        <div class="favoritesdiv1">
+                                            <a [routerLink]="['/app/product', producto._id]">
+                                                <img [src]="producto.img | imagenPipe: 'productos'"alt="">
+                                            </a>
+                                        </div>
+    
+                                        <div class="favoritesdiv2">
+                                            <p><b>{{producto.titulo | slice:0:15}}</b></p>
+                                            <p>{{producto.categoria.nombre | slice:0:15}}...</p>
+                                            <div class="precio">
+                                                <p>$ {{producto.precio_antes}}</p>
+                                                <p>$ {{producto.precio_ahora}}</p>
+                                            </div>
+                                            <!-- <div class="stars">
+                                                <ul>
+                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                    <li class="active"><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                </ul>
+                                            </div> -->
+                                        </div>
+                                        <div class="botones">
+                                            <button class="button-add-favorite " (click)="addToFavoritoos(producto)"><i class="fa  fa-heart " id="myBtn "></i></button>
+                                        <button class="button-add-cart" (click)="addToCart(producto)"><i class="fa  fa-shopping-bag" id="myBtn "></i></button>
+                                        </div>
+    
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="div-responsive2">
+
+                    <!-- <app-lateral></app-lateral> -->
+                </div>
+
+
+            </div>
+
+            <!---info-->
+
+
+
+
+        </div>
+
+    </div>
+</section>

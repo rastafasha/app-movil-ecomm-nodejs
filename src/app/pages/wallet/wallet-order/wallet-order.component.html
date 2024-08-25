@@ -1,0 +1,117 @@
+<section class="wallet page">
+    <div class="butonBack">
+        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+    </div>
+    <div class="titlePage">
+        <h3>Wallet | Payment</h3>
+    </div>
+    <div class="container-fluid cuadro-modal">
+        <div class="lineamedio"></div>
+        <div class="row">
+
+            <div class="areagris">
+            </div>
+
+            <div class="areablanc areablanc-interna animated fadeInUp">
+
+                <div class="div-responsive1">
+
+
+                    <!-- <form class="d-flex shadowSearch">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success btn-seach" type="submit"><i class="fa fa-search"></i></button>
+                  </form> -->
+
+                    <div class="post-inner">
+                        <div class="  shadow orden-depedido">
+                            <div class="alert alert-success col-12" role="alert">
+                                <h4 class="alert-heading"></h4>
+                                <h2>Order Success!</h2>
+                                <p>Revise su correo con el recibo de pago.</p>
+                                <hr>
+
+
+                                <h2>Resumen total de Compra</h2>
+
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td style="color: #000">Delivery zone Name</td>
+                                            <td style="color: #000" align="right">$5.00</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style="color: #000">Descuento Cupon Total</td>
+                                            <td style="color: #000" align="right">$13.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="color: #000">Sub Total</td>
+                                            <td style="color: #000" align="right">$4.00</td>
+                                        </tr>
+                                    </tbody>
+
+                                    <tfoot style="border-top: 1px solid #000; height: 50px;">
+                                        <tr>
+                                            <td style="color: #000">Total</td>
+                                            <td style="color: #000" align="right">$53.00</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <hr>
+
+                                <div class="botonera">
+                                    <a routerLink="/app/user/order-status">
+                                        <div class="btn btn-simple-border-light">Ver Pedido</div>
+                                    </a>
+                                    <a routerLink="/app/store">
+                                        <div class="btn btn-full-dark">Continue</div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <h3>Nuestros Contacto</h3>
+                                <h4>Titulo Empresa</h4>
+                                <p>{{congeneralSeleccionado.titulo}}</p>
+                                <h4>Dirección</h4>
+                                <p>{{congeneralSeleccionado.direccion}}</p>
+                                <h4>Teléfono</h4>
+                                <p>{{congeneralSeleccionado.telefono_uno}}</p>
+                                <h4>Whatsapp</h4>
+                                <p>{{congeneralSeleccionado.telefono_dos}}</p>
+                                <h4>Facebook</h4>
+                                <p>{{congeneralSeleccionado.facebook}}</p>
+                                <h4>Instagram</h4>
+                                <p>{{congeneralSeleccionado.instagram}}</p>
+                                <h4>Mapa Ubicación</h4>
+                                <p><b>iframe_mapa (ubicación):</b></p>
+                                <iframe class="mapa" [src]="getMapIframe(congeneralSeleccionado.iframe_mapa)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; " allowfullscreen></iframe>
+                                <h4>Horarios</h4>
+                                <p>{{congeneralSeleccionado.horarios}}</p>
+                                <h4>Email Contacto</h4>
+                                <p>{{congeneralSeleccionado.email_uno}}</p>
+                                <h4>Email Reclamos</h4>
+                                <p>{{congeneralSeleccionado.email_dos}}</p>
+                            </div>
+
+                            <br>
+                            <br>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="div-responsive2">
+
+                    <!-- <app-lateral></app-lateral> -->
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+</section>

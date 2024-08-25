@@ -1,0 +1,94 @@
+<section class="page pedido">
+    <div class="butonBack">
+        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+    </div>
+    <div class="titlePage">
+        <h3>Manage Orders </h3>
+    </div>
+    <!--cuadromodal-->
+    <div class="container-fluid cuadro-modal">
+        <div class="lineamedio"></div>
+        <div class="row">
+            <div class="areagris"></div>
+            <div class="areablanc areablanc-interna animated fadeInUp">
+
+
+                <div class="div-responsive1">
+                    <!-- tabs navigation -->
+                    <div class="post-inner ">
+                        <div class="container">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs profile-tab" role="tablist">
+                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-expanded="true">Ordenes</a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#direccion" role="tab" aria-expanded="false">Cancelaciones</a> </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true">
+                                    <div *ngFor="let vent of ventas">
+                                        <br>
+                                        <!--Pedido-->
+                                        <div class=" itemFav pedidoResumen">
+                                            <p><b>Estado:</b> <br>
+                                                <span class="badge badge-danger" *ngIf="vent.estado == 'Venta en proceso'">{{vent.estado}}</span>
+                                                <span class="badge badge-success" *ngIf="vent.estado == 'Enviado'">{{vent.estado}}</span>
+                                                <span class="badge badge-primary" *ngIf="vent.estado == 'Finalizado'">{{vent.estado}}</span>
+                                                <span class="badge badge-secondary" *ngIf="vent.estado == 'Reembolsado'">{{vent.estado}}</span>
+                                            </p>
+                                            <p><b>Compra:</b> N°-{{vent._id.toUpperCase()}}</p>
+                                            <p><b>Metodo Pago:</b> {{vent.metodo_pago}}</p>
+                                            <p><b>Fecha:</b> {{vent.createdAt | date:'MMM d, y, h:mm:ss a'}}</p>
+                                            <p><b>Entrega:</b> {{vent.tiempo_estimado}}</p>
+                                            <p><b>Total Pagado:</b> ${{vent.total_pagado}}</p>
+                                            <a [routerLink]="['/app/user/order/',vent._id]">
+                                                <button class="btn btn-full-dark-s">
+                                                Ver Detalle
+                                              </button>
+                                            </a>
+
+                                        </div>
+                                        <!--Pedido-->
+                                    </div>
+                                </div>
+                                <!--second tab-->
+                                <div class="tab-pane" id="direccion" role="tabpanel" aria-expanded="false">
+                                    <div *ngFor="let can of cancelacion">
+                                        <br>
+                                        <!--Pedido-->
+                                        <div class=" itemFav pedidoResumen">
+                                            <p><b>Estado:</b> <br>
+                                                <span class="badge badge-danger" *ngIf="can.estado == 'Venta en proceso'">{{can.estado}}</span>
+                                                <span class="badge badge-success" *ngIf="can.estado == 'Enviado'">{{can.estado}}</span>
+                                                <span class="badge badge-primary" *ngIf="can.estado == 'Finalizado'">{{can.estado}}</span>
+                                                <span class="badge badge-secondary" *ngIf="can.estado == 'Reembolsado'">{{can.estado}}</span>
+                                            </p>
+                                            <p><b>Motivo:</b> {{can.mensaje}}</p>
+                                            <p><b>Venta id:</b> {{can.venta}}</p>
+                                            <p><b>Date:</b> {{can.createdAt | date:'MMM d, y, h:mm:ss a'}}</p>
+
+                                        </div>
+                                        <!--Pedido-->
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tabs navigation -->
+                </div>
+
+                <div class="div-responsive2">
+                    <app-lateral></app-lateral>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--cuadromodal-->
+
+
+
+
+
+
+</section>

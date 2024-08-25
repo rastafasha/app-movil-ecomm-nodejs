@@ -1,0 +1,8 @@
+.productPage .product-item img {
+    display: block;
+    width: 70%;
+    height: auto;
+    position: relative;
+    top: -5px;
+    z-index: 20;
+}

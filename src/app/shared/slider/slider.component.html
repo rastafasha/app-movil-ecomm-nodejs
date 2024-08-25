@@ -1,0 +1,33 @@
+<div class="swiffy-slider slider-item-reveal slider-nav-round slider-item-ratio slider-item-ratio-21x9 ">
+    <ul class="slider-container " *ngFor="let promo of promociones">
+        <li>
+            <div class="info-slider">
+                <h1>{{promo.producto_title}}</h1>
+                <h2>{{promo.first_title}}</h2>
+                <h2>{{promo.end}}</h2>
+            </div>
+            <a routerLink="/app/product/{{promo.enlace}}">
+                <img [src]="promo.img | imagenPipe: 'promocions'" loading="lazy" alt="...">
+                <!-- <img src="http://localhost:3000/api/uploads/promocions/{{promo.img}}" loading="lazy" alt="..."> -->
+            </a>
+        </li>
+
+    </ul>
+
+    <!-- <button type="button" class="slider-nav" aria-label="Go left"></button>
+    <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+    <div class="slider-indicators slider-indicators-square d-none d-md-flex">
+        <button class="active" aria-label="Go to slide"></button>
+        <button aria-label="Go to slide"></button>
+        <button aria-label="Go to slide"></button>
+        <button aria-label="Go to slide"></button>
+    </div>
+
+    <div class="slider-indicators slider-indicators-sm slider-indicators-dark slider-indicators-round d-md-none slider-indicators-highlight">
+        <button class="active" aria-label="Go to slide"></button>
+        <button aria-label="Go to slide"></button>
+        <button aria-label="Go to slide"></button>
+        <button aria-label="Go to slide"></button>
+    </div> -->
+</div>

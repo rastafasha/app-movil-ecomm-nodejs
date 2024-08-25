@@ -1,0 +1,13 @@
+.wallet p,
+.wallet h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.wallet p {
+    font-size: 14px;
+}
+
+.wallet h3 {
+    font-size: 18px;
+}

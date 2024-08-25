@@ -1,0 +1,106 @@
+<header class="header">
+    <!--menu desktop-->
+    <div class="wrap d-flex">
+
+        <nav class="menu">
+            <ul>
+                <li><a routerLink="/app/" routerLinkActive="active">Home</a></li>
+                <!-- <li><a routerLink="/app/admin" routerLinkActive="active">Admin</a></li> -->
+                <li><a routerLink="/app/store" routerLinkActive="active">Store</a></li>
+                <li><a routerLink="/app/user/orders" routerLinkActive="active">Mis Pedidos</a></li>
+                <li><a routerLink="/app/cupones" routerLinkActive="active">Cupones</a></li>
+                <li><a routerLink="/app/profile" routerLinkActive="active">Profile</a></li>
+                <li><a routerLink="/app/wallet" routerLinkActive="active">Wallet</a></li>
+                <li><a routerLink="/app/account-settings" routerLinkActive="active">Settings</a></li>
+                <li><a routerLink="/app/about-us" routerLinkActive="active">About Us</a></li>
+                <li><a routerLink="/app/terms" routerLinkActive="active">Terms & Cond.</a></li>
+                <li><a (click)="logout()" class="cursor">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!--menu movil-->
+    <!--menu-->
+    <a class="sidemenu-toggler isqmenu1" (click)="openMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+
+    <div class="sidemenu" (mouseout)="closeMenu()">
+        <a class="close" (click)="closeMenu()"></a>
+        <div class="usermenu">
+
+            <div class="user-header-top">
+                <img [src]="usuario.img" alt="">
+                <!-- <a routerLink="/">
+                    <img src="assets/svg/Logo-BellaCafeFinal.svg" alt="">
+                </a> -->
+            </div>
+            <p>{{usuario.role}}</p>
+            <p>{{usuario.first_name}} {{usuario.last_name}}</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a routerLink="/app/" routerLinkActive="active">Home</a></li>
+                <!-- <li><a routerLink="/app/admin" routerLinkActive="active">Admin</a></li> -->
+                <li><a routerLink="/app/store" routerLinkActive="active">Store</a></li>
+                <li><a routerLink="/app/user/orders" routerLinkActive="active">Mis Pedidos</a></li>
+                <li><a routerLink="/app/cupones" routerLinkActive="active">Cupones</a></li>
+                <li><a routerLink="/app/profile" routerLinkActive="active">Profile</a></li>
+                <li><a routerLink="/app/wallet" routerLinkActive="active">Wallet</a></li>
+                <li><a routerLink="/app/account-settings" routerLinkActive="active">Settings</a></li>
+                <li><a routerLink="/app/about-us" routerLinkActive="active">About Us</a></li>
+                <li><a routerLink="/app/terms" routerLinkActive="active">Terms & Cond.</a></li>
+                <li><a (click)="logout()" class="cursor">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="footer-menu">
+            <p>{{year}}</p>
+        </div>
+    </div>
+    <!--menu movil-->
+
+    <div class="menu-top">
+        <div class="isqmenu2">
+            <div class="cart" (click)="openModal()">
+                <div class="cart--notification">{{cartItems.length}}</div>
+                <img src="./assets/svg/icon-cart.svg" alt="">
+            </div>
+        </div>
+        <div class="isqmenu3">
+            <div class="user-header-top ">
+                <a [routerLink]="['/app/profile']">
+                    <img src="{{usuario.imagenUrl}}" alt="">
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+</header>
+
+<!-- inicio cart modal -->
+<div class="cart-modal">
+    <div class="header-modal">
+        <p class="cart-modal__title">Cart</p>
+        <button class="cart-modal__chekount" [routerLink]="['/app/cart']">Checkout</button>
+    </div>
+    <div class="cart-modal__chekout-container">
+        <div class="cart-modal__details-container " *ngFor="let item of cartItems; index as i">
+            <img class="cart-modal__image" [src]="item.img | imagenPipe: 'productos'" alt="">
+            <div>
+                <p class="cart-modal__product">{{item.productName| slice: 0:10 }}...</p>
+                <p class="cart-modal__price">${{item.productPrice}} x{{item.quantity }} <span>${{item.quantity * item.productPrice| number: '1.1-2'}}</span> </p>
+            </div>
+            <img class="cart-modal__delete" (click)="deletItem(i)" src="./assets/svg/icon-delete.svg" alt="delete">
+        </div>
+        <div *ngIf="cartItems.length < 1">
+            <p class="cart-empty">Your cart is empty</p>
+        </div>
+    </div>
+
+
+
+</div>
+<!-- fin cart modal -->

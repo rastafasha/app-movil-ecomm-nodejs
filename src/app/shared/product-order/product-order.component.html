@@ -1,0 +1,32 @@
+<!--list of products-->
+<div class="listProducts animated fadeInUp ">
+    <div class="product" *ngFor="let item of cartItems; index as i">
+        <div class="itemProductdiv1">
+            <a [routerLink]="['/app/product', item.productId]">
+                <img [src]="item.img | imagenPipe: 'productos'" alt="">
+            </a>
+        </div>
+        <div class="itemProductdiv2">
+            <div class="addCompra">
+                <div class="addCompradiv1 nameProduct">
+                    <p>{{item.productName| slice: 0:10 }}...</p>
+
+                </div>
+                <div class="addCompradiv2 addInfo">
+                    <p>200gm</p>
+                    <p>${{item.productPrice}}</p>
+                </div>
+                <div class="addCompradiv3 buttonsAdd">
+                    <i class="fa fa-minus" (click)="deletItem(i)"></i>
+                    <i class="fa fa-plus" (click)="addToCart()"></i>
+                    <i class="fa fa-trash" (click)="emptyCart()"></i>
+                </div>
+                <div class="addCompradiv4 subtotal">
+                    <p>Cant: {{item.quantity }}</p>
+                    <p>${{item.quantity * item.productPrice| number: '1.1-2'}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--list of products-->

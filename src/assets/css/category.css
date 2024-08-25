@@ -1,0 +1,51 @@
+.category .post-inner {
+    overflow: hidden;
+    overflow: scroll;
+    overflow-y: scroll;
+    position: fixed;
+    width: 98%;
+    height: 420px;
+    padding-bottom: 0px;
+    margin-top: 30px;
+}
+
+.category .navTabs .itemFav {
+    display: grid;
+    cursor: pointer;
+    /* grid-template-columns: 140px 1fr; */
+}
+
+.category p {
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .category .navTabs .itemFav {
+        display: grid;
+        cursor: pointer;
+        grid-template-columns: 140px 1fr;
+    }
+    .category .itemFav .favoritesdiv1 img {
+        width: 30%;
+        padding: 5px;
+        border: 1px solid rgb(231, 231, 231);
+        background-color: #fafafa;
+        border-radius: 13px;
+        box-shadow: 0px 7px 10px #e3e2e2;
+    }
+    .category .navTabs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        gap: 2rem;
+        padding-bottom: 60px;
+        width: 100%;
+    }
+    .category .favoritesdiv1 {
+        grid-area: 1 / 2 / 6 / 2;
+    }
+    .category .favoritesdiv2 {
+        grid-area: 1 / 1 / 1 / 2;
+    }
+}

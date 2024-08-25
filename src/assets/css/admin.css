@@ -1,0 +1,366 @@
+.admin {
+    width: 100w;
+    height: 100vh;
+    display: block;
+    -webkit-animation: productanimation 1s 1 ease;
+    -moz-animation: productanimation 1s 1 ease;
+    -o-animation: productanimation 1s 1 ease;
+    -ms-animation: productanimation 1s 1 ease;
+    animation: productanimation 1s 1 ease;
+    background-color: var(--dark-brown);
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#3c2415+0,000000+60,000000+100 */
+    background: #3c2415;
+    /* Old browsers */
+    background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+    /* FF3.6-15 */
+    background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+}
+
+@keyframes productanimation {
+    0% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+    100% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+}
+
+@-webkit-keyframes productanimation {
+    0% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+    100% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+}
+
+.admin p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding: 0;
+    margin: 0;
+}
+
+.admin .titlePage h3 {
+    color: var(--lighter-brown);
+    display: block;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 20px;
+    font-weight: 300;
+    position: relative;
+    z-index: 20;
+    top: 5px;
+}
+
+.product-item img {
+    display: block;
+    width: 90%;
+    height: auto;
+    position: relative;
+    /* top: 100px; */
+    z-index: 20;
+}
+
+.admin-edit .scrollable {
+    width: 97%;
+    height: 90vh;
+}
+
+.admin-edit .cuadro-modal {
+    bottom: -40%;
+    transform: translate(0px, 0%);
+    background-color: var(--lighter-brown);
+    padding: 20px;
+    height: 100vh;
+}
+
+.admin .itemFav img {
+    width: 80%;
+    padding: 5px;
+    border: 1px solid rgb(231, 231, 231);
+    background-color: #fafafa;
+    border-radius: 13px;
+    box-shadow: 0px 7px 10px #e3e2e2;
+}
+
+.admin .cuadro-modal {
+    bottom: -46%;
+    transform: translate(0px, 0%);
+    background-color: var(--lighter-brown);
+    padding: 20px;
+    height: 140vh;
+    padding-top: 50px;
+}
+
+.admin .group {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.admin-manage {
+    width: 100w;
+    height: 100vh;
+    display: block;
+    -webkit-animation: productanimation 1s 1 ease;
+    -moz-animation: productanimation 1s 1 ease;
+    -o-animation: productanimation 1s 1 ease;
+    -ms-animation: productanimation 1s 1 ease;
+    animation: productanimation 1s 1 ease;
+    background-color: var(--dark-brown);
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#3c2415+0,000000+60,000000+100 */
+    background: #3c2415;
+    /* Old browsers */
+    background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+    /* FF3.6-15 */
+    background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+}
+
+@keyframes productanimation {
+    0% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+    100% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+}
+
+@-webkit-keyframes productanimation {
+    0% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+    100% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+}
+
+.admin-manage .logo {
+    position: absolute;
+    z-index: 9;
+    left: calc(33%);
+    width: 130px;
+    height: 130px;
+    transform: translate(0px, 0%);
+}
+
+.admin-manage .titlePage h3 {
+    color: var(--lighter-brown);
+    display: block;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 20px;
+    font-weight: 300;
+    position: relative;
+    z-index: 20;
+    top: 5px;
+}
+
+.admin-manage .product-item img {
+    display: block;
+    width: 90%;
+    height: auto;
+    position: relative;
+    /* top: 100px; */
+    z-index: 20;
+}
+
+.admin-manage .info-product {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    width: 90%;
+    display: block;
+    margin: 15px auto
+}
+
+.admin-manage .info-product h1 {
+    font-size: 26px;
+    font-weight: 200;
+}
+
+.admin-manage .info-product h2 {
+    font-size: 20px;
+    font-weight: 200;
+    padding-bottom: 10px
+}
+
+.admin-manage .info-product p {
+    font-size: 16px;
+    font-weight: 200;
+}
+
+.admin-manage .cuadro-modal {
+    bottom: -49%;
+    transform: translate(0px, 0%);
+    background-color: var(--lighter-brown);
+    padding: 20px;
+    height: 100vh;
+}
+
+.admin-manage .post-inner {
+    overflow: hidden;
+    overflow-y: scroll;
+    position: fixed;
+    padding-right: 20px;
+    width: 100%;
+    height: 70vh;
+    padding-bottom: 150px;
+    margin-top: 10px;
+}
+
+.admin .lineamedio {
+    height: 34px;
+    width: 100vw;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 18px 18px 14px 14px;
+    background-color: #CCB092;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    box-shadow: 0px 5px 10px #ccc;
+}
+
+@media (min-width: 768px) {
+    .admin .cuadro-modal {
+        bottom: -31%;
+        transform: translate(0px, 0%);
+        padding: 20px;
+        height: 125vh;
+        display: flex;
+        flex-direction: unset;
+        flex-wrap: wrap;
+        padding-top: 0px;
+    }
+    .admin {
+        margin-left: 20%;
+        width: 80%;
+    }
+    .admin .group {
+        width: 50%;
+        display: grid;
+        float: left;
+    }
+    .admin .slider-container {
+        width: 50%;
+    }
+    .admin .admin-services {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        width: 40%;
+        display: grid;
+        margin-bottom: 100px;
+    }
+    .admin-manage .areablanc-interna {
+        width: 80vw;
+    }
+    .admin-manage .listProducts {
+        position: relative;
+        top: 3%;
+        height: 280px;
+    }
+    .admin-manage .post-inner {
+        overflow: hidden;
+        overflow-y: scroll;
+        position: fixed;
+        padding-right: 20px;
+        width: 60%;
+        height: 50vh;
+        padding-bottom: 150px;
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,102 @@
+<section class="wallet page">
+    <div class="butonBack">
+        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+    </div>
+    <div class="titlePage">
+        <h3>My Wallet </h3>
+    </div>
+    <div class="container-fluid cuadro-modal">
+        <div class="lineamedio"></div>
+        <div class="row">
+            <div class="areagris"></div>
+            <div class="areablanc areablanc-interna animated fadeInUp">
+
+                <div class="div-responsive1 ">
+                    <div class="post-inner ">
+
+                        <div class="container">
+                            <form [formGroup]="tipopagoForm" (submit)="pagoFill()">
+                                <h5>Agregar un nuevo pago </h5>
+                                <div class="clear"></div>
+                                <p>{{pageTitle}}</p>
+
+                                <div class="row">
+
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="address-fn">Nombre y apellidos</label>
+                                            <input class="form-control" type="text" required placeholder="Nombres y apellidos" formControlName="nombreCompleto">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="address-ln">Username</label>
+                                            <input class="form-control" type="text" required placeholder="Ingrese username" formControlName="username">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="address-ln">Phone</label>
+                                            <input class="form-control" type="text" required placeholder="telefono" formControlName="phone">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="address-ln">Email</label>
+                                            <input class="form-control" type="text" required placeholder="email" formControlName="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="address-ln">type</label>
+
+                                            <select class="form-control form-control-md" formControlName="type">
+                                  <option value="0">Select Payment</option>
+                                  <option value="Paypal">Paypal</option>
+                                  <option value="Bank Tranfer">Bank transfer</option>
+                                  <option value="Pago Movil">Pago Movil</option>
+                              </select>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="address-ln">Bank Name</label>
+                                            <input class="form-control" type="text" placeholder="Nombre de banco" formControlName="bankName">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="address-ln">Account number</label>
+                                            <input class="form-control" type="text" placeholder="numero de cuenta" formControlName="accountNumber">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <button type="submit" [disabled]="tipopagoForm.invalid" class="btn btn-full-dark btn-block">
+                      <i class="fa fa-save"></i> Aceptar
+                     </button>
+                            </form>
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+                </div>
+
+                <div class="div-responsive2">
+                    <app-lateral></app-lateral>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+</section>

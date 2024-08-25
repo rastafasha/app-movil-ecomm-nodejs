@@ -1,0 +1,193 @@
+<section class="page cart user order">
+    <div class="butonBack">
+        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+    </div>
+    <div class="titlePage">
+        <h3>Order Detail</h3>
+    </div>
+
+    <div *ngIf="venta ">
+
+        <!--list of products mobile-->
+        <!--list of products-->
+        <div class="order-info animated fadeInUp ">
+            <div class="container">
+                <p>Su Pedido ha sido</p>
+                <span class="badge badge-danger" *ngIf="vent.estado == 'Venta en proceso'">{{vent.estado}}</span>
+                <span class="badge badge-success" *ngIf="vent.estado == 'Enviado'">{{vent.estado}}</span>
+                <span class="badge badge-primary" *ngIf="vent.estado == 'Finalizado'">{{vent.estado}}</span>
+                <span class="badge badge-secondary" *ngIf="vent.estado == 'Reembolsado'">{{vent.estado}}</span>
+                <h2>Nos vemos Pronto!</h2>
+                <br>
+                <p><b>Fecha de Compra:</b> {{venta.createdAt | date:'MMM d, y, h:mm:ss a'}} </p>
+                <p><b>Entrega:</b> <br> {{venta.tiempo_estimado}}
+                </p>
+            </div>
+        </div>
+        <!--list of products-->
+        <!--list of products mobile-->
+        <!--cuadromodal-->
+        <div class="container-fluid cuadro-modal animated fadeInUp">
+
+            <div class="lineamedio"></div>
+            <div class="row">
+                <div class="areagris"></div>
+
+                <div class="areablanc areablanc-interna animated fadeInUp ">
+                    <div class="div-responsive1 scrollable">
+                        <div class="container">
+                            <p><b>Destinatario:</b> {{venta.destinatario}}</p>
+                            <p><b>Dirección:</b> {{venta.direccion}}</p>
+                            <p><b>País:</b> {{venta.pais}}</p>
+                            <p><b>ZIP:</b> {{venta.zip}}</p>
+                            <p><b>Referencia:</b> {{venta.referencia}}</p>
+                            <p><b>Info Cupón:</b> {{venta.info_cupon}}</p>
+                            <p><b>Id Transacción:</b> {{venta.idtransaccion}}</p>
+                            <p><b>Tipo Envio:</b> {{venta.tipo_envio}}</p>
+                            <p><b>Precio Envio:</b> ${{venta.precio_envio}}</p>
+                            <p><b>Metodo Pago:</b> {{venta.metodo_pago}}</p>
+                            <p><b>Tiempo Estimado:</b> {{venta.tiempo_estimado}}</p>
+                            <p><b>Total Pagado:</b> ${{venta.total_pagado}}</p>
+                            <p><b>Tracking Number:</b> {{venta.tracking_number}}</p>
+                            <div class="clear"></div><br><br>
+
+                            <div class="clear"></div>
+                            <h3>Detalle de la compra</h3>
+                            <div class="card mb-2" *ngFor="let item of detalle">
+                                <div class="pedido-detalle">
+                                    <div class="col-sm-4">
+                                        <a [routerLink]="['/app/producto/',item.producto.slug]">
+                                            <img [src]="item.producto.img | imagenPipe: 'productos'" class="rounded-left" alt="Card image">
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="card-body">
+                                            <h6 class="card-title" style="font-size: 15.2px;">{{item.producto.titulo.substr(0,30)}}..</h6>
+                                            <div class="font-size-sm">
+                                                <span class="text-muted mr-2">Cantidad:</span>{{item.cantidad}}
+                                            </div>
+                                            <div class="font-size-sm"><span class="text-muted mr-2">{{item.producto.nombre_selector}}:</span>{{item.selector}}</div>
+                                            <div class="font-size-sm"><span class="text-muted mr-2">Color:</span>
+                                                <span [ngStyle]="{'background': item.color,'color': item.color}" style="font-weight: 900;">||||||||||||||||||||</span>
+                                            </div>
+
+                                            <div class="font-size-sm">
+                                                <span class="text-muted mr-2">Precio unitario:</span>${{item.precio}}
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div><br>
+
+                        <div class="botonera">
+                            <div class="btn-group mr-2 mb-2" role="group" aria-label="Settings group">
+                                <button type="button" class="btn btn-simple-border-light" *ngIf="venta.estado == 'Venta en proceso' && !btn_cancelar" data-toggle="modal" [attr.data-target]="'#sol_cancelar'">
+                              <i class="czi-paypal"></i> &nbsp;
+                              Solicitar reembolso
+                            </button>
+
+                                <ng-container *ngIf="venta.estado == 'Enviado' || venta.estado == 'Venta en proceso' || venta.estado == 'Finalizado'">
+                                    <a [routerLink]="['/app/user/tickets/',venta._id]" type="button" class="btn btn-simple-border-light">
+                                        <i class="czi-help mr-1"></i> Tickets
+                                    </a>
+                                </ng-container>
+
+
+                            </div>
+
+
+                            <div class="btn-group mr-2 mb-2" role="group" aria-label="Apply settings" *ngIf="venta.estado == 'Enviado'">
+                                <button type="button" class="btn btn-full-dark" data-toggle="modal" [attr.data-target]="'#finalizar'">
+                                <i class="czi-check mr-2"></i>
+                                Confirmar entrega
+                              </button>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="div-responsive2">
+
+                        <!-- <app-lateral></app-lateral> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--cuadromodal-->
+
+        <!-- modal reembolso -->
+        <div class="modal fade" [attr.id]="'sol_cancelar'" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Cancelación</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="bg-secondary py-grid-gutter px-grid-gutter rounded-lg">
+                            <form #cancelarForm="ngForm" (ngSubmit)="cancelar(cancelarForm)">
+                                <div class="form-group" *ngIf="msm_error_cancelar">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{msm_error_cancelar}}
+                                        <button type="button" class="close" (click)="close_alert()" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="review-text">Motivo de la cancelacion?<span class="text-danger">*</span></label>
+                                    <textarea class="form-control" rows="5" required="" name="mensaje" [(ngModel)]="cancelacion.mensaje" placeholder="Escribenos por qué estas solicitando la cancelación."></textarea>
+
+                                </div>
+
+                                <button class="btn btn-full-dark" type="submit">Solicitar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal reembolso -->
+
+        <!-- modal confirmacion -->
+        <div class="modal fade" id="finalizar" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirmación</h4>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="font-size-sm">Al aceptar estas confimando la recepción de la compra.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-simple-border-light" type="button" data-dismiss="modal">Cerrar</button>
+                        <button class="btn btn-full-dark" type="button" (click)="finalizar(venta._id)">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal confirmacion -->
+    </div>
+
+
+
+
+
+
+
+
+
+
+</section>

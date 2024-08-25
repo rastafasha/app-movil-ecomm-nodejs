@@ -1,0 +1,211 @@
+.page {
+    width: 100w;
+    height: 100vh;
+    display: block;
+    -webkit-animation: productanimation 1s 1 ease;
+    -moz-animation: productanimation 1s 1 ease;
+    -o-animation: productanimation 1s 1 ease;
+    -ms-animation: productanimation 1s 1 ease;
+    animation: productanimation 1s 1 ease;
+    background-color: var(--dark-brown);
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#3c2415+0,000000+60,000000+100 */
+    background: #3c2415;
+    /* Old browsers */
+    background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+    /* FF3.6-15 */
+    background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+}
+
+@keyframes productanimation {
+    0% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+    100% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+}
+
+@-webkit-keyframes productanimation {
+    0% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+    100% {
+        background: #3c2415;
+        /* Old browsers */
+        background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+        /* FF3.6-15 */
+        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
+    }
+}
+
+.page .logo {
+    position: absolute;
+    z-index: 9;
+    left: calc(33%);
+    width: 130px;
+    height: 130px;
+    transform: translate(0px, 0%);
+}
+
+.page .cuadro-modal {
+    bottom: 0%;
+    transform: translate(0px, 0%);
+    background-color: var(--lighter-brown);
+    padding: 20px;
+    height: 94vh;
+}
+
+.page .titlePage h3 {
+    color: var(--lighter-brown);
+    display: block;
+    text-align: center;
+    padding-top: 15px;
+    font-size: var(--texto-size);
+    position: relative;
+    z-index: 20;
+    top: 1px;
+}
+
+.product-item img {
+    display: block;
+    width: 90%;
+    height: auto;
+    position: relative;
+    /* top: 100px; */
+    z-index: 20;
+}
+
+.page .info-product {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    width: 90%;
+    display: block;
+    margin: 15px auto
+}
+
+.info-product h1 {
+    font-size: var(--subtituloh1-size);
+}
+
+.info-product h2 {
+    font-size: var(--subtituloh2-size);
+}
+
+.info-product p {
+    font-size: var(--texto-size);
+}
+
+.cardTitleProduct {
+    display: grid;
+    grid-template-columns: repeat(2, 70%);
+    grid-template-rows: repeat(2, 12%);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 100%;
+}
+
+.div1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.div2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.div3 {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.div4 {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.cardTitleProduct h1 {
+    font-size: var(--subtituloh1-size);
+    display: flex;
+}
+
+.cardTitleProduct h2 {
+    font-size: var(--subtituloh2-size);
+    display: flex;
+}
+
+.cardTitleProduct .price {
+    font-size: 30px;
+    font-weight: 700;
+    align-self: flex-end;
+    display: flex;
+    color: var(--dark-brown);
+}
+
+.cardTitleProduct .reduceprice {
+    font-size: var(--price-size);
+    align-self: flex-end;
+    display: flex;
+    color: var(--dark-brown);
+    text-decoration: line-through;
+}
+
+.cardTitleProduct .stars {
+    align-items: flex-start;
+    padding-right: 33px;
+}
+
+.cardTitleProduct .stars ul li {
+    list-style: none;
+    font-size: var(--texto-size);
+}
+
+.page .lineamedio {
+    height: 34px;
+    width: 100vw;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 18px 18px 14px 14px;
+    background-color: var(--light-brown);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    box-shadow: var(--shadow);
+}

@@ -1,0 +1,95 @@
+<div class="inner-data animated fadeInRight">
+    <div class="swiffy-slider slider-item-show3 slider-item-reveal slider-nav-dark slider-nav-outside-expand">
+        <ul class="slider-container py-4 slideh-list" id="slider2">
+            <li *ngFor="let prod of productos | slice:0:5">
+                <div class=" card shadow h-100 ">
+                    <div class="ratio ratio-1x1 ">
+                        <a [routerLink]="['/app/product', prod._id]">
+                            <img [src]="prod.img | imagenPipe: 'productos'" class="card-img-top " loading="lazy " alt="{{prod.nombre}} ">
+                        </a>
+                    </div>
+                    <div class="card-body d-flex flex-column flex-md-row ">
+                        <div class="flex ">
+                            <strong>{{prod.titulo | slice: 0:10}}</strong>
+                        </div>
+                        <div class="px-md-2 precioantes">$ {{prod.precio_ahora}}</div>
+                        <div class="px-md-2 ">$ {{prod.precio_antes}}</div>
+                        <div class="stars">
+                            <div class="star-rating" *ngIf="prod.stars == 5">
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                            </div>
+                            <div class="star-rating" *ngIf="prod.stars >= 4 && prod.stars < 5">
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="star-rating" *ngIf="prod.stars >= 3 && prod.stars < 4">
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="star-rating" *ngIf="prod.stars >= 2 && prod.stars < 3">
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="star-rating" *ngIf="prod.stars >= 1 && prod.stars < 2">
+                                <i class="fa fa-star "></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="star-rating" *ngIf="prod.stars >= 0 && prod.stars < 1">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="button-add-cart " type="button " (click)="addToCart(prod) ">
+                            <i class="fa fa-shopping-bag " id="myBtn "></i>
+                        </div>
+                        <div class="button-add-favorite " type="button " (click)="addToFavorites(prod) ">
+                            <i class="fa fa-heart " id="myBtn "></i>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+        <button type="button " class="slider-nav " aria-label="Go to previous "></button>
+        <button type="button " class="slider-nav slider-nav-next " aria-label="Go to next "></button>
+    </div>
+</div>
+
+ <div class="container">
+    <!-- mensaje -->
+ <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="msm_success">
+    Artículo agregado al <a [routerLink]="['/app/cart']"><b>Carrito!</b></a>.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<!-- mensaje -->
+ <!-- mensaje -->
+ <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="msm_success_fav">
+    Artículo agregado a <a [routerLink]="['/app/user/favorites']"><b>Favoritos!</b></a>.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<!-- mensaje -->
+ </div>

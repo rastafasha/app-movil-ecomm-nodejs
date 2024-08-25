@@ -1,0 +1,145 @@
+.butonBack {
+    position: relative;
+    top: 50px;
+    ;
+    z-index: 30;
+}
+
+.butonBack .fa {
+    position: relative;
+    z-index: 9;
+    font-size: 34px;
+    top: -10px;
+    left: 15px;
+    color: var(--lighter-brown);
+}
+
+.boton-brown {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: var(--dark-brown);
+    padding: 10px;
+    color: var(--light-brown);
+    font-size: 18px;
+    border-radius: 14px;
+    /*    box-shadow: 0px 3px 10px var(--dark-brown);*/
+}
+
+.boton-brown::after {
+    content: "";
+    width: 96%;
+    height: 15%;
+    background-color: #6c4f3d;
+    position: absolute;
+    bottom: 0%;
+    left: 2%;
+    box-shadow: 0 5px 6px #6c4f3d;
+    z-index: -1;
+    border-radius: 80%;
+}
+
+.botonera {
+    display: grid;
+    gap: 0rem;
+    grid-auto-rows: 7rem;
+    grid-template-columns: 50% 1fr;
+    grid-auto-rows: max-content;
+    width: 90%;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.botonera .btn-simple-gray,
+.botonera .btn-simple-gray-sm {
+    display: block;
+    width: calc(40vw);
+    font-size: 16px;
+    padding: 5px;
+    flex-basis: content;
+}
+
+.botonera .btn-outline-dark,
+.botonera .btn-full-dark,
+.botonera .btn-simple-light,
+.botonera .btn-simple-border-light {
+    display: block;
+    width: 90%;
+    font-size: 16px;
+    padding: 5px;
+    flex-basis: content;
+}
+
+.btn-simple-light {
+    text-align: center;
+    border-radius: var(--border-interno);
+    border: none !important;
+    background-color: var(--light-brown) !important;
+    color: var(--lighter-brown);
+    font-size: var(--texto-size);
+    font-family: var(--fontFamily);
+}
+
+.btn-simple-border-light {
+    text-align: center;
+    border-radius: var(--border-interno);
+    border: 1px solid var(--dark-brown) !important;
+    background-color: transparent !important;
+    color: var(--dark-brown) !important;
+    font-size: var(--texto-size);
+    font-family: var(--fontFamily);
+}
+
+.btn-full-dark {
+    text-align: center;
+    border-radius: var(--border-interno);
+    border: 1px solid var(--dark-brown) !important;
+    background-color: var(--dark-brown) !important;
+    color: var(--light-brown) !important;
+    font-size: var(--texto-size);
+    font-family: var(--fontFamily);
+}
+
+.btn-full-border-dark {
+    text-align: center;
+    border-radius: var(--border-interno);
+    border: 1px solid var(--dark-brown) !important;
+    background-color: transparent !important;
+    color: var(--dark-brown) !important;
+    font-size: var(--texto-size);
+    font-family: var(--fontFamily);
+}
+
+.btn-full-dark-s {
+    text-align: center;
+    border-radius: var(--border-interno);
+    border: 1px solid var(--dark-brown) !important;
+    background-color: var(--dark-brown) !important;
+    color: var(--light-brown) !important;
+    font-size: var(--texto-size);
+    font-family: var(--fontFamily);
+}
+
+.btn-full-border-dark-s {
+    text-align: center;
+    border-radius: var(--border-interno);
+    border: 1px solid var(--dark-brown) !important;
+    background-color: transparent !important;
+    color: var(--dark-brown) !important;
+    font-size: var(--texto-size);
+    font-family: var(--fontFamily);
+}
+
+.btn-search {
+    text-align: center;
+    border-radius: 80px !important;
+    border: 1px solid var(--dark-brown) !important;
+    color: var(--dark-brown) !important;
+    font-size: 18px;
+    font-family: var(--fontFamily);
+}

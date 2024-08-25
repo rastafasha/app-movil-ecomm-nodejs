@@ -1,0 +1,207 @@
+<section class="wallet page">
+    <div class="butonBack">
+        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+    </div>
+    <div class="titlePage">
+        <h3>My Wallet </h3>
+    </div>
+    <div class="container-fluid cuadro-modal">
+        <div class="lineamedio"></div>
+        <div class="row">
+
+            <div class="areagris">
+            </div>
+
+            <div class="areablanc areablanc-interna animated fadeInUp">
+
+                <div class="div-responsive1 ">
+                    <div class="post-inner ">
+                        <fieldset class="container">
+                            <legend>Payment Method</legend>
+                            <div class="form__radios col-12 ">
+                                <div *ngFor="let pago of payments">
+
+                                    <div class=" form__radio shadow ">
+                                        <label for="paypal">
+                                          <div class="paymentcontainer">
+                                            <div class="type-payment">
+                                              <h3>{{pago.type}}</h3>
+                                            </div>
+                                            <div class="bankname">
+                                              <p>{{pago.bankName}}</p>
+                                            </div>
+                                            <div class="actionss">
+                                              <a class="btn btn-simple-light" [routerLink]="['/app/wallet/edit',pago._id]">
+                                                <i class="fa fa-home" aria-hidden="true"></i>
+                                                </a>
+                                                <a class="btn btn-full-dark " data-toggle="modal" [attr.data-target]="'#delete-'+pago._id" style="cursor:pointer" >
+                                                  <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                          </div>
+                                    </label>
+                                        <!-- modal eliminar -->
+                                        <div class="modal fade" [attr.id]="'delete-'+pago._id" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Confirmación</h4>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p class="font-size-sm">¿Desea eliminar definitivamente el regsitro?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-full-border-dark btn-sm" type="button" data-dismiss="modal">Cancelar</button>
+                                                        <button class="btn btn-full-dark  btn-sm" type="button" (click)="eliminarPago(pago._id)">Suprimir</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- modal eliminar -->
+                                    </div>
+
+                                </div>
+
+                                <br>
+                                <br>
+                                <div class="btn btn-full-dark btn-block" data-toggle="modal" data-target="#paypalPayment"> pagar con paypal</div>
+
+                                <a class="btn btn-full-dark btn-block" routerLink="/app/wallet/create">
+                                  Add Payment Method
+                                </a>
+                                <a class="btn btn-full-dark btn-block" routerLink="/app/wallet-order">
+                                  pagar
+                                 </a>
+                                <br>
+                                <br>
+                                <br>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="div-responsive2">
+                    <app-lateral></app-lateral>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- modal -->
+<!-- <form class="modal fade" method="post" id="paypalPayment" tabindex="-1" #direccionForm="ngForm">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Paypal payment</h5>
+
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="address-fn">Nombre y apellidos</label>
+                            <input class="form-control" type="text" id="address-fn" required placeholder="Nombres y apellidos" name="nombres_completos">
+
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="address-ln">Dirección</label>
+                            <textarea class="form-control" placeholder="Ingrese la dirección" required name="direccion"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+                <button class="btn btn-primary btn-shadow" type="submit">Agregar</button>
+            </div>
+        </div>
+    </div>
+</form> -->
+
+<!-- <form class="modal fade" method="post" id="addPayment" tabindex="-1" [formGroup]="tipopagoForm" (submit)="pagoFill()">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Agregar un nuevo pago </h5>
+                <div class="clear"></div>
+                <p>{{pageTitle}}</p>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="address-fn">Nombre y apellidos</label>
+                            <input class="form-control" type="text" required placeholder="Nombres y apellidos" formControlName="nombreCompleto">
+
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="address-ln">Username</label>
+                            <textarea class="form-control" placeholder="Ingrese username" required formControlName="username"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="address-ln">Phone</label>
+                            <input class="form-control" type="text" required placeholder="telefono" formControlName="phone">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="address-ln">Email</label>
+                            <input class="form-control" type="text" required placeholder="email" formControlName="email">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="address-ln">type</label>
+
+                            <select class="form-control form-control-md" formControlName="type">
+                              <option value="0">Select Payment</option>
+                              <option value="Paypal">Paypal</option>
+                              <option value="Bank Tranfer">Bank transfer</option>
+                              <option value="Pago Movil">Pago Movil</option>
+                          </select>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="address-ln">Bank Name</label>
+                            <input class="form-control" type="text" placeholder="Nombre de banco" formControlName="bankName">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="address-ln">Account number</label>
+                            <input class="form-control" type="text" placeholder="numero de cuenta" formControlName="accountNumber">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+                <button type="submit" [disabled]="tipopagoForm.invalid" class="btn btn-success waves-effect waves-light m-r-10 btn-block">
+                  <i class="fa fa-save"></i> Aceptar
+                 </button>
+            </div>
+        </div>
+    </div>
+</form> -->

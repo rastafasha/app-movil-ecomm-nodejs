@@ -1,0 +1,125 @@
+<section class="page pedido">
+    <div class="butonBack">
+        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+    </div>
+    <div class="titlePage">
+        <h3>Ticket Index </h3>
+    </div>
+    <!--cuadromodal-->
+    <div class="container-fluid cuadro-modal">
+        <div class="lineamedio"></div>
+        <div class="row">
+            <div class="areagris"></div>
+            <div class="areablanc areablanc-interna animated fadeInUp">
+
+
+                <div class="div-responsive1">
+                    <!-- tabs navigation -->
+                    <div class="post-inner ">
+                        <div class="container">
+                            <div class="d-none d-lg-flex justify-content-between align-items-center pt-lg-3 pb-4 pb-lg-5 mb-lg-4">
+                                <h6 class="font-size-base text-light mb-0">Mis tickets:</h6>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" [attr.data-target]="'#form-modal'"><i class="czi-add-document mr-2"></i>Crear nuevo ticket</button>
+                            </div>
+
+                            <div class="modal fade" [attr.id]="'form-modal'" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Nuevo ticket</h4>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="bg-secondary py-grid-gutter px-grid-gutter rounded-lg">
+                                                <form #ticketForm="ngForm" (ngSubmit)="createTicket(ticketForm)">
+                                                    <div class="form-group" *ngIf="msm_error_review">
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                            {{msm_error_review}}
+                                                            <button type="button" class="close" (click)="close_alert()" data-dismiss="alert" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="review-text">Tema de apertura<span class="text-danger">*</span></label>
+                                                        <textarea class="form-control" rows="5" required="" name="data_titulo" [(ngModel)]="data_titulo" placeholder="Dinos el tema de su problema."></textarea>
+
+                                                    </div>
+
+                                                    <button class="btn btn-primary btn-shadow btn-block" type="submit">Abrir un ticket</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="table-responsive font-size-md">
+                                <table class="table table-hover mb-0">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Tema</th>
+                                            <th>Fecha</th>
+                                            <th>Estado</th>
+                                            <th>Estado</th>
+                                            <th>Chat</th>
+                                        </tr>
+                                    </thead>
+                                    <ng-container *ngIf="tickets ">
+                                        <tbody *ngFor="let item of tickets">
+                                            <tr>
+                                                <td>{{item.tema}}</td>
+                                                <td>{{item.createdAt | date:'EEEE, MMMM d, y' }}</td>
+                                                <td>
+                                                    <span class="badge badge-success" *ngIf="item.estado == 1">Abierto</span>
+                                                    <span class="badge badge-primary" *ngIf="item.estado == 0">Cerrado</span>
+                                                </td>
+                                                <td>
+                                                    <ng-container *ngIf="item.estado == 1">
+                                                        <span class="badge badge-accent" *ngIf="item.status == '0'"> <span class="fa fa-comments"></span> &nbsp; Espera de respuesta</span>
+                                                        <span class="badge badge-danger" *ngIf="item.status == '1'"> <span class="fa fa-comments"></span> &nbsp; Nuevo mensaje</span>
+                                                    </ng-container>
+                                                    <ng-container *ngIf="item.estado == 0">
+                                                        <span class="badge badge-primary" *ngIf="item.estado == 0">Cerrado</span>
+                                                    </ng-container>
+                                                </td>
+                                                <td class="text-center"><a [routerLink]="['/app/user/ticket/chat/',item._id]" routerLinkActive="router-link-active"><span class="fa fa-comments"></span></a></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </ng-container>
+                                    <ng-container *ngIf="tickets.estado == 0 ">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center" colspan="4">No hay ningún ticket abierto.</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </ng-container>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- tabs navigation -->
+                </div>
+
+                <div class="div-responsive2">
+                    <app-lateral></app-lateral>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--cuadromodal-->
+
+
+
+
+
+
+</section>

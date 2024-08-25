@@ -1,0 +1,205 @@
+<section class="productPage">
+    <div class="butonBack">
+        <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
+    </div>
+    <a routerLink="/"><img class="logo animated fadeIn logo-home" src="./assets/images/logomalcolm.png" alt=""></a>
+
+
+    <!--slideproduct-->
+    <div class="product-item  animated bounce">
+        <img [src]="producto.img | imagenPipe: 'productos' " alt="">
+    </div>
+    <!--slideproduct-->
+    <!--cuadromodal-->
+    <div class="cuadro-modal isScroller">
+        <div class="lineamedio"></div>
+
+        <div class="card-body cardTitleProduct ">
+            <div class="div1 animated fadeInUp">
+                <h1>{{producto.titulo}}</h1>
+            </div>
+            <div class="div2 animated fadeInUp">
+                <div class="price">${{producto.precio_ahora}}</div>
+                <div class="reduceprice">${{producto.precio_antes}}</div>
+            </div>
+            <div class="div3 animated fadeInUp">
+                <i class="fa fa-heart" (click)="addToFavorites(producto)"></i>
+                <div class="stars">
+                    <div class="star-rating" *ngIf="producto.stars == 5">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                    </div>
+                    <div class="star-rating" *ngIf="producto.stars >= 4 && producto.stars < 5">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="star-rating" *ngIf="producto.stars >= 3 && producto.stars < 4">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="star-rating" *ngIf="producto.stars >= 2 && producto.stars < 3">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="star-rating" *ngIf="producto.stars >= 1 && producto.stars < 2">
+                        <i class="fa fa-star "></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="star-rating" *ngIf="producto.stars >= 0 && producto.stars < 1">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="clear"></div><br><br>
+        <br>
+
+        <div class="info-product animated fadeInUp scrollable">
+            <h4>Descripción:</h4>
+            <p>{{producto.info_short}}</p>
+            <br>
+            <hr>
+            <br>
+            <h4>Detalle:</h4>
+            <p [innerHTML]="producto.detalle"></p>
+            <br>
+            <hr>
+            <br>
+            <ul>
+                <li>Art Disponible: {{producto.stock}}</li>
+                <!-- <li>Categoria: {{producto.categoria.nombre}}</li> -->
+                <li>SubCategoria: {{producto.subcategoria}}</li>
+                <li>Marca: {{producto.marca}} </li>
+                <!-- <li>Serie Code</li>
+                <li>Venta al Mayor</li>
+                <li>Multiple Products</li>
+                <li>Quantity Multiple Products</li>
+                <li>Compose Products</li>
+                <li>Quantity Compose Products</li>
+                <li>Photo gallery</li>
+                <li>Commentarios</li>
+                <li>Productos Relacionados</li>
+                <li>Add Favorites</li> -->
+            </ul>
+            <br>
+            <hr>
+            <br>
+            <div class="font-size-sm">
+                <span class="text-heading font-weight-medium mr-1">
+                Colores:</span>
+                <span class="text-muted listacolor" id="colorOption">
+                    <ng-container *ngFor="let color of colores; let indice = first">
+                    <ng-container *ngIf="indice"><i  [style.background]="color.color"></i>{{color.titulo}}</ng-container>
+                    <ng-container *ngIf="!indice">/ <i  [style.background]="color.color"></i> {{color.titulo}}</ng-container>
+                    </ng-container>
+                </span>
+            </div>
+            <div class="font-size-sm">
+                <span class="text-heading font-weight-medium mr-1">
+                {{producto.nombre_selector}}:</span>
+                <span class="text-muted listacolor" id="colorOption">
+                    <ng-container *ngFor="let selector of selectores; let indice = first">
+                    <ng-container *ngIf="indice">{{selector.titulo}}</ng-container>
+                    <ng-container *ngIf="!indice">/  {{selector.titulo}}</ng-container>
+                    </ng-container>
+                </span>
+            </div>
+            <div *ngIf="producto.video_review">
+                <h3>Video review:</h3>
+                <iframe [src]="getVideoIframe(producto.video_review)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; " allowfullscreen></iframe>
+            </div>
+            <br>
+
+            <div class="galeria-prod">
+
+                <div *ngFor="let gal of galeria;let primero = first;let indice=index">
+                    <a data-toggle="modal" [attr.data-target]="'#preview-'+gal._id">
+
+                        <img class="gallery__img" [src]="gal.imagen | imagenPipe: 'galerias'">
+                    </a>
+                    <!-- modal galeria -->
+                    <div class="modal-quick-view modal fade" [attr.id]="'preview-'+gal._id" tabindex="-1">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title product-title"><a data-toggle="tooltip" data-placement="right" title="Go to product page">{{gal.titulo}}<i class="czi-arrow-right font-size-lg ml-2"></i></a></h4>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <!-- Product gallery-->
+                                        <div class="col-lg-7 pr-lg-0">
+                                            <div class="cz-product-gallery">
+                                                <div class="cz-preview order-sm-2">
+                                                    <div class="cz-preview-item active" id="first">
+                                                        <img class="cz-image-zoom" id="active_img_thumb" [src]="gal.imagen | imagenPipe: 'galerias'">
+                                                        <div class="cz-image-zoom-pane"></div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal galeria -->
+
+                </div>
+            </div>
+
+            <!-- <a class="tn btn-primary btn-sm btn-block mb-2" (click)="get_galeria(producto)" style="cursor: pointer;" data-toggle="modal" [attr.data-target]="'#preview-'+productoSeleccionado._id"><i class="czi-eye align-middle mr-1"></i>Vista previa</a> -->
+
+
+            <!-- mensaje -->
+            <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="msm_success">
+                Producto agregado al carrito!.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <!-- mensaje -->
+            <div class="botonera details__product-quantity">
+                <div class="input">
+                    <img class="input__minus" src="./assets/svg/icon-minus.svg" alt="minus" (click)="eliminarUno()">
+                    <input class="input__number" type="text" value="0">
+                    <img class="input__plus" src="./assets/svg/icon-plus.svg" alt="plus" (click)="agregarUno()">
+                </div>
+                <!-- <a (click)="addToFavorites() ">
+                    <div class="button btn-simple-gray"><i class="fa fa-heart"></i> Add to Favorite</div>
+                </a> -->
+                <a (click)="addToCart()">
+                    <div class="button btn-full-dark"><i class="fa fa-shopping-cart"></i> Add to Cart</div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <!--cuadromodal-->
+
+
+
+
+
+</section>

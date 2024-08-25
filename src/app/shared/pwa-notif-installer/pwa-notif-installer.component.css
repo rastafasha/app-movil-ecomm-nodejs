@@ -1,0 +1,17 @@
+
+.ios-menu {
+    width: 12px;
+  }
+
+.notificationinstaller{
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  z-index: 9999;
+}
+.notificationupdate{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 9999;
+}
