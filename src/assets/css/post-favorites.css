@@ -7,13 +7,11 @@
     margin: 0px auto;
     height: auto;
     overflow: hidden;
-}
-
-.carousel-inner-data ul {
-    list-style: none;
-    position: relative;
-}
-
-.carousel-inner-data li {
-    height: auto;
+    &  ul {
+        list-style: none;
+        position: relative;
+    }
+    & li {
+        height: auto;
+    }
 }

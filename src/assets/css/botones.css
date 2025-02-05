@@ -1,18 +1,17 @@
 .butonBack {
     position: relative;
     top: 50px;
-    ;
     z-index: 30;
+    & .fa {
+        position: relative;
+        z-index: 9;
+        font-size: 34px;
+        top: -10px;
+        left: 15px;
+        color: var(--lighter-brown);
+    }
 }
 
-.butonBack .fa {
-    position: relative;
-    z-index: 9;
-    font-size: 34px;
-    top: -10px;
-    left: 15px;
-    color: var(--lighter-brown);
-}
 
 .boton-brown {
     display: inline-block;

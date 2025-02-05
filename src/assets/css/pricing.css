@@ -193,16 +193,16 @@ tfoot {
     border-radius: 20px;
     padding: 10px;
     margin-bottom: 30px;
+    & img {
+        width: 80%;
+        padding: 5px;
+        border: 1px solid rgb(231, 231, 231);
+        background-color: var(--white);
+        border-radius: 13px;
+        box-shadow: var(--shadow-lightbrown);
+    }
 }
 
-.ordenes img {
-    width: 80%;
-    padding: 5px;
-    border: 1px solid rgb(231, 231, 231);
-    background-color: var(--white);
-    border-radius: 13px;
-    box-shadow: var(--shadow-lightbrown);
-}
 
 .div1-order {
     grid-area: 1 / 2 / 3 / 3;

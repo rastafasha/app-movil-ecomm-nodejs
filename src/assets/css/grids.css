@@ -46,16 +46,15 @@
     padding: 30px;
     background-color: var(--azul);
     border-radius: 0px 0px 20px 20px;
+    & img {
+        display: flex;
+        width: 10%;
+    }
+    & h2 {
+        color: #fff;
+    }
 }
 
-.noinfo img {
-    display: flex;
-    width: 10%;
-}
-
-.noinfo h2 {
-    color: #fff;
-}
 
 @media (max-width:668px) {
     .navTabs {
@@ -64,23 +63,26 @@
         grid-template-rows: 1fr;
         gap: 2rem;
         padding-bottom: 60px;
+        & a {
+            & i {
+                font-size: 18px;
+            }
+            & p {
+                font-size: 3vw;
+            }
+        }
+        & h2 {
+            font-size: 5vw;
+            padding: 0;
+            margin: 0;
+        }
+        & img {
+            display: flex;
+            flex-direction: row;
+            align-self: end;
+        }
     }
-    .navTabs a i {
-        font-size: 18px;
-    }
-    .navTabs a p {
-        font-size: 3vw;
-    }
-    .navTabs h2 {
-        font-size: 5vw;
-        padding: 0;
-        margin: 0;
-    }
-    .navTabs img {
-        display: flex;
-        flex-direction: row;
-        align-self: end;
-    }
+    
     .itemFav {
         display: flex;
         flex-direction: row;
@@ -94,25 +96,27 @@
         gap: 8rem;
         grid-auto-rows: 7rem;
         grid-template-columns: repeat(2, minmax(calc(180px), 1fr));
+        & img {
+            display: flex;
+            width: 100%;
+        }
     }
     .itemFav {
         display: grid;
         cursor: pointer;
         grid-template-columns: repeat(2, minmax(calc(180px), 1fr));
+        & h2,
+        & p {
+            margin: 0px;
+            padding: 0px;
+            display: flex;
+            flex-flow: column;
+            width: 100%;
+        }
+        & .div1 {
+            grid-area: 1 / 2 / 2 / 3;
+        }
     }
-    .itemFav h2,
-    .itemFav p {
-        margin: 0px;
-        padding: 0px;
-        display: flex;
-        flex-flow: column;
-        width: 100%;
-    }
-    .itemFav .div1 {
-        grid-area: 1 / 2 / 2 / 3;
-    }
-    .navTabs img {
-        display: flex;
-        width: 100%;
-    }
+    
+    
 }
