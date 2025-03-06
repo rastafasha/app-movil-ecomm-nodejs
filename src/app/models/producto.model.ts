@@ -3,7 +3,7 @@ import { Categoria } from './categoria.model';
 import { Color } from './color.model';
 import { Selector } from './selector.model';
 
-const base_url = environment.baseUrl;
+const base_url = environment.mediaUrlRemoto;
 export class Producto {
   titulo: string;
   precio_ahora: number;

@@ -7,6 +7,7 @@
     "start:dev": "ng serve --port 4204",
     "start:prod": "ng build  && lite-server --baseDir dist/ecom-app-movil",
     "build": "ng build",
+    "build:appmovil": "ng build --configuration appmovil",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

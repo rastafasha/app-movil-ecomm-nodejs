@@ -4,6 +4,7 @@ export const environment = {
   baseUrl: 'http://localhost:3000/api',
   mediaUrl: 'http://localhost:3000/api/uploads/',
   soketServer : 'http://localhost:3000',
+  mediaUrlRemoto: 'https://res.cloudinary.com/dmv6aukai/image/upload/v1741218430/mallConnect',
   //remoto
   // baseUrl: 'https://backend-mean-eccm-main.vercel.app/api',
   // mediaUrl: 'https://backend-mean-eccm-main.vercel.app/api/uploads/',
