@@ -49,7 +49,7 @@ export class DireccionService {
 
   listarUsuario(id:string):Observable<any>{
     let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this._http.get(this.url + '/direccions/direcciones/'+id,{headers:headers})
+    return this._http.get(this.url + '/direccions/direccionesusuario/'+id,{headers:headers})
 
   }
 

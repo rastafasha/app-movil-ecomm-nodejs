@@ -6,52 +6,18 @@
         <h3>Cart Detail</h3>
     </div>
 
-    <div *ngIf="cartItems.length < 1">
+    <div *ngIf="cartItems.length === 0">
         <div class="alert alert-info text-center">
             <h4>Your Cart is empty</h4>
         </div>
     </div>
     <div *ngIf="cartItems.length > 0">
 
-        <!--list of products mobile-->
-        <!--list of products-->
-        <div class="listProducts animated fadeInUp ">
-            <div class="product" *ngFor="let item of cartItems; index as i">
-                <div class="itemProductdiv1">
-                    <a [routerLink]="['/app/product', item.productId]">
-                        <img [src]="item.img | imagenPipe: 'productos'" alt="">
-                    </a>
-                </div>
-                <div class="itemProductdiv2">
-                    <div class="addCompra">
-                        <div class="addCompradiv1 nameProduct">
-                            <p>{{item.productName| slice: 0:10 }}...</p>
-
-                        </div>
-                        <div class="addCompradiv2 addInfo">
-                            <p>200gm</p>
-                            <p>${{item.productPrice}}</p>
-                        </div>
-                        <div class="addCompradiv3 buttonsAdd">
-                            <i class="fa fa-minus" (click)="deletItem(i)"></i>
-                            <i class="fa fa-plus" (click)="addToCart(this.producto)"></i>
-                            <i class="fa fa-trash" aria-hidden="true" (click)="emptyCart()"></i>
-
-                        </div>
-                        <div class="addCompradiv4 subtotal">
-                            <p>Cant: {{item.quantity }}</p>
-                            <p>${{item.quantity * item.productPrice| number: '1.1-2'}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--list of products-->
-        <!--list of products mobile-->
+        
         <!--cuadromodal-->
         <div class="container-fluid cuadro-modal animated fadeInUp">
             <div class="total">
-                <i class="fa fa-trash" aria-hidden="true" (click)="emptyCart()"></i>
+                <!-- <i class="fa fa-trash" aria-hidden="true" (click)="emptyCart()"></i> -->
                 <p>Sub-total: ${{total}}</p>
             </div>
             <div class="lineamedio"></div>
@@ -61,15 +27,48 @@
                 </div>
 
                 <div class="areablanc areablanc-interna animated fadeInUp">
-
+                    
 
                     <div class="div-responsive1 scrollable">
+                        <!--list of products-->
+                            <div class="listProducts animated fadeInUp ">
+                                <div class="product" *ngFor="let item of cartItems; index as i">
+                                    <div class="itemProductdiv1">
+                                        <a [routerLink]="['/app/product', item.productId]">
+                                            <img [src]="item.img | imagenPipe: 'productos'" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="itemProductdiv2">
+                                        <div class="addCompra">
+                                            <div class="addCompradiv1 nameProduct">
+                                                <p>{{item.productName| slice: 0:10 }}...</p>
+
+                                            </div>
+                                            <div class="addCompradiv2 addInfo">
+                                                <p>200gm</p>
+                                                <p>${{item.productPrice}}</p>
+                                            </div>
+                                            <div class="addCompradiv3 buttonsAdd">
+                                                <i class="fa fa-minus" (click)="deletItem(i)"></i>
+                                                <i class="fa fa-plus" (click)="addToCart(this.producto)"></i>
+                                                <i class="fa fa-trash" aria-hidden="true" (click)="emptyCart()"></i>
+
+                                            </div>
+                                            <div class="addCompradiv4 subtotal">
+                                                <p>Cant: {{item.quantity }}</p>
+                                                <p>${{item.quantity * item.productPrice| number: '1.1-2'}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--list of products-->
                         <div class="container">
-                            <div class="text-center mb-4 pb-3 border-bottom">
+                            <div class="text-center  border-bottom">
                                 <h2 class="h6 mb-3 pb-1">Delivery</h2>
                                 <!-- <h3 class="font-weight-normal">${{total}}</h3> -->
-                                <h3 class="font-weight-normal">${{subtotal}}</h3>
                             </div>
+                           
                             <!-- medio postal -->
                             <div class="card mb-4 cart-data-venta" style="padding-left: 8px;">
                                 <div class="card-body">
@@ -104,14 +103,17 @@
 
                                         </tr>
                                     </tbody>
-
                                 </table>
-
                             </div>
-
+                            <div class=" mb-4 pb-3 border-bottom bg-light">
+                                <p class="font-weight-normal">Sub Total: ${{total}}</p>
+                                <p class="font-weight-normal">Delivery: ${{subtotal}}</p>
+                                <p class="font-weight-normal">Total:  ${{subtotal + total}}</p>
+                            </div>
                             <!-- medio postal -->
+
                             <!-- promoCode -->
-                            <div class="accordion mb-4 cart-data-venta" id="order-options" *ngIf="carrito.length != 0">
+                            <div class="accordion mb-4 cart-data-venta" id="order-options" *ngIf="carrito">
                                 <div class="card">
                                     <div class="card-header">
                                         <h3 class="accordion-heading"><a href="#promo-code" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="promo-code">Aplicar promoción<span class="accordion-indicator"></span></a></h3>
@@ -136,12 +138,12 @@
 
                                             <div class="form-group">
                                                 <select class="form-control custom-select" required (change)="get_direccion(id_direccion)" [(ngModel)]="id_direccion">
-                                      <option value="" selected disabled>Selecciona</option>
-                                      <ng-container *ngFor="let direccion of direcciones">
-                                        <option value="{{direccion._id}}">{{direccion.direccion}}</option>
-                                      </ng-container>
+                                                    <option value="" selected disabled>Selecciona</option>
+                                                    <ng-container *ngFor="let direccion of direcciones">
+                                                        <option value="{{direccion._id}}">{{direccion.direccion}}</option>
+                                                    </ng-container>
 
-                                    </select>
+                                                    </select>
 
                                             </div>
 
@@ -152,25 +154,20 @@
 
                             </div>
                             <div class="invalid-feedback" style="display: block;" *ngIf="msm_error">{{msm_error}}</div>
-
-
-                            <!-- promoCode -->
-
+                            <!-- <button class="btn btn-primary btn-shadow btn-block mt-4 mb-4" *ngIf="carrito" id="btn-verify-data" (click)="verify_data()"><i class="czi-card font-size-lg mr-2"></i>Proceder a pagar</button> -->
                             <!-- pagar -->
-                            <button class="btn btn-primary btn-shadow btn-block mt-4 mb-4" *ngIf="carrito.length != 0" id="btn-verify-data" (click)="verify_data()"><i class="czi-card font-size-lg mr-2"></i>Proceder a pagar</button>
-                            <!-- pagar -->
-                            <button class="btn btn-primary btn-shadow btn-block mt-4 mb-4" id="btn-back-data" (click)="back_data()"><i class="czi-reply font-size-lg mr-2"></i>Regresar</button>
+                            <!-- <button class="btn btn-primary btn-shadow btn-block mt-4 mb-4" id="btn-back-data" (click)="back_data()"><i class="czi-reply font-size-lg mr-2"></i>Regresar</button> -->
 
 
                             <!-- detalle envio -->
-                            <div class="bg-secondary rounded-lg px-4 pt-4 pb-2 mb-4" id="card-data-envio">
+                            <div class="bg-secondary rounded-lg px-4 pt-4 pb-2 mb-4" id="card-data-envio" *ngIf="direccion || data_direccion">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h4 class="h6">Detalles de envío:</h4>
                                         <ul class="list-unstyled font-size-sm">
-                                            <li><span class="text-muted dt-w">Destinatario:&nbsp; <br></span>{{data_direccion.nombres_completos}}</li>
-                                            <li><span class="text-muted dt-w">Dirección:&nbsp; <br></span>{{data_direccion.direccion}}</li>
-                                            <li><span class="text-muted dt-w">País - Ciudad - ZIP:&nbsp; <br></span> {{data_direccion.pais}} <span> - </span> {{data_direccion.ciudad}} <span> - </span> {{data_direccion.zip}}</li>
+                                            <li><span class=" dt-w">Destinatario:&nbsp; <br></span>{{data_direccion.nombres_completos}}</li>
+                                            <li><span class=" dt-w">Dirección:&nbsp; <br></span>{{data_direccion.direccion}}</li>
+                                            <li><span class=" dt-w">País - Ciudad - ZIP:&nbsp; <br></span> {{data_direccion.pais}} <span> - </span> {{data_direccion.ciudad}} <span> - </span> {{data_direccion.zip}}</li>
                                         </ul>
                                     </div>
 
@@ -180,14 +177,97 @@
                             <!-- detalle envio -->
 
                             <!-- pago -->
-                            <div class="card" id="card-pay">
+                            <!-- <div class="card" id="card-pay">
                                 <div class="card-header">
                                     <h3 style="    font-size: 1rem;
                               margin-bottom: 0px;">Pagos</h3>
                                 </div>
                                 <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-                            </div>
+                            </div> -->
                             <!-- pago -->
+
+                            <!-- codigo agregado por Jose Prados que reemplaza en anterior -->
+                    <div class="card" id="card-pay">
+                        <label class="form-label">Seleccione el método de pago</label>
+                        <!-- select metodo de pago -->
+                        <select id="paymentMethod" class="custom-select-large" (change)="onPaymentMethodChange($event)" [(ngModel)]="selectedMethod">
+                            <!-- <option>Selecciona un método de pago</option> -->
+                            <option value="paypal">Paypal</option>
+                            <option value="card">Tarjeta de Crédito/Débito</option>
+                            <option value="transferencia">Transferencia Bancaria</option>
+                        </select>
+                        <!-- Contenedor para el botón de PayPal -->
+                        <div #paypal></div>
+                        <div *ngIf="habilitacionFormTransferencia" class="mt-5">
+                            <form [formGroup]="formTransferencia" (ngSubmit)="sendFormTransfer()">
+
+                                <!-- metodo de pago -->
+                                <div class="mb-3 mt-2">
+                                    <label form="metodo_pago" class="form-label">Tipo de Transferencia</label>
+
+                                    <select formControlName="metodo_pago" (change)="onChangePayment($event)" class="custom-select-large" name="metodo_pago" id="metodo_pago">
+                                        <option [value]="metodo_pago._id" *ngFor="let metodo_pago of paymentMethods">
+                                            {{metodo_pago.tipo}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body p-4" *ngIf="paymentSelected">
+                                        <p>Nombre del Banco:&nbsp;{{paymentSelected.bankName}}</p>
+                                        <p *ngIf="paymentSelected.bankAccount">Numero de Cuenta:&nbsp;{{paymentSelected.bankAccount}}</p>
+                                        <p *ngIf="paymentSelected.phone">Numero de Teléfono:&nbsp;{{paymentSelected.phone}}</p>
+                                        <p *ngIf="paymentSelected.email">Email:&nbsp;{{paymentSelected.email}}</p>
+                                        <p>Ciorif:&nbsp;{{paymentSelected.ciorif}}</p>
+                                    </div>
+                                </div>
+
+                                <!-- nombre del banco -->
+                                <div class="mb-3">
+                                    <label for="bankName" class="form-label">Nombre del Banco</label>
+                                    <input type="text" formControlName="bankName" class="form-control" name="bankName" id="bankName">
+                                </div>
+
+                                <!-- numero de referencia -->
+                                <div class="mb-3">
+                                    <label for="referencia" class="form-label">Num. referencia</label>
+                                    <input type="text" formControlName="referencia" class="form-control" name="referencia" id="referencia">
+                                </div>
+
+                                <!-- monto -->
+                                <div class="mb-3">
+                                    <label for="amount" class="form-label">Monto</label>
+                                    <input type="number" formControlName="amount" class="form-control" name="amount" id="amount">
+                                </div>
+
+                                <!-- teléfono de la persona que hace la transferencia -->
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Num. teléfono</label>
+                                    <input type="number" formControlName="phone" class="form-control" name="phone" id="phone">
+                                </div>
+
+                                <!-- nombre de la persona que hace la transferencia -->
+                                <div class="mb-3">
+                                    <label for="name_person" class="form-label">
+                                        Nombre y Apellido(en cuenta pagadora)
+                                    </label>
+                                    <input type="text" formControlName="name_person" class="form-control" name="name_person" id="name_person">
+                                </div>
+
+                                <!-- fecha de pago -->
+                                <div class="mb-3">
+                                    <label for="paymentday" class="form-label">Fecha de Pago</label>
+                                    <input type="date" formControlName="paymentday" class="form-control" name="paymentday" id="paymentday">
+                                </div>
+
+                                <!-- botones -->
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-primary" type="submit">
+                                        Enviar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
                         </div>
 
@@ -195,10 +275,7 @@
 
                     </div>
 
-                    <div class="div-responsive2">
-
-                        <!-- <app-lateral></app-lateral> -->
-                    </div>
+                    
                 </div>
             </div>
         </div>

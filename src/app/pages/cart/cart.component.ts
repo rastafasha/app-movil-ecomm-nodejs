@@ -25,6 +25,9 @@ declare var paypal;
 import { WebSocketService } from 'src/app/services/web-socket.service';
 // import * as io from "socket.io-client";
 import {io} from 'socket.io-client';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PaymentMethod } from 'src/app/models/paymenthmethod.model';
+import { TransferenciasService } from 'src/app/services/transferencias.service';
 
 @Component({
   selector: 'app-cart',
@@ -72,6 +75,22 @@ export class CartComponent implements OnInit {
   public error_stock = false;
   public date_string;
 
+  selectedMethod: string = 'Selecciona un método de pago';
+
+  habilitacionFormTransferencia:boolean = false;
+
+  paymentMethods:PaymentMethod[] = []; //array metodos de pago para transferencia (dolares, bolivares, movil)
+  paymentSelected!:PaymentMethod; //metodo de pago seleccionado por el usuario para transferencia
+
+  formTransferencia = new FormGroup({
+    metodo_pago: new FormControl('',Validators.required),
+    bankName: new FormControl('', Validators.required),
+    amount: new FormControl('', Validators.required),
+    referencia: new FormControl('',Validators.required),
+    name_person: new FormControl('', Validators.required),
+    phone: new FormControl('',Validators.required),
+    paymentday: new FormControl('', Validators.required)
+  });
   
 
   constructor(
@@ -88,6 +107,8 @@ export class CartComponent implements OnInit {
     private _direccionService :DireccionService,
     private _ventaService :VentaService,
     private webSocketService: WebSocketService,
+    private _trasferencias: TransferenciasService,
+
     handler: HttpBackend
     ) {
       this.http = new HttpClient(handler);
@@ -108,9 +129,53 @@ export class CartComponent implements OnInit {
     this.listar_direcciones();
     this.listar_postal();
     this.listar_carrito();
+    this.obtenerMetodosdePago();
 
-    this.initConfig();
+    // this.initConfig();
+
+    if(this.identity){
+      this.socket.on('new-stock', function (data) {
+        this.listar_carrito();
+
+      }.bind(this));
+
+      $('#card-pay').hide();
+      $('#btn-back-data').hide();
+      $('#card-data-envio').hide();
+
+      this.renderPayPalButton();
+
+      this.url = environment.baseUrl;
+
+      this.carrito_real_time();
+
+    }else{
+      this.router.navigate(['/']);
+    }
   }
+
+  carrito_real_time(){
+    this.socket.on('new-carrito_dos', function (data) {
+      this.subtotal = 0;
+
+      this._carritoService.preview_carrito(this.identity.uid).subscribe(
+        response =>{
+          this.carrito = response;
+
+          this.carrito.forEach(element => {
+            this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
+          });
+
+        },
+        error=>{
+          console.log(error);
+
+        }
+      );
+
+    }.bind(this));
+  }
+
 
   listar_direcciones(){
     this._direccionService.listarUsuario(this.identity.uid).subscribe(
@@ -407,20 +472,19 @@ export class CartComponent implements OnInit {
 
       this.data_venta = {
         user : this.identity.uid,
-        total_pagado : this.total,
+        total_pagado : this.formTransferencia.value.amount,
         codigo_cupon : this.cupon,
         info_cupon :  this.info_cupon_string,
         idtransaccion : null,
-        metodo_pago : 'Paypal',
+        // metodo_pago : 'Paypal',
 
         tipo_envio: this.medio_postal.tipo_envio,
         precio_envio: this.medio_postal.precio,
         tiempo_estimado: this.date_string,
-        
-        destinatario: this.identity.first_name,
-        detalles:this.data_detalle,
 
         direccion: this.data_direccion.direccion,
+        destinatario: this.data_direccion.nombres_completos,
+        detalles:this.data_detalle,
         referencia: this.data_direccion.referencia,
         pais: this.data_direccion.pais,
         ciudad: this.data_direccion.ciudad,
@@ -532,6 +596,248 @@ export class CartComponent implements OnInit {
   goBack() {
     this.location.back(); // <-- go back to previous location on cancel
   }
+
+  private obtenerMetodosdePago(){
+    this._trasferencias.getPayments().subscribe(data => {
+      // console.log('metodos de pago: ',data.paymentMethods)
+      this.paymentMethods = data.paymentMethods;
+      console.log('metodos de pago: ',this.paymentMethods)
+    });
+  }
+  // metodo para el cambio del select 'tipo de transferencia'
+  onChangePayment(event:Event){
+    const target = event.target as HTMLSelectElement; //obtengo el valor
+    // console.log(target.value)
+
+    // guardo el metodo seleccionado en la variable de clase paymentSelected
+    this.paymentSelected = this.paymentMethods.filter(method => method._id===target.value)[0]
+  }
+
+  // Método que se llama cuando cambia el select
+  onPaymentMethodChange(event: any) {
+    this.selectedMethod = event.target.value;
+    this.renderPayPalButton(); // Renderiza el botón de nuevo según la opción seleccionada
+  }
+
+  sendFormTransfer(){
+    if(this.formTransferencia.valid){
+      // llamo al servicio
+      this._trasferencias.createTransfer(this.formTransferencia.value).subscribe(resultado => {
+        console.log('resultado: ',resultado);
+        this.verify_dataComplete();
+        if(resultado.ok){
+          // transferencia registrada con exito
+          console.log(resultado.payment);
+          alert('Transferencia registrada con exito');
+        }
+        else{
+          // error al registar la transferencia
+          alert('Error al registrar la transferencia');
+          console.log(resultado.msg);
+        }
+      });
+    }
+  }
+  
+  verify_dataComplete(){
+    if(this.id_direccion){
+      this.msm_error = '';
+      $('#btn-verify-data').animate().hide();
+      $('#btn-back-data').animate().show();
+
+      $('#card-data-envio').animate().show();
+
+      $('#card-pay').animate().show('fast');
+      $('.cart-data-venta').animate().hide('fast');
+
+
+
+      if(this.data_cupon){
+        if(this.data_cupon.categoria){
+          this.info_cupon_string = this.data_cupon.descuento + '% de descuento en ' + this.data_cupon.categoria.nombre;
+        }else if(this.data_cupon.subcategoria){
+          this.info_cupon_string = this.data_cupon.descuento + '% de descuento en ' + this.data_cupon.subcategoria;
+        }
+      }
+
+      var fecha = new Date();
+
+      var months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Novimbre", "Deciembre"];
+      fecha.setDate(fecha.getDate() + parseInt(this.medio_postal.dias));
+      this.date_string =  fecha.getDate() +' de ' + months[fecha.getMonth()] + ' del ' + fecha.getFullYear();
+
+
+      this.data_venta = {
+        user : this.identity.uid,
+        total_pagado : this.formTransferencia.value.amount,
+        codigo_cupon : this.cupon,
+        info_cupon :  this.info_cupon_string,
+        idtransaccion : null,
+        metodo_pago : this.selectedMethod,
+        // metodo_pago : 'Paypal',
+
+        tipo_envio: this.medio_postal.tipo_envio,
+        precio_envio: this.medio_postal.precio,
+        tiempo_estimado: this.date_string,
+
+        direccion: this.data_direccion.direccion,
+        destinatario: this.data_direccion.nombres_completos,
+        detalles:this.data_detalle,
+        referencia: this.data_direccion.referencia,
+        pais: this.data_direccion.pais,
+        ciudad: this.data_direccion.ciudad,
+        zip: this.data_direccion.zip,
+      }
+
+      console.log(this.data_venta);
+
+      this.saveVenta();
+
+    }else{
+      this.msm_error = "Seleccione una dirección de envio.";
+    }
+
+  }
+
+  saveVenta(){
+    this._ventaService.registro(this.data_venta).subscribe(response =>{
+      this.data_venta.detalles.forEach(element => {
+        console.log(element);
+        this._productoService.aumentar_ventas(element.producto._id).subscribe(
+          response =>{
+          },
+          error=>{
+            console.log(error);
+
+          }
+        );
+          this._productoService.reducir_stock(element.producto._id,element.cantidad).subscribe(
+            response =>{
+              this.emptyCart();
+              this.remove_carrito();
+              this.listar_carrito();
+              this.socket.emit('save-carrito', {new:true});
+              this.socket.emit('save-stock', {new:true});
+              this.router.navigate(['/app/user/orders']);
+            },
+            error=>{
+              console.log(error);
+
+            }
+          );
+      });
+
+    },)
+    }
+
+  private renderPayPalButton(){
+    // Primero, limpiar el contenedor anterior
+    // this.paypalElement.nativeElement.innerHTML = '';
+
+    if(this.selectedMethod==='card' || this.selectedMethod==='paypal'){
+      // deshabilitar el formulario de pago con transferencia
+      this.habilitacionFormTransferencia = false;
+      // Cargar el botón de PayPal con las opciones seleccionadas
+    this.paypalBotones();
+    }
+    else if(this.selectedMethod==='transferencia'){
+      // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
+      this.habilitacionFormTransferencia = true;
+    }
+    // 
+  }
+
+  private paypalBotones(){
+    paypal.Buttons({
+
+      createOrder: (data,actions)=>{
+        //VALIR STOCK DE PRODUCTOS
+        this.data_venta.detalles.forEach(element => {
+            if(element.producto.stock == 0){
+              this.error_stock = true;
+            }else{
+              this.error_stock = false;
+            }
+
+        });
+
+        if(!this.error_stock){
+          return actions.order.create({
+            purchase_units : [{
+              description : 'Compra en Linea',
+              amount : {
+                currency_code : 'USD',
+                value: Math.round(this.subtotal),
+              }
+
+            }]
+          });
+        }else{
+          this.error_stock = true;
+          this.listar_carrito();
+        }
+      },
+      onApprove : async (data,actions)=>{
+        const order = await actions.order.capture();
+        console.log(order);
+        this.data_venta.idtransaccion = order.purchase_units[0].payments.captures[0].id;
+        this._ventaService.registro(this.data_venta).subscribe(
+          response =>{
+            this.data_venta.detalles.forEach(element => {
+              console.log(element);
+              this._productoService.aumentar_ventas(element.producto._id).subscribe(
+                response =>{
+                },
+                error=>{
+                  console.log(error);
+
+                }
+              );
+                this._productoService.reducir_stock(element.producto._id,element.cantidad).subscribe(
+                  response =>{
+                    this.remove_carrito();
+                    this.listar_carrito();
+                    this.socket.emit('save-carrito', {new:true});
+                    this.socket.emit('save-stock', {new:true});
+                    this.router.navigate(['/app/cuenta/ordenes']);
+                  },
+                  error=>{
+                    console.log(error);
+
+                  }
+                );
+            });
+
+          },
+          error=>{
+            console.log(error);
+
+          }
+        );
+      },
+      // Define si el pago será con tarjeta o PayPal
+      fundingSource: this.selectedMethod === 'card' ? paypal.FUNDING.CARD : paypal.FUNDING.PAYPAL, //agregado
+      onError : err =>{
+        console.log(err);
+
+      }
+    })
+    // .render(this.paypalElement.nativeElement);
+  }
+
+  remove_carrito(){
+    this.carrito.forEach((element,index) => {
+        this._carritoService.remove_carrito(element._id).subscribe(
+          response =>{
+            this.listar_carrito();
+          },
+          error=>{
+            console.log(error);
+          }
+        );
+    });
+  }
+
 
 
 }

@@ -13,15 +13,15 @@
         <div class="order-info animated fadeInUp ">
             <div class="container">
                 <p>Su Pedido ha sido</p>
-                <span class="badge badge-danger" *ngIf="vent.estado == 'Venta en proceso'">{{vent.estado}}</span>
-                <span class="badge badge-success" *ngIf="vent.estado == 'Enviado'">{{vent.estado}}</span>
-                <span class="badge badge-primary" *ngIf="vent.estado == 'Finalizado'">{{vent.estado}}</span>
-                <span class="badge badge-secondary" *ngIf="vent.estado == 'Reembolsado'">{{vent.estado}}</span>
-                <h2>Nos vemos Pronto!</h2>
+                <span class="badge badge-danger" *ngIf="venta.estado == 'Venta en proceso'">{{venta.estado}}</span>
+                <span class="badge badge-success" *ngIf="venta.estado == 'Enviado'">{{venta.estado}}</span>
+                <span class="badge badge-primary" *ngIf="venta.estado == 'Finalizado'">{{venta.estado}}</span>
+                <span class="badge badge-secondary" *ngIf="venta.estado == 'Reembolsado'">{{venta.estado}}</span>
+                <h2 *ngIf="venta.estado == 'Enviado' || venta.estado == 'Venta en proceso'">Nos vemos Pronto!</h2>
+                <h2 *ngIf="venta.estado == 'Finalizado'">Gracias por tu Compra!</h2>
+                <h2 *ngIf="venta.estado == 'Reembolsado'">Venta reembolsada!</h2>
                 <br>
-                <p><b>Fecha de Compra:</b> {{venta.createdAt | date:'MMM d, y, h:mm:ss a'}} </p>
-                <p><b>Entrega:</b> <br> {{venta.tiempo_estimado}}
-                </p>
+                
             </div>
         </div>
         <!--list of products-->
@@ -36,6 +36,9 @@
                 <div class="areablanc areablanc-interna animated fadeInUp ">
                     <div class="div-responsive1 scrollable">
                         <div class="container">
+                            <p><b>Fecha de Compra:</b> {{venta.createdAt | date:'MMM d, y, h:mm:ss a'}} </p>
+                            <p><b>Entrega:</b> <br> {{venta.tiempo_estimado}}</p>
+                            <br>
                             <p><b>Destinatario:</b> {{venta.destinatario}}</p>
                             <p><b>Dirección:</b> {{venta.direccion}}</p>
                             <p><b>País:</b> {{venta.pais}}</p>

@@ -1,9 +1,9 @@
 .cart {
-    -webkit-animation: cartanimation 1s 1 ease;
+    /* -webkit-animation: cartanimation 1s 1 ease;
     -moz-animation: cartanimation 1s 1 ease;
     -o-animation: cartanimation 1s 1 ease;
     -ms-animation: cartanimation 1s 1 ease;
-    animation: cartanimation 1s 1 ease;
+    animation: cartanimation 1s 1 ease; */
     background-color: var(--dark-brown);
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
     background: rgb(125, 185, 232);
@@ -15,7 +15,7 @@
     background: linear-gradient(to bottom, #3c2415 -10%, #000000 70%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
-    /* IE6-9 */
+    IE6-9
 
 
     & .cuadro-modal {
@@ -23,7 +23,7 @@
         transform: translate(0px, 0%);
         background-color: var(--lighter-brown);
         padding: 20px;
-        height: 50vh;
+        height: 88vh;
         -webkit-animation: cuadro-modal 1s 1 ease;
         -moz-animation: cuadro-modal 1s 1 ease;
         -o-animation: cuadro-modal 1s 1 ease;
