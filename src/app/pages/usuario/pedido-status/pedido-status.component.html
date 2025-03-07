@@ -1,4 +1,4 @@
-<section class="page cart user order">
+<section class="page ">
     <div class="butonBack">
         <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
     </div>
@@ -7,25 +7,6 @@
     </div>
 
     <div *ngIf="venta ">
-
-        <!--list of products mobile-->
-        <!--list of products-->
-        <div class="order-info animated fadeInUp ">
-            <div class="container">
-                <p>Su Pedido ha sido</p>
-                <span class="badge badge-danger" *ngIf="venta.estado == 'Venta en proceso'">{{venta.estado}}</span>
-                <span class="badge badge-success" *ngIf="venta.estado == 'Enviado'">{{venta.estado}}</span>
-                <span class="badge badge-primary" *ngIf="venta.estado == 'Finalizado'">{{venta.estado}}</span>
-                <span class="badge badge-secondary" *ngIf="venta.estado == 'Reembolsado'">{{venta.estado}}</span>
-                <h2 *ngIf="venta.estado == 'Enviado' || venta.estado == 'Venta en proceso'">Nos vemos Pronto!</h2>
-                <h2 *ngIf="venta.estado == 'Finalizado'">Gracias por tu Compra!</h2>
-                <h2 *ngIf="venta.estado == 'Reembolsado'">Venta reembolsada!</h2>
-                <br>
-                
-            </div>
-        </div>
-        <!--list of products-->
-        <!--list of products mobile-->
         <!--cuadromodal-->
         <div class="container-fluid cuadro-modal animated fadeInUp">
 
@@ -35,17 +16,101 @@
 
                 <div class="areablanc areablanc-interna animated fadeInUp ">
                     <div class="div-responsive1 scrollable">
-                        <div class="container">
+                        <div class="order-info animated fadeInUp ">
+                            <p>Su Pedido ha sido</p>
+                            <span class="badge badge-danger" *ngIf="venta.estado == 'Venta en proceso'">{{venta.estado}}</span>
+                            <span class="badge badge-success" *ngIf="venta.estado == 'Enviado'">{{venta.estado}}</span>
+                            <span class="badge badge-primary" *ngIf="venta.estado == 'Finalizado'">{{venta.estado}}</span>
+                            <span class="badge badge-secondary" *ngIf="venta.estado == 'Reembolsado'">{{venta.estado}}</span>
+                            <h2 *ngIf="venta.estado == 'Enviado' || venta.estado == 'Venta en proceso'">Nos vemos Pronto!</h2>
+                            <h2 *ngIf="venta.estado == 'Finalizado'">Gracias por tu Compra!</h2>
+                            <h2 *ngIf="venta.estado == 'Reembolsado'">Venta reembolsada!</h2>
+                            <br>
+                            
+                        </div>
+                        <!-- cancelacion y ticket -->
+                        <div class="col-lg-12">
+                            <div class="btn-toolbar" role="toolbar" aria-label="Settings toolbar">
+                                <div class="btn-group mr-2 mb-2" role="group" aria-label="Settings group">
+                                    <button type="button" class="btn btn-danger" *ngIf="venta.estado == 'Venta en proceso' && !btn_cancelar" data-toggle="modal" [attr.data-target]="'#sol_cancelar'">
+                                      <i class="fa fa-paypal"></i> &nbsp;
+                                      Solicitar reembolso
+                                    </button>
+                                    <!-- modal cancelacion -->
+                                    <div class="modal fade" [attr.id]="'sol_cancelar'" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Cancelación</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="bg-secondary py-grid-gutter px-grid-gutter rounded-lg">
+                                                        <form #cancelarForm="ngForm" (ngSubmit)="cancelar(cancelarForm)">
+                                                            <div class="form-group" *ngIf="msm_error_cancelar">
+                                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                    {{msm_error_cancelar}}
+                                                                    <button type="button" class="close" (click)="close_alert()" data-dismiss="alert" aria-label="Close">
+                                                                      <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="review-text">Motivo de la cancelacion?<span class="text-danger">*</span></label>
+                                                                <textarea class="form-control" rows="5" required="" name="mensaje" [(ngModel)]="cancelacion.mensaje" placeholder="Escribenos por qué estas solicitando la cancelación."></textarea>
+
+                                                            </div>
+
+                                                            <button class="btn btn-primary btn-shadow btn-block" type="submit">Solicitar</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- modal cancelacion -->
+                                    <ng-container *ngIf="venta.estado == 'Enviado' || venta.estado == 'Venta en proceso' || venta.estado == 'Finalizado'">
+                                        <a [routerLink]="['/app/cuenta/ordenes/tickets/',venta._id]" type="button" class="btn btn-primary">
+                                            <i class="fa fa-help mr-1"></i> Tickets
+                                        </a>
+                                    </ng-container>
+
+
+                                </div>
+                                <div class="btn-group mr-2 mb-2" role="group" aria-label="Apply settings" *ngIf="venta.estado == 'Enviado'">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" [attr.data-target]="'#finalizar'">
+                                        <i class="fa fa-check mr-2"></i>
+                                        Confirmar entrega
+                                      </button>
+
+                                    <div class="modal fade" id="finalizar" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Confirmación</h4>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="font-size-sm">Al aceptar estas confimando la recepción de la compra.</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cerrar</button>
+                                                    <button class="btn btn-primary btn-shadow btn-sm" type="button" (click)="finalizar(id)">Confirmar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- detalles compra -->
+                        <div class="col-lg-12">
                             <p><b>Fecha de Compra:</b> {{venta.createdAt | date:'MMM d, y, h:mm:ss a'}} </p>
                             <p><b>Entrega:</b> <br> {{venta.tiempo_estimado}}</p>
                             <br>
                             <p><b>Destinatario:</b> {{venta.destinatario}}</p>
-                            <p><b>Dirección:</b> {{venta.direccion}}</p>
-                            <p><b>País:</b> {{venta.pais}}</p>
-                            <p><b>ZIP:</b> {{venta.zip}}</p>
-                            <p><b>Referencia:</b> {{venta.referencia}}</p>
-                            <p><b>Info Cupón:</b> {{venta.info_cupon}}</p>
-                            <p><b>Id Transacción:</b> {{venta.idtransaccion}}</p>
                             <p><b>Tipo Envio:</b> {{venta.tipo_envio}}</p>
                             <p><b>Precio Envio:</b> ${{venta.precio_envio}}</p>
                             <p><b>Metodo Pago:</b> {{venta.metodo_pago}}</p>
@@ -84,35 +149,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="clear"></div><br>
-
-                        <div class="botonera">
-                            <div class="btn-group mr-2 mb-2" role="group" aria-label="Settings group">
-                                <button type="button" class="btn btn-simple-border-light" *ngIf="venta.estado == 'Venta en proceso' && !btn_cancelar" data-toggle="modal" [attr.data-target]="'#sol_cancelar'">
-                              <i class="czi-paypal"></i> &nbsp;
-                              Solicitar reembolso
-                            </button>
-
-                                <ng-container *ngIf="venta.estado == 'Enviado' || venta.estado == 'Venta en proceso' || venta.estado == 'Finalizado'">
-                                    <a [routerLink]="['/app/user/tickets/',venta._id]" type="button" class="btn btn-simple-border-light">
-                                        <i class="czi-help mr-1"></i> Tickets
-                                    </a>
-                                </ng-container>
-
-
-                            </div>
-
-
-                            <div class="btn-group mr-2 mb-2" role="group" aria-label="Apply settings" *ngIf="venta.estado == 'Enviado'">
-                                <button type="button" class="btn btn-full-dark" data-toggle="modal" [attr.data-target]="'#finalizar'">
-                                <i class="czi-check mr-2"></i>
-                                Confirmar entrega
-                              </button>
-
-                            </div>
-                        </div>
-
-
 
                     </div>
 
@@ -125,63 +161,7 @@
         </div>
         <!--cuadromodal-->
 
-        <!-- modal reembolso -->
-        <div class="modal fade" [attr.id]="'sol_cancelar'" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Cancelación</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="bg-secondary py-grid-gutter px-grid-gutter rounded-lg">
-                            <form #cancelarForm="ngForm" (ngSubmit)="cancelar(cancelarForm)">
-                                <div class="form-group" *ngIf="msm_error_cancelar">
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        {{msm_error_cancelar}}
-                                        <button type="button" class="close" (click)="close_alert()" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="review-text">Motivo de la cancelacion?<span class="text-danger">*</span></label>
-                                    <textarea class="form-control" rows="5" required="" name="mensaje" [(ngModel)]="cancelacion.mensaje" placeholder="Escribenos por qué estas solicitando la cancelación."></textarea>
-
-                                </div>
-
-                                <button class="btn btn-full-dark" type="submit">Solicitar</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- modal reembolso -->
-
-        <!-- modal confirmacion -->
-        <div class="modal fade" id="finalizar" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Confirmación</h4>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="font-size-sm">Al aceptar estas confimando la recepción de la compra.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-simple-border-light" type="button" data-dismiss="modal">Cerrar</button>
-                        <button class="btn btn-full-dark" type="button" (click)="finalizar(venta._id)">Confirmar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- modal confirmacion -->
+        
     </div>
 
 

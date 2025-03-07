@@ -627,8 +627,11 @@ export class CartComponent implements OnInit {
         this.verify_dataComplete();
         if(resultado.ok){
           // transferencia registrada con exito
-          console.log(resultado.payment);
-          alert('Transferencia registrada con exito');
+          // console.log(resultado.payment);
+          // alert('Transferencia registrada con exito');
+          this.emptyCart();
+              this.remove_carrito();
+              this.router.navigate(['/app/user/orders']);
         }
         else{
           // error al registar la transferencia
@@ -715,10 +718,11 @@ export class CartComponent implements OnInit {
             response =>{
               this.emptyCart();
               this.remove_carrito();
+              this.router.navigate(['/app/user/orders']);
               this.listar_carrito();
               this.socket.emit('save-carrito', {new:true});
               this.socket.emit('save-stock', {new:true});
-              this.router.navigate(['/app/user/orders']);
+              
             },
             error=>{
               console.log(error);
