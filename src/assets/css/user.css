@@ -1,13 +1,10 @@
-.user {
-}
-
 .user .post-inner {
     overflow: hidden;
     overflow-y: scroll;
     position: fixed;
     padding-right: 20px;
     width: 100%;
-    height: 100vh;
+    height: 50vh;
     padding-bottom: 150px;
     margin-top: 10px;
 }
@@ -30,6 +27,13 @@
     box-shadow: var(--shadow-lightbrown);
 }
 
+.user .post-inner {
+    overflow: hidden;
+    overflow-y: scroll;
+    width: 100%;
+    height: 100vh;
+}
+
 .user .div1 p {
     padding: 0px;
     margin: 0px;
@@ -43,6 +47,7 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     border-radius: 20px;
+    /* padding: 10px; */
     margin-bottom: 30px;
 }
 
@@ -54,38 +59,6 @@
     padding: 0px !important;
     position: relative;
     z-index: 0;
-}
-
-.user .areablanc-interna {
-    height: calc(90vh);
-    border-radius: 30px 30px 0px 0px;
-    padding-top: 20px;
-    overflow: hidden;
-    position: fixed;
-    margin-top: 0px;
-    width: 100%;
-    z-index: 3;
-    top: 20px;
-    margin-left: -5px;
-}
-
-.user .form {
-    width: 100%;
-    padding-bottom: 20px;
-    display: flex;
-}
-
-.user .form img {
-    width: 60%;
-    margin: auto;
-    display: block;
-}
-
-.user .form input[type="text"] {
-    border-radius: 0px;
-    border: none;
-    border-bottom: 1px solid var(--grisclaro);
-    padding: 3px;
 }
 
 .user-document .itemFav img {
@@ -108,10 +81,17 @@
     color: var(--dark-brown);
 }
 
-.user-document .itemFav {
-    border-bottom: 1px solid var(--blanco);
-    box-shadow: var(--shadow);
-    height: 80px;
+.user .areablanc-interna {
+    height: calc(90vh);
+    border-radius: 30px 30px 0px 0px;
+    padding-top: 20px;
+    overflow: hidden;
+    position: fixed;
+    margin-top: 0px;
+    width: 100%;
+    z-index: 3;
+    top: 20px;
+    margin-left: -5px;
 }
 
 .user-document .itemFav p {
@@ -120,12 +100,40 @@
     font-size: var(--texto-size);
 }
 
+.user-document .itemFav {
+    border-bottom: 1px solid var(--blanco);
+    box-shadow: var(--shadow);
+    height: 80px;
+}
+
+.user .form {
+    width: 100%;
+    padding-bottom: 20px;
+    display: flex;
+}
+
+.user .form img {
+    width: 60%;
+    margin: auto;
+    display: block;
+}
+
+.user .form input[type="text"] {
+    border-radius: 0px;
+    border: none;
+    border-bottom: 1px solid var(--grisclaro);
+    padding: 3px;
+}
+
 .admin-services {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+}
+
+.admin-services {
     height: 130px;
 }
 
@@ -140,6 +148,15 @@
     justify-items: center;
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+.option-admin i,
+.option-admin p {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    flex-direction: column;
 }
 
 .option-admin i {
@@ -157,15 +174,6 @@
     font-size: 0.8em;
 }
 
-.option-admin i,
-.option-admin p {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    align-self: center;
-    flex-direction: column;
-}
-
 .carpetas {
     display: grid;
     gap: 1em;
@@ -180,17 +188,6 @@
     margin-bottom: 20px;
 }
 
-.folder-info h2 {
-    font-size: var(--subtituloh2-size);
-    color: var(--gris);
-    margin-top: 10px;
-}
-
-.folder-info i {
-    font-size: var(--icon-size-g);
-    color: var(--dark-brown);
-}
-
 .menu-opt {
     display: flex;
     float: right;
@@ -199,17 +196,26 @@
     justify-items: end;
 }
 
+.folder-info h2 {
+    font-size: var(--subtituloh2-size);
+    color: var(--gris);
+    margin-top: 10px;
+}
+
+.folder-info i {
+    font-size: var(--icon-size-g);
+    color: var(--dark-brown)
+}
+
 @media (min-width:768px) {
     .user .form .col-auto {
         display: flex;
         width: 50%;
         float: left;
     }
-    
     .user .post-inner {
         position: relative;
     }
-    
     .admin-services {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -217,11 +223,6 @@
         grid-column-gap: 0px;
         grid-row-gap: 0px;
     }
-    
-    .option-admin {
-        margin-right: 110px;
-    }
-    
     .option-admin i {
         font-size: var(--icon-size-m);
         border: 2px solid var(--light-brown);
@@ -231,8 +232,10 @@
         padding: 5px;
         box-shadow: var(--shadow);
     }
-    
     .option-admin p {
         font-size: var(--texto-size);
+    }
+    .option-admin {
+        margin-right: 110px;
     }
 }

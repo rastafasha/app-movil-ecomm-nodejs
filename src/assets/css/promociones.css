@@ -9,8 +9,9 @@
     margin: auto;
     border-radius: 24px 24px 0px 0px;
     box-shadow: var(--shadow-brown);
-    & img {
-        width: 100%;
-        height: auto;
-    }
+}
+
+.promociones img {
+    width: 100%;
+    height: auto;
 }

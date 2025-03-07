@@ -1,13 +1,11 @@
-.home {
-    & .logo2 {
-        position: fixed;
-        z-index: 90;
-        left: calc(38%);
-        top: -15px;
-        width: 90px;
-        height: 100px;
-        transform: translate(0px, 0%);
-    }
+.home .logo2 {
+    position: fixed;
+    z-index: 90;
+    left: calc(38%);
+    top: -15px;
+    width: 90px;
+    height: 100px;
+    transform: translate(0px, 0%);
 }
 
 
