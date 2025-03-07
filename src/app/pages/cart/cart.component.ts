@@ -442,63 +442,7 @@ export class CartComponent implements OnInit {
 
   }
 
-  verify_data(){
-    if(this.id_direccion){
-      this.msm_error = '';
-      $('#btn-verify-data').animate().hide();
-      $('#btn-back-data').animate().show();
-
-      $('#card-data-envio').animate().show();
-
-      $('#card-pay').animate().show('fast');
-      $('.cart-data-venta').animate().hide('fast');
-
-
-
-      if(this.data_cupon){
-        if(this.data_cupon.categoria){
-          this.info_cupon_string = this.data_cupon.descuento + '% de descuento en ' + this.data_cupon.categoria.nombre;
-        }else if(this.data_cupon.subcategoria){
-          this.info_cupon_string = this.data_cupon.descuento + '% de descuento en ' + this.data_cupon.subcategoria;
-        }
-      }
-
-      var fecha = new Date();
-
-      var months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Novimbre", "Deciembre"];
-      fecha.setDate(fecha.getDate() + parseInt(this.medio_postal.dias));
-      this.date_string =  fecha.getDate() +' de ' + months[fecha.getMonth()] + ' del ' + fecha.getFullYear();
-
-
-      this.data_venta = {
-        user : this.identity.uid,
-        total_pagado : this.formTransferencia.value.amount,
-        codigo_cupon : this.cupon,
-        info_cupon :  this.info_cupon_string,
-        idtransaccion : null,
-        // metodo_pago : 'Paypal',
-
-        tipo_envio: this.medio_postal.tipo_envio,
-        precio_envio: this.medio_postal.precio,
-        tiempo_estimado: this.date_string,
-
-        direccion: this.data_direccion.direccion,
-        destinatario: this.data_direccion.nombres_completos,
-        detalles:this.data_detalle,
-        referencia: this.data_direccion.referencia,
-        pais: this.data_direccion.pais,
-        ciudad: this.data_direccion.ciudad,
-        zip: this.data_direccion.zip,
-      }
-
-      console.log(this.data_venta);
-
-
-    }else{
-      this.msm_error = "Seleccione una dirección de envio.";
-    }
-
-  }
+  
 
   back_data(){
     $('#btn-verify-data').animate().show();
@@ -641,8 +585,66 @@ export class CartComponent implements OnInit {
       });
     }
   }
+
+  verify_data(){
+    if(this.id_direccion){
+      this.msm_error = '';
+      $('#btn-verify-data').animate().hide();
+      $('#btn-back-data').animate().show();
+
+      $('#card-data-envio').animate().show();
+
+      $('#card-pay').animate().show('fast');
+      $('.cart-data-venta').animate().hide('fast');
+
+
+
+      if(this.data_cupon){
+        if(this.data_cupon.categoria){
+          this.info_cupon_string = this.data_cupon.descuento + '% de descuento en ' + this.data_cupon.categoria.nombre;
+        }else if(this.data_cupon.subcategoria){
+          this.info_cupon_string = this.data_cupon.descuento + '% de descuento en ' + this.data_cupon.subcategoria;
+        }
+      }
+
+      var fecha = new Date();
+
+      var months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Novimbre", "Deciembre"];
+      fecha.setDate(fecha.getDate() + parseInt(this.medio_postal.dias));
+      this.date_string =  fecha.getDate() +' de ' + months[fecha.getMonth()] + ' del ' + fecha.getFullYear();
+
+
+      this.data_venta = {
+        user : this.identity.uid,
+        total_pagado : this.formTransferencia.value.amount,
+        codigo_cupon : this.cupon,
+        info_cupon :  this.info_cupon_string,
+        idtransaccion : null,
+        // metodo_pago : 'Paypal',
+
+        tipo_envio: this.medio_postal.tipo_envio,
+        precio_envio: this.medio_postal.precio,
+        tiempo_estimado: this.date_string,
+
+        direccion: this.data_direccion.direccion,
+        destinatario: this.data_direccion.nombres_completos,
+        detalles:this.cartItems,
+        referencia: this.data_direccion.referencia,
+        pais: this.data_direccion.pais,
+        ciudad: this.data_direccion.ciudad,
+        zip: this.data_direccion.zip,
+      }
+
+      console.log(this.data_venta);
+
+
+    }else{
+      this.msm_error = "Seleccione una dirección de envio.";
+    }
+
+  }
   
-  verify_dataComplete(){
+  verify_dataComplete(){debugger
     if(this.id_direccion){
       this.msm_error = '';
       $('#btn-verify-data').animate().hide();
@@ -685,7 +687,7 @@ export class CartComponent implements OnInit {
 
         direccion: this.data_direccion.direccion,
         destinatario: this.data_direccion.nombres_completos,
-        detalles:this.data_detalle,
+        detalles:this.cartItems,
         referencia: this.data_direccion.referencia,
         pais: this.data_direccion.pais,
         ciudad: this.data_direccion.ciudad,

@@ -42,10 +42,17 @@ export class VentaService {
       }
     }
   }
+  // registro(data:any):Observable<any>{
+  //   let headers = new HttpHeaders().set('Content-Type','application/json');
+  //   return this._http.post(this.url+'/ventas/store',data,{headers:headers});
+  // }
+
   registro(data:any):Observable<any>{
     let headers = new HttpHeaders().set('Content-Type','application/json');
+    // return this._http.post(this.url+'/ventas/venta/registro',data,{headers:headers});
     return this._http.post(this.url+'/ventas/store',data,{headers:headers});
   }
+
 
   getVenta(id:string):Observable<any>{
     let headers = new HttpHeaders().set('Content-Type','application/json');
