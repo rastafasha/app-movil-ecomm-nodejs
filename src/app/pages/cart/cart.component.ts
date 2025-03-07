@@ -194,7 +194,7 @@ export class CartComponent implements OnInit {
     this._direccionService.get_direccion(this.data_direccion).subscribe(
       response =>{
         this.data_direccion = response;
-        console.log(this.data_direccion);
+        // console.log(this.data_direccion);
       }
     );
 
@@ -491,7 +491,7 @@ export class CartComponent implements OnInit {
         zip: this.data_direccion.zip,
       }
 
-      console.log(this.data_venta);
+      // console.log(this.data_venta);
 
 
     }else{
@@ -628,11 +628,14 @@ export class CartComponent implements OnInit {
         if(resultado.ok){
           // transferencia registrada con exito
           console.log(resultado.payment);
-          alert('Transferencia registrada con exito');
+          this.emptyCart();
+              this.remove_carrito();
+          this.router.navigateByUrl(`/app/user/orders`);
+          // alert('Transferencia registrada con exito');
         }
         else{
           // error al registar la transferencia
-          alert('Error al registrar la transferencia');
+          // alert('Error al registrar la transferencia');
           console.log(resultado.msg);
         }
       });
@@ -705,6 +708,9 @@ export class CartComponent implements OnInit {
         console.log(element);
         this._productoService.aumentar_ventas(element.producto._id).subscribe(
           response =>{
+            this.emptyCart();
+              this.remove_carrito();
+            this.router.navigateByUrl(`/app/wallet-order`);
           },
           error=>{
             console.log(error);
@@ -718,7 +724,6 @@ export class CartComponent implements OnInit {
               this.listar_carrito();
               this.socket.emit('save-carrito', {new:true});
               this.socket.emit('save-stock', {new:true});
-              this.router.navigate(['/app/user/orders']);
             },
             error=>{
               console.log(error);

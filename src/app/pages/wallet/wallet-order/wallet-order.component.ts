@@ -6,7 +6,8 @@ import { CongeneralService } from 'src/app/services/congeneral.service';
 import {environment} from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
+import { VentaService } from 'src/app/services/venta.service';
+import { Venta } from 'src/app/models/ventas.model';
 @Component({
   selector: 'app-wallet-order',
   templateUrl: './wallet-order.component.html',
@@ -16,7 +17,7 @@ export class WalletOrderComponent implements OnInit {
 
   public congeneral: Congeneral;
   public congeneralSeleccionado: Congeneral;
-
+  public venta: Venta;
   constructor(
     private http: HttpClient,
     private location: Location,
@@ -24,6 +25,7 @@ export class WalletOrderComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     handler: HttpBackend,
+    private ventaService: VentaService,
     public sanitizer: DomSanitizer
     ) {
       this.http = new HttpClient(handler);
@@ -33,7 +35,23 @@ export class WalletOrderComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0,0);
-    this.activatedRoute.params.subscribe( ({id}) => this.cargarConf(id));
+    // this.activatedRoute.params.subscribe( ({id}) => this.cargarConf(id));
+    // this.activatedRoute.params.subscribe( ({id}) => this.getPedido(id));
+  }
+
+  getPedido(id:string){
+    if(!id !== null && id !== undefined){
+      this.ventaService.getVenta(id).subscribe(
+        response=>{
+          this.venta = response.venta;
+          console.log(this.venta);
+        },
+        error=>{
+
+        }
+      );
+    }
+
   }
 
   cargarConf(_id: string){
