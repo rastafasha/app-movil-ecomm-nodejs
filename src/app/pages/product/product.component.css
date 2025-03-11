@@ -4,14 +4,12 @@ iframe {
 }
 
 .listacolor{
-    display: inline-flex;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     align-content: center;
-    flex-wrap: wrap;
     align-items: baseline;
-    margin-top: -30px;
 }
 .listacolor  i{
     border: 2px solid #fff;

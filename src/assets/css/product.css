@@ -11,7 +11,7 @@
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
     background: rgb(125, 185, 232);
     /* Old browsers */
-    background: -moz-linear-gradient(top, #3c2415) -10%, #000000 70%);
+    background: -moz-linear-gradient(top, #3c2415 -10%, #000000 70%);
     /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #3c2415 -10%, #000000 70%);
     /* Chrome10-25,Safari5.1-6 */
@@ -19,62 +19,6 @@
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
     /* IE6-9 */
-}
-
-@keyframes productanimation {
-    0% {
-        background: #3c2415;
-        /* Old browsers */
-        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* FF3.6-15 */
-        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-        /* IE6-9 fallback on horizontal gradient */
-    }
-    100% {
-        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
-        background: rgb(125, 185, 232);
-        /* Old browsers */
-        background: -moz-linear-gradient(top, #3c2415) -10%, #000000 70%);
-        /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #3c2415 -10%, #000000 70%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #3c2415 -10%, #000000 70%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
-        /* IE6-9 */
-    }
-}
-
-@-webkit-keyframes productanimation {
-    0% {
-        background: #3c2415;
-        /* Old browsers */
-        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* FF3.6-15 */
-        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-        /* IE6-9 fallback on horizontal gradient */
-    }
-    100% {
-        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
-        background: rgb(125, 185, 232);
-        /* Old browsers */
-        background: -moz-linear-gradient(top, #3c2415) -10%, #000000 70%);
-        /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #3c2415 -10%, #000000 70%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #3c2415 -10%, #000000 70%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
-        /* IE6-9 */
-    }
 }
 
 .productPage .logo {
@@ -92,7 +36,7 @@
     transform: translate(0px, 40%);
     background-color: var(--lighter-brown);
     padding: 20px;
-    height: 100vh;
+    height: auto;
     -webkit-animation: cuadro-modal 1s 1 ease;
     -moz-animation: cuadro-modal 1s 1 ease;
     -o-animation: cuadro-modal 1s 1 ease;
@@ -120,14 +64,15 @@
 }
 
 .productPage .product-item {
-    position: absolute;
+    position: relative;
     top: 0px;
-    left: calc(22%);
     z-index: 10;
-    width: 55%;
+    width: 100%;
+    height: 250px;
     display: block;
     margin: auto;
-    transform: translate(0px, 0%);
+    overflow: hidden;
+    transform: translate(0px, 60px);
 }
 
 .productPage .titlePage {
@@ -279,10 +224,10 @@
 
 .productPage .product-item img {
     display: block;
-    width: 100%;
+    width: 75%;
     height: auto;
     position: relative;
-    top: 105px;
+    margin: auto;
     z-index: 20;
     /* box-shadow: var(--shadow); */
     filter: drop-shadow(0 0 0.75rem rgb(36, 33, 33));

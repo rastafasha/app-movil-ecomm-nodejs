@@ -19,7 +19,8 @@
             <div class="total">
                 <!-- <i class="fa fa-trash" aria-hidden="true" (click)="emptyCart()"></i> -->
                 
-                                <p >Total:  ${{subtotal + total}}</p>
+                                <p *ngIf="!subtotal">Total:  ${{total}}</p>
+                                <p *ngIf="subtotal">Total:  ${{subtotal + total}}</p>
             </div>
             <div class="lineamedio"></div>
             <div class="row">
@@ -50,9 +51,9 @@
                                                 <p>${{item.productPrice}}</p>
                                             </div>
                                             <div class="addCompradiv3 buttonsAdd">
-                                                <i class="fa fa-minus" (click)="deletItem(i)"></i>
-                                                <i class="fa fa-plus" (click)="addToCart(this.producto)"></i>
-                                                <i class="fa fa-trash" aria-hidden="true" (click)="emptyCart()"></i>
+                                                <!-- <i class="fa fa-minus" (click)="deletItem(i)"></i> -->
+                                                <!-- <i class="fa fa-plus" (click)="addToCart(item)"></i> -->
+                                                <i class="fa fa-trash" aria-hidden="true" (click)="deletItem(i)"></i>
 
                                             </div>
                                             <div class="addCompradiv4 subtotal">

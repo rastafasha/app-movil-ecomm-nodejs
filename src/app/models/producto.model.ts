@@ -21,6 +21,7 @@ export class Producto {
   isFeatured: boolean;
   status: boolean;
   marca: string;
+  local?: string;
   createdAt: Date;
   updatedAt: Date;
   img: string;

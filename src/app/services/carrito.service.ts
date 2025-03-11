@@ -17,9 +17,26 @@ export class CarritoService {
     this.url = environment.baseUrl;
    }
 
-  registro(data):Observable<any>{
-    let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this._http.post(this.url + '/carritos/registro',data,{headers:headers})
+   get token():string{
+    return localStorage.getItem('token') || '';
+  }
+   get headers(){
+    return{
+      headers: {
+        'x-token': this.token
+      }
+    }
+  }
+
+  // registro(data):Observable<any>{
+  //   let headers = new HttpHeaders().set('Content-Type','application/json');
+  //   return this._http.post(this.url + '/carritos/',data,{headers:headers})
+  // }
+
+  registro(data:any):Observable<any>{
+
+    const url = `${this.url}/carritos`;
+    return this._http.post(url, data, this.headers);
   }
 
   preview_carrito(id):Observable<any>{

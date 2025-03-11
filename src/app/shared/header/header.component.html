@@ -20,7 +20,8 @@
     </div>
     <!--menu movil-->
     <!--menu-->
-    <a class="sidemenu-toggler isqmenu1" (click)="openMenu()">
+    <!-- (click)="openMenu()" -->
+    <a class="sidemenu-toggler isqmenu1" >
         <span></span>
         <span></span>
         <span></span>
@@ -31,13 +32,14 @@
         <div class="usermenu">
 
             <div class="user-header-top">
-                <img [src]="usuario.img" alt="">
+                <img [src]="identity.img" alt="">
+                <!-- <img src="assets/svg/Logo-BellaCafeFinal.svg" alt=""> -->
                 <!-- <a routerLink="/">
                     <img src="assets/svg/Logo-BellaCafeFinal.svg" alt="">
                 </a> -->
             </div>
-            <p>{{usuario.role}}</p>
-            <p>{{usuario.first_name}} {{usuario.last_name}}</p>
+            <p>{{identity.role}}</p>
+            <p>{{identity.first_name}} {{identity.last_name}}</p>
         </div>
         <nav>
             <ul>
@@ -70,7 +72,7 @@
         <div class="isqmenu3">
             <div class="user-header-top ">
                 <a [routerLink]="['/app/profile']">
-                    <img src="{{usuario.imagenUrl}}" alt="">
+                    <img src="{{identity.imagenUrl}}" alt="">
                 </a>
             </div>
         </div>

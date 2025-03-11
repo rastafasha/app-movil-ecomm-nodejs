@@ -11,6 +11,8 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { CartItemModel } from 'src/app/models/cart-item-model';
 import { FavoritoService } from 'src/app/services/favorito.service';
 import { Favorite } from 'src/app/models/favorite.model';
+import { environment } from 'src/environments/environment';
+import { io } from "socket.io-client";
 
 declare var jQuery:any;
 declare var $:any;
@@ -26,6 +28,8 @@ export class SlideProductosHComponent implements OnInit {
   cartItems: any[] = [];
   @Input() categories: Categoria[] = [];
   @Input() index: number;
+
+  public socket = io(environment.soketServer);
 
   public productos: any;
   public producto: Producto;
@@ -47,6 +51,8 @@ export class SlideProductosHComponent implements OnInit {
   public msm_success_dos = false;
 
   favoriteItem: Favorite;
+  public clienteSeleccionado: any ={};
+  
 
   constructor(
     private productoService: ProductoService,
@@ -54,6 +60,7 @@ export class SlideProductosHComponent implements OnInit {
     private messageService: MessageService,
     private storageService: StorageService,
     private favoritoService: FavoritoService,
+    private _carritoService: CarritoService,
 
     private router: Router
   ) {
@@ -78,12 +85,55 @@ export class SlideProductosHComponent implements OnInit {
   addToCart(prod:any): void{
     this.productoSeleccionado = prod;
     this.messageService.sendMessage(this.productoSeleccionado);
-    console.log('sending item to cart...', this.productoSeleccionado);
+    // console.log('sending item to cart...', this.productoSeleccionado);
     this.msm_success = true;
     setTimeout(()=>{
       this.close_alert()
     },2500);
   }
+
+  // addToCart(producto:any){debugger
+  //   if(this.cantidad_to_cart > this.producto.stock){
+  //     this.err_stock = 'La cantidad no debe superar al stock';
+  //   }
+  //   else if(this.cantidad_to_cart <= 0){
+  //     this.err_stock = 'La cantidad no puede ser un valor negativo';
+  //   }
+  //   else{
+  //     this.err_stock = '';
+  //     let data = {
+  //       user: this.usuario.uid,
+  //       producto : this.producto._id,
+  //       cantidad : this.cantidad_to_cart,
+  //       color : this.color_to_cart,
+  //       selector : this.selector_to_cart,
+  //       precio : this.precio_to_cart,
+  //     }
+  //     if(this.selector_to_cart != " "){
+  //       this.selector_error = false;
+  //       this._carritoService.registro(data).subscribe(
+  //         response =>{
+  //           this.socket.emit('save-carrito', {new:true});
+  //           // $('#dark-toast').removeClass('hide');
+  //           // $('#dark-toast').addClass('show');
+  //           // setTimeout(function() {
+  //           //     $("#dark-toast").fadeOut(1500);
+  //           // },3000);
+  //           this.msm_success = true;
+  //           setTimeout(()=>{
+  //             this.close_alert()
+  //           },2500);
+  //         },
+  //         error=>{
+  
+  //         }
+  //       );
+  //     }else{
+  //       this.selector_error = true;
+  //     }
+  //   }
+  
+  // }
 
 
 
