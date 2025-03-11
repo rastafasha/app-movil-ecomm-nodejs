@@ -25,102 +25,7 @@
                 <div class="div-responsive1">
 
                     <!---Slider-->
-                    <!-- <h5>Cupones de descuento</h5>
-                    <div class="swiffy-slider slider-item-reveal slider-nav-round slider-item-ratio slider-item-ratio-21x9">
-                        <ul class="slider-container ">
-                            <li>
-                                <div class="info-slider">
-                                    <h1>JKLm345</h1>
-                                    <h2>Descuento de 30%</h2>
-                                    <div class="div1-home">
-
-                                        <div class="stars">
-                                            <ul>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <img src="https://swiffyslider.com/assets/img/photos/img4.webp" loading="lazy" alt="..."></li>
-                            <li>
-                                <div class="info-slider">
-                                    <h1>JKLm345</h1>
-                                    <h2>Descuento de 30%</h2>
-                                    <div class="div1-home">
-
-                                        <div class="stars">
-                                            <ul>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <img src="https://swiffyslider.com/assets/img/photos/img5.webp" loading="lazy" alt="..."></li>
-                            <li>
-                                <div class="info-slider">
-                                    <h1>JKLm345</h1>
-                                    <h2>Descuento de 30%</h2>
-                                    <div class="div1-home">
-
-                                        <div class="stars">
-                                            <ul>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <img src="https://swiffyslider.com/assets/img/photos/img6.webp" loading="lazy" alt="..."></li>
-                            <li>
-                                <div class="info-slider">
-                                    <h1>JKLm345</h1>
-                                    <h2>Descuento de 30%</h2>
-                                    <div class="div1-home">
-
-                                        <div class="stars">
-                                            <ul>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li class="active"><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <img src="https://swiffyslider.com/assets/img/photos/img7.webp" loading="lazy" alt="..."></li>
-                        </ul>
-
-                        <button type="button" class="slider-nav" aria-label="Go left"></button>
-                        <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
-
-                        <div class="slider-indicators slider-indicators-square d-none d-md-flex">
-                            <button class="active" aria-label="Go to slide"></button>
-                            <button aria-label="Go to slide"></button>
-                            <button aria-label="Go to slide"></button>
-                            <button aria-label="Go to slide"></button>
-                        </div>
-
-                        <div class="slider-indicators slider-indicators-sm slider-indicators-dark slider-indicators-round d-md-none slider-indicators-highlight">
-                            <button class="active" aria-label="Go to slide"></button>
-                            <button aria-label="Go to slide"></button>
-                            <button aria-label="Go to slide"></button>
-                            <button aria-label="Go to slide"></button>
-                        </div>
-                    </div> -->
-
-
+                    
                     <!---Slider-->
                     <br>
                     <br>
@@ -155,7 +60,8 @@
                                             </div> -->
                                             <div class="botones">
                                                 <button class="button-add-favorite" (click)="removeFavorito(producto._id)"><i class="fa fa-trash" id="myBtn "></i></button>
-                                            <button class="button-add-cart" (click)="addToCart(producto)"><i class="fa fa-shopping-bag " id="myBtn "></i></button>
+                                                <button class="button-add-favorite " [routerLink]="['/app/product', producto.producto._id]"><i class="fa  fa-eye " id="myBtn "></i></button>
+                                            <!-- <button class="button-add-cart" (click)="addToCart(producto)"><i class="fa fa-shopping-bag " id="myBtn "></i></button> -->
                                             </div>
                                         </div>
 

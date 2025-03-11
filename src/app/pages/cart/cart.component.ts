@@ -113,7 +113,7 @@ export class CartComponent implements OnInit {
     handler: HttpBackend
     ) {
       this.http = new HttpClient(handler);
-      this.identity = this._userService.usuario;
+      this.identity = _userService.usuario;
       this.url = environment.baseUrl;
      }
 
@@ -122,12 +122,11 @@ export class CartComponent implements OnInit {
     this.closeModal();
     this.listar_direcciones();
     this.listar_postal();
-    this.listar_carrito();
     this.obtenerMetodosdePago();
-
-    // this.initConfig();
-    // console.log(this.identity);
-
+    
+    console.log(this.identity);
+    this.listar_carrito();
+    
     if(this.identity){
       this.socket.on('new-stock', function (data) {
         this.listar_carrito();
@@ -216,7 +215,7 @@ export class CartComponent implements OnInit {
     this._carritoService.preview_carrito(this.identity.uid).subscribe(
       response =>{
         this.carrito = response.carrito;
-
+        // console.log(this.carrito);
         this.subtotal = 0;
         this.carrito.forEach(element => {
           this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
@@ -746,6 +745,53 @@ export class CartComponent implements OnInit {
         );
     });
   }
+
+  remove_producto(id){
+    this._carritoService.remove_carrito(id).subscribe(
+      response=>{
+        this.subtotal = Math.round(this.subtotal - (response.carrito.precio*response.carrito.cantidad));
+        this._carritoService.preview_carrito(this.identity.uid).subscribe(
+          response =>{
+            this.carrito = response;
+            this.socket.emit('save-carrito', {new:true});
+            this.listar_carrito();
+          },
+          error=>{
+            console.log(error);
+
+          }
+        );
+        this._carritoService.preview_carrito(this.identity.uid).subscribe(
+          response =>{
+            this.carrito = response.carrito;
+            this.data_detalle = [];
+            this.carrito.forEach(element => {
+              this.data_detalle.push({
+                producto : element.producto,
+                cantidad: element.cantidad,
+                precio: element.precio,
+                color: element.color,
+                selector : element.selector
+              })
+            });
+            console.log(this.data_detalle);
+
+
+          },
+          error=>{
+            console.log(error);
+
+          }
+        );
+
+
+      },
+      error=>{
+
+      }
+    );
+  }
+
 
 
 

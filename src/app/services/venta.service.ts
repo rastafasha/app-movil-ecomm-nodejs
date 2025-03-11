@@ -59,9 +59,9 @@ export class VentaService {
     return this._http.get(this.url+'/ventas/'+id,{headers:headers});
   }
 
-  listarporUser(id:string):Observable<any>{
+  listarporUser(id:string, page: number, limit: number):Observable<any>{
     let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this._http.get(this.url+'/ventas/user_order/'+id,{headers:headers});
+    return this._http.get(this.url+'/ventas/user_order/'+id+'?page='+page+'&limit='+limit,{headers:headers});
   }
 
   detalle(id:string):Observable<any>{

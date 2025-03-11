@@ -167,6 +167,7 @@
     height: 45px;
     display: flex;
     padding: 5px;
+    font-size: 30px;
     box-shadow: var(--shadow);
 }
 

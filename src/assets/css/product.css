@@ -2,11 +2,11 @@
     width: 100w;
     height: 100vh;
     display: block;
-    -webkit-animation: productanimation 1s 1 ease;
+    /* -webkit-animation: productanimation 1s 1 ease;
     -moz-animation: productanimation 1s 1 ease;
     -o-animation: productanimation 1s 1 ease;
     -ms-animation: productanimation 1s 1 ease;
-    animation: productanimation 1s 1 ease;
+    animation: productanimation 1s 1 ease; */
     background-color: var(--dark-brown);
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
     background: rgb(125, 185, 232);
@@ -47,7 +47,7 @@
 
 @keyframes cuadro-modal {
     0% {
-        transform: translate(0px, 100%);
+        transform: translate(0px, 40%);
     }
     100% {
         transform: translate(0px, 40%);
@@ -56,7 +56,7 @@
 
 @-webkit-keyframes cuadro-modal {
     0% {
-        transform: translate(0px, 100%);
+        transform: translate(0px, 40%);
     }
     100% {
         transform: translate(0px, 40%);
@@ -224,8 +224,8 @@
 
 .productPage .product-item img {
     display: block;
-    width: 75%;
-    height: auto;
+    width: 90%;
+    height: 250px;
     position: relative;
     margin: auto;
     z-index: 20;

@@ -44,8 +44,14 @@ export class CarritoService {
     return this._http.get(this.url + '/carritos/limit/data/'+id,{headers:headers})
   }
 
-  remove_carrito(id):Observable<any>{
-    let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this._http.delete(this.url + '/carritos/delete/'+id,{headers:headers})
+  // remove_carrito(id):Observable<any>{
+  //   let headers = new HttpHeaders().set('Content-Type','application/json');
+  //   return this._http.delete(this.url + '/carritos/delete/'+id,{headers:headers})
+  // }
+
+  remove_carrito(id:string):Observable<any>{
+
+    const url = `${this.url}/carritos/delete/${id}`;
+    return this._http.delete(url, this.headers);
   }
 }

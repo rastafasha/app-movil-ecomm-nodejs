@@ -222,6 +222,7 @@ export class ProductComponent implements OnInit {
       };
       if (this.selector_to_cart != ' ') {
         this.selector_error = false;
+        this.msm_success = false;
         this._carritoService.registro(data).subscribe(
           (response) => {
             this.socket.emit('save-carrito', { new: true });
@@ -239,6 +240,7 @@ export class ProductComponent implements OnInit {
         );
       } else {
         this.selector_error = true;
+       
       }
     }
   }
@@ -257,12 +259,11 @@ export class ProductComponent implements OnInit {
       producto: this.producto._id,
       usuario: this.identity.uid,
     };
-
+    
+    this.msm_success_fav = false;
     this.favoritoService.registro(data).subscribe((res: any) => {
       this.favoriteItem = res;
-      // console.log(this.favoriteItem);
-      console.log('sending...', this.producto.titulo);
-      // this.notificacion();
+      this.msm_success_fav = true;
     });
   }
 
