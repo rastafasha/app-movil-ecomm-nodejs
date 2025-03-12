@@ -15,3 +15,14 @@
     width: 100%;
     height: auto;
 }
+
+
+.tiempo {
+    display: flex;
+    gap: 5px;
+    background-color: ivory;
+    padding: 10px;
+    border: 1px dotted #ccc;
+    width: fit-content;
+    box-shadow: 0px 4px 7px #ccc;
+}

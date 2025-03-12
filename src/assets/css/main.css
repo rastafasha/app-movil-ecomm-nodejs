@@ -161,7 +161,7 @@ img {
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
     background: rgb(125, 185, 232);
     /* Old browsers */
-    background: -moz-linear-gradient(top, #3c2415) -10%, #000000 70%);
+    background: -moz-linear-gradient(top, #3c2415 -10%, #000000 70%);
     /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #3c2415 -10%, #000000 70%);
     /* Chrome10-25,Safari5.1-6 */
@@ -173,11 +173,13 @@ img {
 
 .post-inners2 {
     width: 100%;
-    height: auto;
+    height: 60dvh;
     padding-bottom: 0px;
     z-index: 90;
     top: 15%;
     position: relative;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .shadowSearch {

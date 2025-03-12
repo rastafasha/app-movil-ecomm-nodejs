@@ -10,7 +10,9 @@
                     </div>
                     <div class="card-body d-flex flex-column flex-md-row ">
                         <div class="flex ">
-                            <strong>{{producto.titulo | slice: 0:10}}</strong>
+                            <strong><p>
+                                {{producto.titulo | slice: 0:10}}
+                            </p></strong>
                         </div>
                         <div class="px-md-2 precioantes">$ {{producto.precio_ahora}}</div>
                         <div class="px-md-2 ">$ {{producto.precio_antes}}</div>
