@@ -530,7 +530,7 @@ export class CartComponent implements OnInit {
 
         direccion: this.data_direccion.direccion,
         destinatario: this.data_direccion.nombres_completos,
-        detalles:this.cartItems,
+        detalles:this.data_detalle,
         referencia: this.data_direccion.referencia,
         pais: this.data_direccion.pais,
         ciudad: this.data_direccion.ciudad,
@@ -589,7 +589,7 @@ export class CartComponent implements OnInit {
 
         direccion: this.data_direccion.direccion,
         destinatario: this.data_direccion.nombres_completos,
-        detalles:this.cartItems,
+        detalles:this.data_detalle,
         referencia: this.data_direccion.referencia,
         pais: this.data_direccion.pais,
         ciudad: this.data_direccion.ciudad,

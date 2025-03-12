@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="areagris"></div>
 
-                <div class="areablanc areablanc-interna animated fadeInUp ">
+                <div class="areablanc areablanc-interna animated fadeInUp pt-3">
                     <div class="div-responsive1 scrollable">
                         <div class="order-info animated fadeInUp ">
                             <p>Su Pedido ha sido</p>
@@ -106,24 +106,23 @@
                             </div>
                         </div>
                         <!-- detalles compra -->
-                        <div class="col-lg-12">
-                            <p><b>Fecha de Compra:</b> {{venta.createdAt | date:'MMM d, y, h:mm:ss a'}} </p>
+                        <div class="col-lg-12 detalles">
+                            <p><b>Fecha de Compra:</b> {{venta.createdAt | date:' d MMM y'}} </p>
                             <p><b>Entrega:</b> <br> {{venta.tiempo_estimado}}</p>
-                            <br>
                             <p><b>Destinatario:</b> {{venta.destinatario}}</p>
                             <p><b>Tipo Envio:</b> {{venta.tipo_envio}}</p>
                             <p><b>Precio Envio:</b> ${{venta.precio_envio}}</p>
                             <p><b>Metodo Pago:</b> {{venta.metodo_pago}}</p>
                             <p><b>Tiempo Estimado:</b> {{venta.tiempo_estimado}}</p>
                             <p><b>Total Pagado:</b> ${{venta.total_pagado}}</p>
-                            <p><b>Tracking Number:</b> {{venta.tracking_number}}</p>
+                            <p *ngIf="venta.tracking_number"><b>Tracking:</b> {{venta.tracking_number}}</p>
                             <div class="clear"></div><br><br>
 
                             <div class="clear"></div>
                             <h3>Detalle de la compra</h3>
                             <div class="card mb-2" *ngFor="let item of detalle">
                                 <div class="pedido-detalle">
-                                    <div class="col-sm-4">
+                                    <div >
                                         <a [routerLink]="['/app/producto/',item.producto.slug]">
                                             <img [src]="item.producto.img | imagenPipe: 'productos'" class="rounded-left" alt="Card image">
                                         </a>

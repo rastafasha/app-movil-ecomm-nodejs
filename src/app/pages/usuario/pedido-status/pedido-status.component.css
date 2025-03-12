@@ -6,3 +6,8 @@
     top: -5px;
     z-index: 20;
 }
+
+.detalles p{
+    margin: 0;
+    padding: 0;
+}
