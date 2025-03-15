@@ -34,7 +34,7 @@ export class TicketService {
     }
   }
 
-  registro(ticket: Ticket):Observable<any>{
+  registro(ticket: any):Observable<any>{
     console.log(ticket);
     const url = `${base_url}/tickets/`;
     return this._http.post(url, ticket, this.headers);

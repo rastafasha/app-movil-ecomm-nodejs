@@ -71,7 +71,7 @@
                                     </div>
                                     <!-- modal cancelacion -->
                                     <ng-container *ngIf="venta.estado == 'Enviado' || venta.estado == 'Venta en proceso' || venta.estado == 'Finalizado'">
-                                        <a [routerLink]="['/app/cuenta/ordenes/tickets/',venta._id]" type="button" class="btn btn-primary">
+                                        <a [routerLink]="['/app/user/tickets/',venta._id]" type="button" class="btn btn-primary">
                                             <i class="fa fa-help mr-1"></i> Tickets
                                         </a>
                                     </ng-container>
