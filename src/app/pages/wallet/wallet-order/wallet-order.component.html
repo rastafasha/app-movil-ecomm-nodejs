@@ -71,26 +71,26 @@
                             <div class="col-12">
                                 <h3>Nuestros Contacto</h3>
                                 <h4>Titulo Empresa</h4>
-                                <p>{{congeneralSeleccionado.titulo}}</p>
+                                <p>{{congeneralSeleccionado?.titulo}}</p>
                                 <h4>Dirección</h4>
-                                <p>{{congeneralSeleccionado.direccion}}</p>
+                                <p>{{congeneralSeleccionado?.direccion}}</p>
                                 <h4>Teléfono</h4>
-                                <p>{{congeneralSeleccionado.telefono_uno}}</p>
+                                <p>{{congeneralSeleccionado?.telefono_uno}}</p>
                                 <h4>Whatsapp</h4>
-                                <p>{{congeneralSeleccionado.telefono_dos}}</p>
+                                <p>{{congeneralSeleccionado?.telefono_dos}}</p>
                                 <h4>Facebook</h4>
-                                <p>{{congeneralSeleccionado.facebook}}</p>
+                                <p>{{congeneralSeleccionado?.facebook}}</p>
                                 <h4>Instagram</h4>
-                                <p>{{congeneralSeleccionado.instagram}}</p>
+                                <p>{{congeneralSeleccionado?.instagram}}</p>
                                 <h4>Mapa Ubicación</h4>
                                 <p><b>iframe_mapa (ubicación):</b></p>
-                                <iframe class="mapa" [src]="getMapIframe(congeneralSeleccionado.iframe_mapa)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; " allowfullscreen></iframe>
+                                <iframe class="mapa" [src]="getMapIframe(congeneralSeleccionado?.iframe_mapa)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; " allowfullscreen></iframe>
                                 <h4>Horarios</h4>
-                                <p>{{congeneralSeleccionado.horarios}}</p>
+                                <p>{{congeneralSeleccionado?.horarios}}</p>
                                 <h4>Email Contacto</h4>
-                                <p>{{congeneralSeleccionado.email_uno}}</p>
+                                <p>{{congeneralSeleccionado?.email_uno}}</p>
                                 <h4>Email Reclamos</h4>
-                                <p>{{congeneralSeleccionado.email_dos}}</p>
+                                <p>{{congeneralSeleccionado?.email_dos}}</p>
                             </div>
 
                             <br>
