@@ -2,11 +2,11 @@
     width: 100w;
     height: 100vh;
     display: block;
-    -webkit-animation: productanimation 1s 1 ease;
+    /* -webkit-animation: productanimation 1s 1 ease;
     -moz-animation: productanimation 1s 1 ease;
     -o-animation: productanimation 1s 1 ease;
     -ms-animation: productanimation 1s 1 ease;
-    animation: productanimation 1s 1 ease;
+    animation: productanimation 1s 1 ease; */
     background-color: var(--dark-brown);
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
     background: rgb(125, 185, 232);
@@ -19,97 +19,101 @@
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
     /* IE6-9 */
-
-
-    & .logo {
-        position: absolute;
-        z-index: 9;
-        left: calc(33%);
-        width: 130px;
-        height: 130px;
-        top: -15px;
-        transform: translate(0px, 0%);
-    }
-
-    & .cuadro-modal {
-        bottom: 0%;
-        transform: translate(0px, 40%);
-        background-color: var(--lighter-brown);
-        padding: 20px;
-        height: 100vh;
-        -webkit-animation: cuadro-modal 1s 1 ease;
-        -moz-animation: cuadro-modal 1s 1 ease;
-        -o-animation: cuadro-modal 1s 1 ease;
-        -ms-animation: cuadro-modal 1s 1 ease;
-        animation: cuadro-modal 1s 1 ease;
-        padding-top: 90px;
-    }
-
-
-    & .product-item {
-        position: absolute;
-        top: 0px;
-        left: calc(22%);
-        z-index: 10;
-        width: 55%;
-        display: block;
-        margin: auto;
-        transform: translate(0px, 0%);
-        & img {
-            display: block;
-            width: 100%;
-            height: auto;
-            position: relative;
-            top: 105px;
-            z-index: 20;
-            /* box-shadow: var(--shadow); */
-            filter: drop-shadow(0 0 0.75rem rgb(36, 33, 33));
-        }
-    }
-
-    & .titlePage {
-        text-align: center;
-        color: var(--light-brown);
-        font-size: var(--subtituloh3-size);
-        padding-top: 15px;
-    }
-
-    & .butonBack .fa {
-        position: relative;
-        z-index: 9;
-        font-size: var(--icon-size-g);
-        top: 0;
-        left: 15px;
-        color: var(--lighter-brown);
-    }
-
-    & .info-product {
-        position: absolute;
-        top: 230px;
-        left: 15px;
-        z-index: 10;
-        width: 90%;
-        display: block;
-        margin: auto;
-
-        &  h1 {
-            font-size: var(--subtituloh1-size);
-        }
-    
-        &  h2 {
-            font-size: var(--subtituloh2-size);
-            font-weight: 200;
-            padding-bottom: 10px
-        }
-    
-        &  p {
-            font-size: var(--texto-size);
-        }
-    }
-
-   
 }
 
+.productPage .logo {
+    position: absolute;
+    z-index: 9;
+    left: calc(33%);
+    width: 130px;
+    height: 130px;
+    top: -15px;
+    transform: translate(0px, 0%);
+}
+
+.productPage .cuadro-modal {
+    bottom: 0%;
+    transform: translate(0px, 40%);
+    background-color: var(--lighter-brown);
+    padding: 20px;
+    height: auto;
+    -webkit-animation: cuadro-modal 1s 1 ease;
+    -moz-animation: cuadro-modal 1s 1 ease;
+    -o-animation: cuadro-modal 1s 1 ease;
+    -ms-animation: cuadro-modal 1s 1 ease;
+    animation: cuadro-modal 1s 1 ease;
+    padding-top: 90px;
+}
+
+@keyframes cuadro-modal {
+    0% {
+        transform: translate(0px, 40%);
+    }
+    100% {
+        transform: translate(0px, 40%);
+    }
+}
+
+@-webkit-keyframes cuadro-modal {
+    0% {
+        transform: translate(0px, 40%);
+    }
+    100% {
+        transform: translate(0px, 40%);
+    }
+}
+
+.productPage .product-item {
+    position: relative;
+    top: 0px;
+    z-index: 10;
+    width: 100%;
+    height: 250px;
+    display: block;
+    margin: auto;
+    overflow: hidden;
+    transform: translate(0px, 60px);
+}
+
+.productPage .titlePage {
+    text-align: center;
+    color: var(--light-brown);
+    font-size: var(--subtituloh3-size);
+    padding-top: 15px;
+}
+
+.productPage .butonBack .fa {
+    position: relative;
+    z-index: 9;
+    font-size: var(--icon-size-g);
+    top: 0;
+    left: 15px;
+    color: var(--lighter-brown);
+}
+
+.productPage .info-product {
+    position: absolute;
+    top: 230px;
+    left: 15px;
+    z-index: 10;
+    width: 90%;
+    display: block;
+    margin: auto;
+}
+
+.productPage .info-product h1 {
+    font-size: var(--subtituloh1-size);
+}
+
+.productPage .info-product h2 {
+    font-size: var(--subtituloh2-size);
+    font-weight: 200;
+    padding-bottom: 10px
+}
+
+.productPage .info-product p {
+    font-size: var(--texto-size);
+}
 
 .cardTitleProduct {
     display: grid;
@@ -118,34 +122,6 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     width: 100%;
-
-    & h1 {
-        font-size: var(--subtituloh1-size);
-        display: flex;
-    }
-
-    & h2 {
-        font-size: var(--subtituloh2-size);
-        display: flex;
-    }
-
-    & .price {
-        font-size: var(--price-size);
-        align-self: flex-end;
-        display: flex;
-        color: var(--dark-brown);
-    }
-
-    & .stars {
-        align-items: flex-start;
-        padding-right: 33px;
-        & ul li {
-            list-style: none;
-            font-size: var(--texto-size);
-        }
-    }
-
-    
 }
 
 .div1 {
@@ -164,6 +140,32 @@
     grid-area: 2 / 2 / 3 / 3;
 }
 
+.cardTitleProduct h1 {
+    font-size: var(--subtituloh1-size);
+    display: flex;
+}
+
+.cardTitleProduct h2 {
+    font-size: var(--subtituloh2-size);
+    display: flex;
+}
+
+.cardTitleProduct .price {
+    font-size: var(--price-size);
+    align-self: flex-end;
+    display: flex;
+    color: var(--dark-brown);
+}
+
+.cardTitleProduct .stars {
+    align-items: flex-start;
+    padding-right: 33px;
+}
+
+.cardTitleProduct .stars ul li {
+    list-style: none;
+    font-size: var(--texto-size);
+}
 
 .lineamedio {
     height: 4px;
@@ -220,7 +222,16 @@
     cursor: pointer;
 }
 
-
+.productPage .product-item img {
+    display: block;
+    width: 90%;
+    height: 250px;
+    position: relative;
+    margin: auto;
+    z-index: 20;
+    /* box-shadow: var(--shadow); */
+    filter: drop-shadow(0 0 0.75rem rgb(36, 33, 33));
+}
 
 .galeria-prod {
     display: grid;
@@ -243,19 +254,20 @@
     display: inline-block;
     white-space: nowrap;
     line-height: 1;
-    vertical-align: middle;
-    & .fa-star {
-        display: inline-block;
-        margin-right: .1875rem;
-        color: var(--dark-brown);
-        font-size: 12px;
-        vertical-align: middle;
-        &.active {
-            color: var(--star-color);
-        }
-    }
+    vertical-align: middle
 }
 
+.star-rating .fa-star {
+    display: inline-block;
+    margin-right: .1875rem;
+    color: var(--dark-brown);
+    font-size: 12px;
+    vertical-align: middle
+}
+
+.star-rating .fa-star.active {
+    color: var(--star-color);
+}
 
 .modal-content {
     z-index: 9999999 !important;
@@ -269,80 +281,3 @@
 .precioantes {
     text-decoration: line-through;
 }
-
-
-@keyframes productanimation {
-    0% {
-        background: #3c2415;
-        /* Old browsers */
-        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* FF3.6-15 */
-        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-        /* IE6-9 fallback on horizontal gradient */
-    }
-    100% {
-        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
-        background: rgb(125, 185, 232);
-        /* Old browsers */
-        background: -moz-linear-gradient(top, #3c2415 -10%, #000000 70%);
-        /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #3c2415 -10%, #000000 70%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #3c2415 -10%, #000000 70%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
-        /* IE6-9 */
-    }
-}
-
-@-webkit-keyframes productanimation {
-    0% {
-        background: #3c2415;
-        /* Old browsers */
-        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* FF3.6-15 */
-        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-        /* IE6-9 fallback on horizontal gradient */
-    }
-    100% {
-        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
-        background: rgb(125, 185, 232);
-        /* Old browsers */
-        background: -moz-linear-gradient(top, #3c2415 -10%, #000000 70%);
-        /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #3c2415 -10%, #000000 70%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #3c2415 -10%, #000000 70%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
-        /* IE6-9 */
-    }
-}
-
-
-@keyframes cuadro-modal {
-    0% {
-        transform: translate(0px, 100%);
-    }
-    100% {
-        transform: translate(0px, 40%);
-    }
-}
-
-@-webkit-keyframes cuadro-modal {
-    0% {
-        transform: translate(0px, 100%);
-    }
-    100% {
-        transform: translate(0px, 40%);
-    }
-}
-

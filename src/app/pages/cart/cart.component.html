@@ -6,19 +6,21 @@
         <h3>Cart Detail</h3>
     </div>
 
-    <div *ngIf="cartItems.length === 0">
+    <div *ngIf="carrito.length === 0">
         <div class="alert alert-info text-center">
             <h4>Your Cart is empty</h4>
         </div>
     </div>
-    <div *ngIf="cartItems.length > 0">
+    <div *ngIf="carrito.length > 0">
 
         
         <!--cuadromodal-->
         <div class="container-fluid cuadro-modal animated fadeInUp">
             <div class="total">
                 <!-- <i class="fa fa-trash" aria-hidden="true" (click)="emptyCart()"></i> -->
-                <p>Sub-total: ${{total}}</p>
+                
+                                <p *ngIf="!subtotal">Total:  ${{total}}</p>
+                                <p *ngIf="subtotal">Total:  ${{subtotal + total}}</p>
             </div>
             <div class="lineamedio"></div>
             <div class="row">
@@ -32,31 +34,31 @@
                     <div class="div-responsive1 scrollable">
                         <!--list of products-->
                             <div class="listProducts animated fadeInUp ">
-                                <div class="product" *ngFor="let item of cartItems; index as i">
+                                <div class="product" *ngFor="let item of carrito; index as i">
                                     <div class="itemProductdiv1">
-                                        <a [routerLink]="['/app/product', item.productId]">
-                                            <img [src]="item.img | imagenPipe: 'productos'" alt="">
+                                        <a [routerLink]="['/app/product', item.producto._id]">
+                                            <img [src]="item.producto.img | imagenPipe: 'productos'" alt="">
                                         </a>
                                     </div>
                                     <div class="itemProductdiv2">
                                         <div class="addCompra">
                                             <div class="addCompradiv1 nameProduct">
-                                                <p>{{item.productName| slice: 0:10 }}...</p>
+                                                <p>{{item.producto.titulo | slice: 0:10 }}...</p>
 
                                             </div>
                                             <div class="addCompradiv2 addInfo">
                                                 <p>200gm</p>
-                                                <p>${{item.productPrice}}</p>
+                                                <p>${{item.precio}}</p>
                                             </div>
                                             <div class="addCompradiv3 buttonsAdd">
-                                                <i class="fa fa-minus" (click)="deletItem(i)"></i>
-                                                <i class="fa fa-plus" (click)="addToCart(this.producto)"></i>
-                                                <i class="fa fa-trash" aria-hidden="true" (click)="emptyCart()"></i>
+                                                <!-- <i class="fa fa-minus" (click)="deletItem(i)"></i> -->
+                                                <!-- <i class="fa fa-plus" (click)="addToCart(item)"></i> -->
+                                                <i class="fa fa-trash" aria-hidden="true" (click)="remove_producto(item._id)"></i>
 
                                             </div>
                                             <div class="addCompradiv4 subtotal">
-                                                <p>Cant: {{item.quantity }}</p>
-                                                <p>${{item.quantity * item.productPrice| number: '1.1-2'}}</p>
+                                                <p>Cant: {{item.cantidad }}</p>
+                                                <p>${{item.cantidad * item.precio| number: '1.1-2'}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -105,11 +107,11 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class=" mb-4 pb-3 border-bottom bg-light">
+                            <!-- <div class=" mb-4 pb-3 border-bottom bg-light">
                                 <p class="font-weight-normal">Sub Total: ${{total}}</p>
                                 <p class="font-weight-normal">Delivery: ${{subtotal}}</p>
                                 <p class="font-weight-normal">Total:  ${{subtotal + total}}</p>
-                            </div>
+                            </div> -->
                             <!-- medio postal -->
 
                             <!-- promoCode -->

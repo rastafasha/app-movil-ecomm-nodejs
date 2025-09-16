@@ -18,6 +18,9 @@ export class StorageService {
   setCart(cart: CartItemModel[]): void{
     localStorage.setItem('cart', JSON.stringify(cart));
   }
+  removeItemCart(): void{
+    localStorage.removeItem('cart');
+  }
 
   getCart(): CartItemModel[]{
     return JSON.parse(localStorage.getItem('cart') || '{}');

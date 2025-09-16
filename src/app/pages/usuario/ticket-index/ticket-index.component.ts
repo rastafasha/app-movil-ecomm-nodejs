@@ -73,12 +73,14 @@ export class TicketIndexComponent implements OnInit {
 
   createTicket(ticketForm){
     if(ticketForm.valid){
-      let data = {
+      const data = {
         tema : this.data_titulo,
         venta : this.id,
         user : this.usuario.uid,
       }
-      this._ticketService.registro(this.ticket).subscribe(
+
+      
+      this._ticketService.registro(data).subscribe(
         response =>{
           this.msm_error_review = '';
           this.data_titulo = '';

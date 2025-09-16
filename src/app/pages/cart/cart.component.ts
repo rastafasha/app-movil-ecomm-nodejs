@@ -28,6 +28,8 @@ import {io} from 'socket.io-client';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PaymentMethod } from 'src/app/models/paymenthmethod.model';
 import { TransferenciasService } from 'src/app/services/transferencias.service';
+import { TiendaService } from 'src/app/services/tienda.service';
+import { Tienda } from 'src/app/models/tienda.model';
 
 @Component({
   selector: 'app-cart',
@@ -41,6 +43,7 @@ export class CartComponent implements OnInit {
   public producto : Producto;
 
   public carrito : Array<any> = [];
+  public carrito_realtime : Array<any> = [];
   public direcciones:any =[];
   public identity;
   public cupon;
@@ -54,8 +57,12 @@ export class CartComponent implements OnInit {
   public data_save_carrito;
   public msm_error = '';
   public productos : any = {};
+  public localId!:string;
 
   public socket = io(environment.soketServer);
+  tiendas: Tienda[] = [];
+  tienda!:Tienda;
+  tiendaSelected!:Tienda;
   
   cartItems: any[] = [];
   total= 0;
@@ -108,31 +115,26 @@ export class CartComponent implements OnInit {
     private _ventaService :VentaService,
     private webSocketService: WebSocketService,
     private _trasferencias: TransferenciasService,
+    private tiendaService: TiendaService,
 
     handler: HttpBackend
     ) {
       this.http = new HttpClient(handler);
-      this.identity = this._userService.usuario;
+      this.identity = _userService.usuario;
       this.url = environment.baseUrl;
      }
 
   ngOnInit(): void {
-    if(this.storageService.existCart()){
-      this.cartItems = this.storageService.getCart();
-    }
-    this.getItem();
-    this.total = this.getTotal();
-    console.log(this.getTotal());
     window.scrollTo(0,0);
     this.closeModal();
-
     this.listar_direcciones();
     this.listar_postal();
-    this.listar_carrito();
     this.obtenerMetodosdePago();
-
-    // this.initConfig();
-
+    this.getTiendas();
+    
+    console.log(this.identity);
+    this.listar_carrito();
+    
     if(this.identity){
       this.socket.on('new-stock', function (data) {
         this.listar_carrito();
@@ -154,28 +156,6 @@ export class CartComponent implements OnInit {
     }
   }
 
-  carrito_real_time(){
-    this.socket.on('new-carrito_dos', function (data) {
-      this.subtotal = 0;
-
-      this._carritoService.preview_carrito(this.identity.uid).subscribe(
-        response =>{
-          this.carrito = response;
-
-          this.carrito.forEach(element => {
-            this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
-          });
-
-        },
-        error=>{
-          console.log(error);
-
-        }
-      );
-
-    }.bind(this));
-  }
-
 
   listar_direcciones(){
     this._direccionService.listarUsuario(this.identity.uid).subscribe(
@@ -194,106 +174,12 @@ export class CartComponent implements OnInit {
     this._direccionService.get_direccion(this.data_direccion).subscribe(
       response =>{
         this.data_direccion = response;
-        // console.log(this.data_direccion);
+        console.log(this.data_direccion);
       }
     );
 
   }
 
-  private initConfig(){
-    this.payPalConfig = {
-      currency: 'USD',
-      clientId: environment.clientIdPaypal,
-      // clientId: 'sb',
-      createOrderOnClient: (data) => < ICreateOrderRequest > {
-
-
-          intent: 'CAPTURE',
-          purchase_units: [{
-              amount: {
-                  currency_code: 'USD',
-                  value: this.getTotal().toString(),
-                  breakdown: {
-                      item_total: {
-                          currency_code: 'USD',
-                          value: this.getTotal().toString(),
-                      }
-                  }
-              },
-              items: this.getItemsList(),
-          }]
-        },
-        advanced: {
-            commit: 'true'
-        },
-        style: {
-            label: 'paypal',
-            layout: 'vertical'
-        },
-        onApprove : (data, actions:any)=>{
-          const order =  actions.order.capture();
-          console.log(order);
-          this.data_venta.idtransaccion = order.purchase_units[0].payments.captures[0].id;
-          this._ventaService.registro(this.data_venta).subscribe(
-            response =>{
-              this.data_venta.detalles.forEach(element => {
-                console.log(element);
-                this._productoService.aumentar_ventas(element.producto._id).subscribe(
-                  response =>{
-                  },
-                  error=>{
-                    console.log(error);
-
-                  }
-                );
-                  this._productoService.reducir_stock(element.producto._id,element.cantidad).subscribe(
-                    response =>{
-                      this.emptyCart();
-                      this.listar_carrito();
-                      // this.socket.emit('save-carrito', {new:true});
-                      // this.socket.emit('save-stock', {new:true});
-                      // this._router.navigate(['/cuenta/ordenes']);
-                    },
-                    error=>{
-                      console.log(error);
-
-                    }
-                  );
-              });
-
-            },
-            error=>{
-              console.log(error);
-
-            }
-          );
-        },
-        onClientAuthorization: (data) => {
-            console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point',
-            JSON.stringify(data));
-            // datos del recibo de pago
-            
-            // this.openModal(
-            //   data.purchase_units[0].items,
-            //   data.purchase_units[0].amount.value,
-            // );
-            this.emptyCart();
-            // this.spinner.hide();
-
-        },
-        onCancel: (data, actions) => {
-            console.log('OnCancel', data, actions);
-        },
-        onError: err => {
-            console.log('OnError', err);
-
-        },
-        onClick: (data, actions) => {
-            console.log('onClick', data, actions);
-
-        },
-    };
-  }
 
   listar_postal(){
     this._postalService.listar().subscribe(
@@ -319,10 +205,25 @@ export class CartComponent implements OnInit {
     );
   }
 
+  select_postal(event,data){
+    //RESTAR PRECIO POSTAL ANTERIOR
+    this.subtotal = Math.round(this.subtotal - parseInt(this.medio_postal.precio));
+
+    this.medio_postal = {
+      tipo_envio : data.titulo,
+      precio: data.precio,
+      tiempo: data.tiempo,
+      dias: data.dias,
+    }
+    this.subtotal = Math.round(this.subtotal + parseInt(this.medio_postal.precio));
+
+  }
+
   listar_carrito(){
     this._carritoService.preview_carrito(this.identity.uid).subscribe(
       response =>{
         this.carrito = response.carrito;
+        // console.log(this.carrito);
         this.subtotal = 0;
         this.carrito.forEach(element => {
           this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
@@ -345,6 +246,103 @@ export class CartComponent implements OnInit {
       }
     );
   }
+
+
+  carrito_real_time(){
+    this.socket.on('new-carrito_dos', function (data) {
+      this.subtotal = 0;
+
+      this._carritoService.preview_carrito(this.identity.uid).subscribe(
+        response =>{
+          this.carrito = response;
+          console.log(this.carrito);
+          this.carrito.forEach(element => {
+            this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
+          });
+
+        },
+        error=>{
+          console.log(error);
+
+        }
+      );
+
+    }.bind(this));
+  }
+
+
+  getItem():void{
+    this.messageService.getMessage().subscribe((producto:Producto)=>{
+      let exists = false;
+      this.cartItems.forEach(item =>{
+        if(item.productId === producto._id){
+          exists = true;
+          item.quantity++;
+        }
+      });
+      if(!exists){
+        const cartItem = new CartItemModel(producto);
+        this.cartItems.push(cartItem);
+
+      }
+      this.total = this.getTotal();
+      this.storageService.setCart(this.cartItems);
+
+    });
+  }
+
+  getItemsList(): any[]{
+
+    const items: any[] = [];
+    let item = {};
+    this.cartItems.forEach((it: CartItemModel)=>{
+      item = {
+        name: it.productName,
+        unit_amount: {
+          currency_code: 'USD',
+          value: it.productPrice,
+        },
+        quantity: it.quantity,
+        category: it.category,
+      };
+      items.push(item);
+    });
+    return items;
+  }
+
+  getTotal():number{
+    let total =  0;
+    this.cartItems.forEach(item => {
+      total += item.quantity * item.productPrice;
+    });
+    return +total.toFixed(2);
+  }
+
+  addToCart(producto){
+    this.messageService.sendMessage(this.producto);
+      // console.log('sending item to cart...')
+  }
+
+  emptyCart():void{
+    this.cartItems = [];
+    this.total = 0;
+    this.storageService.clear();
+    this.getItemsList();
+
+  }
+
+  deletItem(i:number):void{
+    if(this.cartItems[i].quantity > 1){
+      this.cartItems[i].quantity--;
+
+    }else{
+      this.cartItems.splice(i, 1);
+    }
+    this.total = this.getTotal();
+    this.storageService.setCart(this.cartItems);
+    this.ngOnInit();
+  }
+
 
   get_data_cupon(event,cupon){
     this.data_keyup = this.data_keyup + 1;
@@ -428,18 +426,83 @@ export class CartComponent implements OnInit {
 
   }
 
-  select_postal(event,data){
-    //RESTAR PRECIO POSTAL ANTERIOR
-    this.subtotal = Math.round(this.subtotal - parseInt(this.medio_postal.precio));
 
-    this.medio_postal = {
-      tipo_envio : data.titulo,
-      precio: data.precio,
-      tiempo: data.tiempo,
-      dias: data.dias,
+
+  back_data(){
+    $('#btn-verify-data').animate().show();
+    $('#btn-back-data').animate().hide();
+
+    $('#card-data-envio').animate().hide();
+
+    $('#card-pay').animate().hide('fast');
+      $('.cart-data-venta').animate().show('fast');
+  }
+
+
+  closeModal(){
+    var modalcart = document.getElementsByClassName("cart-modal");
+      for (var i = 0; i<modalcart.length; i++) {
+         modalcart[i].classList.remove("show");
+
+      }
+  }
+
+  goBack() {
+    this.location.back(); // <-- go back to previous location on cancel
+  }
+
+  private obtenerMetodosdePago(){
+    this._trasferencias.getPayments().subscribe(data => {
+      // console.log('metodos de pago: ',data.paymentMethods)
+      this.paymentMethods = data.paymentMethods;
+      // console.log('metodos de pago: ',this.paymentMethods)
+    });
+  }
+  // metodo para el cambio del select 'tipo de transferencia'
+  onChangePayment(event:Event){
+    const target = event.target as HTMLSelectElement; //obtengo el valor
+    // console.log(target.value)
+
+    // guardo el metodo seleccionado en la variable de clase paymentSelected
+    this.paymentSelected = this.paymentMethods.filter(method => method._id===target.value)[0]
+  }
+
+  // Método que se llama cuando cambia el select
+  onPaymentMethodChange(event: any) {
+    this.selectedMethod = event.target.value;
+    this.renderPayPalButton(); // Renderiza el botón de nuevo según la opción seleccionada
+  }
+
+  sendFormTransfer(){
+    if(this.formTransferencia.valid){
+      // llamo al servicio
+      this._trasferencias.createTransfer(this.formTransferencia.value).subscribe(resultado => {
+        // console.log('resultado: ',resultado);
+        this.verify_dataComplete();
+        if(resultado.ok){
+          // transferencia registrada con exito
+          // console.log(resultado.payment);
+          // alert('Transferencia registrada con exito');
+          this.emptyCart();
+              this.remove_carrito();
+              this.router.navigate(['/app/user/orders']);
+        }
+        else{
+          // error al registar la transferencia
+          alert('Error al registrar la transferencia');
+          console.log(resultado.msg);
+        }
+      });
     }
-    this.subtotal = Math.round(this.subtotal + parseInt(this.medio_postal.precio));
+  }
+  getTiendas(){
+    this.tiendaService.cargarTiendas().subscribe((resp: Tienda[]) => {
+      // Asignamos el array filtrado directamente
+      this.tiendas = resp.filter((tienda: Tienda) => tienda.categoria && tienda.nombre=== 'Appmovil');
+      this.tiendaSelected = this.tiendas[0];
+      console.log(this.tiendaSelected);
 
+    })
   }
 
   verify_data(){
@@ -472,6 +535,7 @@ export class CartComponent implements OnInit {
 
       this.data_venta = {
         user : this.identity.uid,
+        local : this.tiendaSelected._id,
         total_pagado : this.formTransferencia.value.amount,
         codigo_cupon : this.cupon,
         info_cupon :  this.info_cupon_string,
@@ -491,7 +555,7 @@ export class CartComponent implements OnInit {
         zip: this.data_direccion.zip,
       }
 
-      // console.log(this.data_venta);
+      console.log(this.data_venta);
 
 
     }else{
@@ -499,150 +563,8 @@ export class CartComponent implements OnInit {
     }
 
   }
-
-  back_data(){
-    $('#btn-verify-data').animate().show();
-    $('#btn-back-data').animate().hide();
-
-    $('#card-data-envio').animate().hide();
-
-    $('#card-pay').animate().hide('fast');
-      $('.cart-data-venta').animate().show('fast');
-  }
-
-   getItem():void{
-    this.messageService.getMessage().subscribe((producto:Producto)=>{
-      let exists = false;
-      this.cartItems.forEach(item =>{
-        if(item.productId === producto._id){
-          exists = true;
-          item.quantity++;
-        }
-      });
-      if(!exists){
-        const cartItem = new CartItemModel(producto);
-        this.cartItems.push(cartItem);
-
-      }
-      this.total = this.getTotal();
-      this.storageService.setCart(this.cartItems);
-
-    });
-  }
-
-  getItemsList(): any[]{
-
-    const items: any[] = [];
-    let item = {};
-    this.cartItems.forEach((it: CartItemModel)=>{
-      item = {
-        name: it.productName,
-        unit_amount: {
-          currency_code: 'USD',
-          value: it.productPrice,
-        },
-        quantity: it.quantity,
-        category: it.category,
-      };
-      items.push(item);
-    });
-    return items;
-  }
-
-  getTotal():number{
-    let total =  0;
-    this.cartItems.forEach(item => {
-      total += item.quantity * item.productPrice;
-    });
-    return +total.toFixed(2);
-  }
-
-  addToCart(producto){
-
-
-    this.messageService.sendMessage(this.producto);
-      console.log('sending item to cart...')
-  }
-
-  emptyCart():void{
-    this.cartItems = [];
-    this.total = 0;
-    this.storageService.clear();
-    this.getItemsList();
-    this.ngOnInit();
-
-  }
-
-  deletItem(i:number):void{
-    if(this.cartItems[i].quantity > 1){
-      this.cartItems[i].quantity--;
-
-    }else{
-      this.cartItems.splice(i, 1);
-    }
-    this.total = this.getTotal();
-    this.storageService.setCart(this.cartItems);
-    this.ngOnInit();
-  }
-
-  closeModal(){
-    var modalcart = document.getElementsByClassName("cart-modal");
-      for (var i = 0; i<modalcart.length; i++) {
-         modalcart[i].classList.remove("show");
-
-      }
-  }
-
-  goBack() {
-    this.location.back(); // <-- go back to previous location on cancel
-  }
-
-  private obtenerMetodosdePago(){
-    this._trasferencias.getPayments().subscribe(data => {
-      // console.log('metodos de pago: ',data.paymentMethods)
-      this.paymentMethods = data.paymentMethods;
-      console.log('metodos de pago: ',this.paymentMethods)
-    });
-  }
-  // metodo para el cambio del select 'tipo de transferencia'
-  onChangePayment(event:Event){
-    const target = event.target as HTMLSelectElement; //obtengo el valor
-    // console.log(target.value)
-
-    // guardo el metodo seleccionado en la variable de clase paymentSelected
-    this.paymentSelected = this.paymentMethods.filter(method => method._id===target.value)[0]
-  }
-
-  // Método que se llama cuando cambia el select
-  onPaymentMethodChange(event: any) {
-    this.selectedMethod = event.target.value;
-    this.renderPayPalButton(); // Renderiza el botón de nuevo según la opción seleccionada
-  }
-
-  sendFormTransfer(){
-    if(this.formTransferencia.valid){
-      // llamo al servicio
-      this._trasferencias.createTransfer(this.formTransferencia.value).subscribe(resultado => {
-        console.log('resultado: ',resultado);
-        this.verify_dataComplete();
-        if(resultado.ok){
-          // transferencia registrada con exito
-          console.log(resultado.payment);
-          this.emptyCart();
-              this.remove_carrito();
-          this.router.navigateByUrl(`/app/user/orders`);
-          // alert('Transferencia registrada con exito');
-        }
-        else{
-          // error al registar la transferencia
-          // alert('Error al registrar la transferencia');
-          console.log(resultado.msg);
-        }
-      });
-    }
-  }
   
-  verify_dataComplete(){
+  verify_dataComplete(){debugger
     if(this.id_direccion){
       this.msm_error = '';
       $('#btn-verify-data').animate().hide();
@@ -672,6 +594,7 @@ export class CartComponent implements OnInit {
 
       this.data_venta = {
         user : this.identity.uid,
+        local : this.tiendaSelected._id,
         total_pagado : this.formTransferencia.value.amount,
         codigo_cupon : this.cupon,
         info_cupon :  this.info_cupon_string,
@@ -708,9 +631,6 @@ export class CartComponent implements OnInit {
         console.log(element);
         this._productoService.aumentar_ventas(element.producto._id).subscribe(
           response =>{
-            this.emptyCart();
-              this.remove_carrito();
-            this.router.navigateByUrl(`/app/wallet-order`);
           },
           error=>{
             console.log(error);
@@ -721,9 +641,11 @@ export class CartComponent implements OnInit {
             response =>{
               this.emptyCart();
               this.remove_carrito();
+              this.router.navigate(['/app/user/orders']);
               this.listar_carrito();
               this.socket.emit('save-carrito', {new:true});
               this.socket.emit('save-stock', {new:true});
+              
             },
             error=>{
               console.log(error);
@@ -842,6 +764,53 @@ export class CartComponent implements OnInit {
         );
     });
   }
+
+  remove_producto(id){
+    this._carritoService.remove_carrito(id).subscribe(
+      response=>{
+        this.subtotal = Math.round(this.subtotal - (response.carrito.precio*response.carrito.cantidad));
+        this._carritoService.preview_carrito(this.identity.uid).subscribe(
+          response =>{
+            this.carrito = response;
+            this.socket.emit('save-carrito', {new:true});
+            this.listar_carrito();
+          },
+          error=>{
+            console.log(error);
+
+          }
+        );
+        this._carritoService.preview_carrito(this.identity.uid).subscribe(
+          response =>{
+            this.carrito = response.carrito;
+            this.data_detalle = [];
+            this.carrito.forEach(element => {
+              this.data_detalle.push({
+                producto : element.producto,
+                cantidad: element.cantidad,
+                precio: element.precio,
+                color: element.color,
+                selector : element.selector
+              })
+            });
+            console.log(this.data_detalle);
+
+
+          },
+          error=>{
+            console.log(error);
+
+          }
+        );
+
+
+      },
+      error=>{
+
+      }
+    );
+  }
+
 
 
 

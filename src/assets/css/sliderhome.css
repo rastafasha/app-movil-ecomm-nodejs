@@ -7,12 +7,12 @@
     .carousel-item {
         border-radius: var(--border-interno);
         border: 1px solid var(--grisclaro);
-        & img {
-            border-radius: 6px;
-            height: 70%;
-        }
     }
 
+    .carousel-item img {
+        border-radius: 6px;
+        height: 70%;
+    }
 
     .info-slider {
         position: absolute;
@@ -36,21 +36,6 @@
         height: 40px !important;
         padding: 5px;
         margin-top: 78px;
-
-        & h2 {
-            display: flex;
-            font-size: var(--subtituloh4-size);
-            padding: 0;
-            margin: 0;
-        }
-    
-        & h1 {
-            display: flex;
-            font-size: var(--subtituloh1-size);
-            padding: 0;
-            margin: 0;
-        }
-    
     }
 
     .div1-home {
@@ -62,27 +47,38 @@
         flex-direction: column;
         align-items: flex-end;
         padding-right: 33px;
-
-        & ul {
-            display: inline-flex;
-        }
-    
-        & ul li {
-            list-style: none;
-            color: var(--dark-brown);
-        }
-    
-        & ul li.active {
-            color: gold;
-        }
-    
-        & .fa {
-            font-size: 4vw;
-        }
     }
 
-    
-    
+    .info-slider h2 {
+        display: flex;
+        font-size: var(--subtituloh4-size);
+        padding: 0;
+        margin: 0;
+    }
+
+    .info-slider h1 {
+        display: flex;
+        font-size: var(--subtituloh1-size);
+        padding: 0;
+        margin: 0;
+    }
+
+    .stars ul {
+        display: inline-flex;
+    }
+
+    .stars ul li {
+        list-style: none;
+        color: var(--dark-brown);
+    }
+
+    .stars ul li.active {
+        color: gold;
+    }
+
+    .stars .fa {
+        font-size: 4vw;
+    }
     /*--swiffy slider--*/
 
     @media(max-width:768px) {
@@ -115,24 +111,19 @@
         }
     }
 
-    .slideh-list{
-        & .card {
-            border-radius: var(--border-interno) !important;
-            display: flex;
-            flex-direction: column;
-        }
-    
-        & .card img {
-            border-radius: 20px 20px 0px 0px !important;
-            display: block;
-            margin: auto;
-            align-self: center;
-            left: calc(0%);
-        }
-
+    .slideh-list .card {
+        border-radius: var(--border-interno) !important;
+        display: flex;
+        flex-direction: column;
     }
 
-    
+    .slideh-list .card img {
+        border-radius: 20px 20px 0px 0px !important;
+        display: block;
+        margin: auto;
+        align-self: center;
+        left: calc(0%);
+    }
 
     .button-add-cart {
         position: absolute;
@@ -148,15 +139,15 @@
         bottom: -20px;
         right: -10px;
         align-items: center;
-        & .fa {
-            color: var(--light-brown);
-            font-size: 22px;
-            text-align: center;
-            display: flex;
-            margin: auto;
-        }
     }
 
+    .button-add-cart .fa {
+        color: var(--light-brown);
+        font-size: 22px;
+        text-align: center;
+        display: flex;
+        margin: auto;
+    }
 
     .button-add-favorite {
         position: absolute;
@@ -172,15 +163,15 @@
         bottom: -20px;
         right: 40px;
         align-items: center;
-        & .fa {
-            color: var(--light-brown);
-            font-size: 22px;
-            text-align: center;
-            display: flex;
-            margin: auto;
-        }
     }
 
+    .button-add-favorite .fa {
+        color: var(--light-brown);
+        font-size: 22px;
+        text-align: center;
+        display: flex;
+        margin: auto;
+    }
 
     .slider-item-show6.slider-item-reveal .slider-container {
         grid-auto-columns: calc(50% - (var(--swiffy-slider-item-gap)/ 2) - 1.5rem);
@@ -208,16 +199,18 @@
 
     .categorylist {
         display: flex;
-        & .item {
-            border-radius: 4px;
-            background: none;
-            & h2 {
-                display: flex;
-                text-align: center;
-                flex-direction: row;
-                height: 30px;
-            }
-        }
+    }
+
+    .categorylist .item {
+        border-radius: 4px;
+        background: none;
+    }
+
+    .categorylist .item h2 {
+        display: flex;
+        text-align: center;
+        flex-direction: row;
+        height: 30px;
     }
 
     @media (min-width: 768px) {
@@ -238,6 +231,9 @@
     }
 
     @media (max-width: 992px) {
+        .slider-item-reveal {
+            --swiffy-slider-item-reveal: 2rem;
+        }
         .slider-item-reveal {
             --swiffy-slider-item-reveal: 4rem;
             width: 98%;

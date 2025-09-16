@@ -20,6 +20,8 @@ import { ProductOrderListComponent } from './product-order-list/product-order-li
 
 import {PipesModule} from '../pipes/pipes.module';
 import { PwaNotifInstallerComponent } from './pwa-notif-installer/pwa-notif-installer.component';
+import { BackButtnComponent } from './backButtn/backButtn.component';
+import { PromocionComponent } from './promocion/promocion.component';
 @NgModule({
   declarations: [
     BreadcrumbsComponent,
@@ -35,7 +37,9 @@ import { PwaNotifInstallerComponent } from './pwa-notif-installer/pwa-notif-inst
     ProductOrderListComponent,
     // SearchBarComponent,
     // SidebarComponent,
-    PwaNotifInstallerComponent
+    PwaNotifInstallerComponent,
+    BackButtnComponent,
+    PromocionComponent
   ],
   exports: [
     BreadcrumbsComponent,
@@ -52,6 +56,9 @@ import { PwaNotifInstallerComponent } from './pwa-notif-installer/pwa-notif-inst
     PwaNotifInstallerComponent,
     // SearchBarComponent,
     // SidebarComponent,
+    BackButtnComponent,
+    PromocionComponent
+
   ],
   imports: [
     CommonModule,

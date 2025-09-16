@@ -42,19 +42,26 @@ export class VentaService {
       }
     }
   }
+  // registro(data:any):Observable<any>{
+  //   let headers = new HttpHeaders().set('Content-Type','application/json');
+  //   return this._http.post(this.url+'/ventas/store',data,{headers:headers});
+  // }
+
   registro(data:any):Observable<any>{
     let headers = new HttpHeaders().set('Content-Type','application/json');
+    // return this._http.post(this.url+'/ventas/venta/registro',data,{headers:headers});
     return this._http.post(this.url+'/ventas/store',data,{headers:headers});
   }
+
 
   getVenta(id:string):Observable<any>{
     let headers = new HttpHeaders().set('Content-Type','application/json');
     return this._http.get(this.url+'/ventas/'+id,{headers:headers});
   }
 
-  listarporUser(id:string):Observable<any>{
+  listarporUser(id:string, page: number, limit: number):Observable<any>{
     let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this._http.get(this.url+'/ventas/user_order/'+id,{headers:headers});
+    return this._http.get(this.url+'/ventas/user_order/'+id+'?page='+page+'&limit='+limit,{headers:headers});
   }
 
   detalle(id:string):Observable<any>{
@@ -141,7 +148,7 @@ export class VentaService {
     return this._http.get(this.url+'/ventas/cancelacion_venta/obtener_data/'+id,{headers:headers});
   }
 
-  evaluar_venta_user(user:Usuario,producto:Producto):Observable<any>{
+  evaluar_venta_user(user:Usuario,producto:any):Observable<any>{
     let headers = new HttpHeaders().set('Content-Type','application/json');
     return this._http.get(this.url+'/ventas/evaluar_venta/data/'+user+'/'+producto,{headers:headers});
   }

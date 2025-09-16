@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -13,13 +13,24 @@ import {Venta, Cancelacion} from '../../../models/ventas.model';
   styleUrls: ['./pedidos.component.css']
 })
 export class PedidosComponent implements OnInit {
+  public currentPage: number = 1;
+  public loading: boolean = false;
+
+  @HostListener('window:scroll', [])
+  onScroll() {
+    const pos = (document.documentElement.scrollTop + window.innerHeight) >= document.documentElement.offsetHeight;
+    if (pos && !this.loading) {
+      this.loading = true;
+      this.listar_ordenes(this.currentPage);
+    }
+  }
 
   public usuario;
   public url;
   public msm_error = false;
   public msm_success = false;
   public cancelacion: Cancelacion;
-  public ventas: Venta;
+  public ventas: Venta[] = [];
 
 
   constructor(
@@ -38,7 +49,7 @@ export class PedidosComponent implements OnInit {
     this.closeMenu();
     window.scrollTo(0,0);
     if(this.usuario){
-      this.listar_ordenes();
+      this.listar_ordenes(this.currentPage);
       this.listar_cancelacion();
       this.url = environment.baseUrl;
     }else{
@@ -58,10 +69,11 @@ export class PedidosComponent implements OnInit {
       }
   }
 
-  listar_ordenes(){
-    this.ventaService.listarporUser(this.usuario.uid).subscribe(
+  listar_ordenes(page: number, limit: number = 10){
+    this.ventaService.listarporUser(this.usuario.uid, page, limit).subscribe(
       response=>{
-        this.ventas = response.ventas;
+        this.ventas.push(...response.ventas);
+        this.currentPage++;
         console.log(this.ventas);
       },
       error=>{

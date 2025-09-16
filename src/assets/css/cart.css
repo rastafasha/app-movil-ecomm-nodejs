@@ -15,51 +15,7 @@
     background: linear-gradient(to bottom, #3c2415 -10%, #000000 70%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
-    IE6-9
-
-
-    & .cuadro-modal {
-        bottom: 0%;
-        transform: translate(0px, 0%);
-        background-color: var(--lighter-brown);
-        padding: 20px;
-        height: 88vh;
-        -webkit-animation: cuadro-modal 1s 1 ease;
-        -moz-animation: cuadro-modal 1s 1 ease;
-        -o-animation: cuadro-modal 1s 1 ease;
-        -ms-animation: cuadro-modal 1s 1 ease;
-        animation: cuadro-modal 1s 1 ease;
-    }
-
-    & .cuadro-modal {
-        & .total {
-            & p {
-                font-family: var(--fontFamily);
-                color: var(--dark-brown);
-                display: block;
-                text-align: right;
-                font-size: var(--subtituloh5-size);
-                position: absolute;
-                z-index: 22;
-                float: right;
-                right: 20px;
-                top: 0px
-            }
-            & i {
-                font-family: var(--fontFamily);
-                color: var(--dark-brown);
-                display: block;
-                text-align: left;
-                font-size: var(--icon-size-s);
-                position: absolute;
-                z-index: 22;
-                float: left;
-                left: 20px;
-                top: 0px
-            }
-        }
-       }
-
+    /* IE6-9 */
 }
 
 @keyframes cartanimation {
@@ -118,6 +74,19 @@
     }
 }
 
+.cart .cuadro-modal {
+    bottom: 0%;
+    transform: translate(0px, 0%);
+    background-color: var(--lighter-brown);
+    padding: 20px;
+    height: 90dvh;
+    /* -webkit-animation: cuadro-modal 1s 1 ease;
+    -moz-animation: cuadro-modal 1s 1 ease;
+    -o-animation: cuadro-modal 1s 1 ease;
+    -ms-animation: cuadro-modal 1s 1 ease;
+    animation: cuadro-modal 1s 1 ease; */
+}
+
 @keyframes cuadro-modal {
     0% {
         transform: translate(0px, 100%);
@@ -152,6 +121,18 @@
     width: 100%;
     height: 120px;
     border-radius: 4px;
+}
+
+.product .itemProduct img {
+    width: 70%;
+    height: auto;
+    display: flex;
+    align-self: center;
+    margin: auto;
+    flex-direction: column;
+}
+
+.product {
     display: grid;
     /*grid-template-columns: repeat(2, 1fr);*/
     grid-template-columns: 80px 1fr;
@@ -159,38 +140,28 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     box-shadow: var(--shadow);
-    & .itemProduct img {
-        width: 70%;
-        height: auto;
-        display: flex;
-        align-self: center;
-        margin: auto;
-        flex-direction: column;
-    }
-    & .itemProductdiv1 {
-        grid-area: 1 / 1 / 2 / 2;
-        background-color: #fff;
-        border-radius: 4px;
-        margin-right: 2px;
-    }
-    & .itemProductdiv2 {
-        grid-area: 1 / 2 / 2 / 3;
-        background-color: var(--green-gray);
-        border-radius: 4px;
-        padding-left: 10px;
-    }
-
-    & p {
-        font-family: var(--fontFamily);
-        font-size: var(--texto-size);
-        margin: 0;
-        padding: 0;
-    }
-    
-    
 }
 
+.product .itemProductdiv1 {
+    grid-area: 1 / 1 / 2 / 2;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-right: 2px;
+}
 
+.product .itemProductdiv2 {
+    grid-area: 1 / 2 / 2 / 3;
+    background-color: var(--green-gray);
+    border-radius: 4px;
+    padding-left: 10px;
+}
+
+.product p {
+    font-family: var(--fontFamily);
+    font-size: var(--texto-size);
+    margin: 0;
+    padding: 0;
+}
 
 .addCompra {
     display: grid;
@@ -245,33 +216,58 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    & .btn {
-        color: var(--dark-brown);
-        font-size: var(--texto-size);
-        float: right;
-        padding-right: 20px
-    }
-    & .btn:nth-child(2) {
-        border-left: 1px solid var(--dark-brown);
-        border-right: 1px solid var(--dark-brown);
-    }
 }
 
-
-.subtotal {
-    & p {
-        font-family: var(--fontFamily);
-        color: var(--dark-brown);
-        font-size: var(--texto-size);
-        text-align: right;
-        padding-right: 20px
-    }
-    & p:nth-child(1) {
-        font-size: var(--subtituloh5-size);
-        margin-bottom: -8px
-    }
+.buttonsAdd .btn:nth-child(2) {
+    border-left: 1px solid var(--dark-brown);
+    border-right: 1px solid var(--dark-brown);
 }
 
+.buttonsAdd .btn {
+    color: var(--dark-brown);
+    font-size: var(--texto-size);
+    float: right;
+    padding-right: 20px
+}
+
+.subtotal p {
+    font-family: var(--fontFamily);
+    color: var(--dark-brown);
+    font-size: var(--texto-size);
+    text-align: right;
+    padding-right: 20px
+}
+
+.subtotal p:nth-child(1) {
+    font-size: var(--subtituloh5-size);
+    margin-bottom: -8px
+}
+
+.cart .cuadro-modal .total p {
+    font-family: var(--fontFamily);
+    color: var(--dark-brown);
+    display: block;
+    text-align: right;
+    font-size: var(--subtituloh5-size);
+    position: absolute;
+    z-index: 22;
+    float: right;
+    right: 20px;
+    top: 0px
+}
+
+.cart .cuadro-modal .total i {
+    font-family: var(--fontFamily);
+    color: var(--dark-brown);
+    display: block;
+    text-align: left;
+    font-size: var(--icon-size-s);
+    position: absolute;
+    z-index: 22;
+    float: left;
+    left: 20px;
+    top: 0px
+}
 
 .cuponInput {
     padding: 5px;
@@ -280,6 +276,8 @@
     margin-bottom: 20px;
     border: 4px dashed var(--dark-brown);
 }
+
+.shippingMethod {}
 
 .shippingMethod {
     display: grid;

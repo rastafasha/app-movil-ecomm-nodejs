@@ -11,30 +11,10 @@ export class Categoria{
       public img?: string,
     public _id?: string
 
-  ){
-  }
-
-  get imagenUrl(){
-
-    if(!this.img){
-      return `${base_url}/uploads/categorias/no-image.jpg`;
-    } else if(this.img.includes('https')){
-      return this.img;
-    } else if(this.img){
-      return `${base_url}/uploads/categorias/${this.img}`;
-    }else {
-      return `${base_url}/uploads/categorias/no-image.jpg`;
-    }
-
-  }
-
-
+  ){}
 }
 
 export class CatProducModel {
-
-
-
     constructor(
       public titulo: string,
         public precio_ahora: number,

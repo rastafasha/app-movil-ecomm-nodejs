@@ -5,7 +5,7 @@ import {environment} from 'src/environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { TicketService } from "src/app/services/ticket.service";
-// import {io} from 'socket.io-client';
+import {io} from 'socket.io-client';
 import {Ticket} from '../../../models/ticket.model';
 import { Usuario } from 'src/app/models/usuario.model';
 
@@ -22,6 +22,7 @@ export class TicketChatComponent implements OnInit{
   @ViewChild('scrollMe', {static: false}) private myScrollContainer: ElementRef;
 
   urlSocket = environment.soketServer;
+  public identity: Usuario;
   public usuario: Usuario;
   public url;
   public id;
@@ -30,8 +31,8 @@ export class TicketChatComponent implements OnInit{
   public mensajes : Array<any> = [];
   public poster_admin;
   public ticket : Ticket;
-  // public socket = io('http://0.0.0.0');
-  // public socket = io(this.urlSocket);
+  public socket = io(this.urlSocket);
+  
   public close_ticket = false;
   public estado_ticket;
 
@@ -43,14 +44,14 @@ export class TicketChatComponent implements OnInit{
     private http: HttpClient,
     private _ticketService : TicketService
   ) {
-    this.usuario = this.usuarioService.usuario;
+    this.identity = this.usuarioService.usuario;
   }
 
 
   ngOnInit(): void {
     window.scrollTo(0,0);
 
-    if(this.usuario){
+    if(this.identity){
       this.url = environment.baseUrl;
       this.activatedRoute.params.subscribe(
         params=>{
@@ -59,52 +60,45 @@ export class TicketChatComponent implements OnInit{
         }
       );
 
-      // this.socket.on('new-formmsm', function (data) {
-      //   if(data.data){
-      //     this._ticketService.get_ticket(this.id).subscribe(
-      //       response =>{
-      //         this.ticket = response.ticket;
-      //         this.estado_ticket = this.ticket.estado;
+      this.socket.on('new-formmsm', function (data) {
+        if(data.data){
+          this._ticketService.get_ticket(this.id).subscribe(
+            response =>{
+              this.ticket = response.ticket;
+              this.estado_ticket = this.ticket.estado;
+            },
+            error=>{
 
+            }
+          );
+        }
+      }.bind(this));
 
-      //       },
-      //       error=>{
+      this.socket.on('new-mensaje', function (data) {
+        this.mensajes = [];
+        this.listar_msms();
 
-      //       }
-      //     );
-      //   }
-      // }.bind(this));
+      }.bind(this));
 
-      // this.socket.on('new-mensaje', function (data) {
-      //   this.mensajes = [];
-      //   this.listar_msms();
-
-      // }.bind(this));
-
-      // this.listar_msms();
-
-      // this.usuarioService.get_user('627ec91529881af6cb899f79').subscribe(
-      //   response =>{
-      //     console.log(response);
-      //     this.poster_admin = response.user.perfil;
-      //   },
-      //   error=>{
-
-      //   }
-      // );
-
-      this._ticketService.get_ticket(this.id).subscribe(
+      this.usuarioService.get_user(this.identity.uid).subscribe(
         response =>{
-          this.ticket = response.ticket;
-          this.estado_ticket = this.ticket.estado;
-          console.log(this.ticket);
-
-
+          this.poster_admin = response.user.perfil;
         },
         error=>{
 
         }
       );
+
+      this._ticketService.get_ticket(this.id).subscribe(
+        response =>{
+          this.ticket = response;
+          this.estado_ticket = this.ticket.estado;
+        },
+        error=>{
+
+        }
+      );
+      this.listar_msms();
 
     }else{
       this._router.navigate(['/']);

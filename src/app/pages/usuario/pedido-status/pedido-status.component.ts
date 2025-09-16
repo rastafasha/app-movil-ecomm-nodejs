@@ -51,12 +51,12 @@ export class PedidoStatusComponent implements OnInit {
   ngOnInit(): void {
 
     // if(this.usuario){
-    //   this.listar_ordenes();
-    //   this.url = environment.baseUrl;
-    // }else{
-    //   this.router.navigate(['/']);
-    // }
-    window.scrollTo(0,0);
+      //   this.url = environment.baseUrl;
+      // }else{
+        //   this.router.navigate(['/']);
+        // }
+        window.scrollTo(0,0);
+          this.listar_ordenes();
     this.activatedRoute.params.subscribe( ({id}) => this.getPedido(id));
   }
 

@@ -3,7 +3,8 @@
 <div class="notificationupdate " *ngIf="modalVersion">
     <div class="alert alert-secondary m-2">
       <button type="button" class="btn-close position-absolute top-0 end-0 m-1" aria-label="Close" (click)="closeVersion()"></button>
-      A new version of this app is available. <a href="" (click)="updateVersion()">Update now</a>
+      Una nueva versión disponible <a href="" (click)="updateVersion()">Actualizar Ahora</a>
+      <!-- A new version of this app is available. <a href="" (click)="updateVersion()">Update now</a> -->
     </div>
   </div>
   
@@ -12,13 +13,16 @@
       <button type="button" class="btn-close position-absolute top-0 end-0 m-1" aria-label="Close" (click)="closePwa()"></button>
       <!-- Android -->
       <div *ngIf="modalPwaPlatform === 'ANDROID'" (click)="addToHomeScreen()">
-        Add this WEB app to home screen
+        Agregar a pantalla de inicio
+        <!-- Add this WEB app to home screen -->
       </div>
       <!-- iOS with Safari -->
       <div *ngIf="modalPwaPlatform === 'IOS'">
-        To install this WEB app on your device, tap the "Menu" button
+        Para instalar la aplicación, toca el botón "Añadir a la pantalla de inicio" en el menu
+        <!-- To install this WEB app on your device, tap the "Menu" button -->
         <img src="https://res.cloudinary.com/rodrigokamada/image/upload/v1641089482/Blog/angular-pwa/safari_action_button_38x50.png" class="ios-menu m-0" />
-        and then "Add to home screen" button
+        y selecciona "Añadir a la pantalla de inicio"
+        <!-- and then "Add to home screen" button -->
         <i class="bi bi-plus-square"></i>
       </div>
     </div>

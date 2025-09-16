@@ -10,58 +10,52 @@
     bottom: 0;
     z-index: 99;
     bottom: 0;
-
-    & ul {
-        display: flex;
-        width: 100%;
-        padding: 0px;
-    }
-
-    & ul li,
-    & ul li a i {
-        display: flex;
-        font-size: 20px;
-        color: var(--light-brown);
-        margin: auto;
-        margin-top: 5px;
-        text-decoration: none !important;
-    }
-
-    & ul li:active,
-    & ul li a:active,
-    & ul li a.active,
-    & ul li a.active i {
-        color: var(--dark-brown) !important;
-        text-decoration: none !important;
-    }
-    & ul li a .fa-store-alt,
-    & ul li a .fa-camera,
-    & ul li a .fa-shopping-bag {
-        display: flex;
-        font-size: 24px !important;
-        color: var(--light-brown);
-        background-color: var(--dark-brown);
-        border: 3px solid #fff;
-        box-shadow: 0px 7px 10px #999;
-        border-radius: 100px;
-        height: 55px;
-        width: 55px;
-        text-align: center;
-        flex-direction: column;
-        padding-top: 10px;
-        margin-top: -30px;
-    }
-    & ul li.active.iconstore a i {
-        color: var(--green-gray);
-        text-decoration: none !important;
-        box-shadow: var(--shadow-brown);
-    }
-
 }
 
+.menu-footer ul {
+    display: flex;
+    width: 100%;
+    padding: 0px;
+}
 
+.menu-footer ul li,
+.menu-footer ul li a i {
+    display: flex;
+    font-size: 20px;
+    color: var(--light-brown);
+    margin: auto;
+    margin-top: 5px;
+    text-decoration: none !important;
+}
 
+.menu-footer ul li:active,
+.menu-footer ul li a:active,
+.menu-footer ul li a.active,
+.menu-footer ul li a.active i {
+    color: var(--dark-brown) !important;
+    text-decoration: none !important;
+}
 
+.menu-footer ul li a .fa-store-alt,
+.menu-footer ul li a .fa-camera,
+.menu-footer ul li a .fa-shopping-bag {
+    display: flex;
+    font-size: 24px !important;
+    color: var(--light-brown);
+    background-color: var(--dark-brown);
+    border: 3px solid #fff;
+    box-shadow: 0px 7px 10px #999;
+    border-radius: 100px;
+    height: 55px;
+    width: 55px;
+    text-align: center;
+    flex-direction: column;
+    padding-top: 10px;
+    margin-top: -30px;
+}
 
-
-
+.menu-footer ul li.active.iconstore a i {
+    color: var(--green-gray);
+    text-decoration: none !important;
+    box-shadow: var(--shadow-brown);
+}
