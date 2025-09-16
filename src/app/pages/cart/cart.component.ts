@@ -174,7 +174,7 @@ export class CartComponent implements OnInit {
     this._direccionService.get_direccion(this.data_direccion).subscribe(
       response =>{
         this.data_direccion = response;
-        // console.log(this.data_direccion);
+        console.log(this.data_direccion);
       }
     );
 
@@ -428,58 +428,6 @@ export class CartComponent implements OnInit {
 
 
 
-      $('#card-data-envio').animate().show();
-
-      $('#card-pay').animate().show('fast');
-      $('.cart-data-venta').animate().hide('fast');
-
-
-
-      if(this.data_cupon){
-        if(this.data_cupon.categoria){
-          this.info_cupon_string = this.data_cupon.descuento + '% de descuento en ' + this.data_cupon.categoria.nombre;
-        }else if(this.data_cupon.subcategoria){
-          this.info_cupon_string = this.data_cupon.descuento + '% de descuento en ' + this.data_cupon.subcategoria;
-        }
-      }
-
-      var fecha = new Date();
-
-      var months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Novimbre", "Deciembre"];
-      fecha.setDate(fecha.getDate() + parseInt(this.medio_postal.dias));
-      this.date_string =  fecha.getDate() +' de ' + months[fecha.getMonth()] + ' del ' + fecha.getFullYear();
-
-
-      this.data_venta = {
-        user : this.identity.uid,
-        total_pagado : this.formTransferencia.value.amount,
-        codigo_cupon : this.cupon,
-        info_cupon :  this.info_cupon_string,
-        idtransaccion : null,
-        // metodo_pago : 'Paypal',
-
-        tipo_envio: this.medio_postal.tipo_envio,
-        precio_envio: this.medio_postal.precio,
-        tiempo_estimado: this.date_string,
-
-        direccion: this.data_direccion.direccion,
-        destinatario: this.data_direccion.nombres_completos,
-        detalles:this.data_detalle,
-        referencia: this.data_direccion.referencia,
-        pais: this.data_direccion.pais,
-        ciudad: this.data_direccion.ciudad,
-        zip: this.data_direccion.zip,
-      }
-
-      // console.log(this.data_venta);
-
-
-    }else{
-      this.msm_error = "Seleccione una dirección de envio.";
-    }
-
-  }
-
   back_data(){
     $('#btn-verify-data').animate().show();
     $('#btn-back-data').animate().hide();
@@ -538,11 +486,10 @@ export class CartComponent implements OnInit {
           this.emptyCart();
               this.remove_carrito();
               this.router.navigate(['/app/user/orders']);
-
         }
         else{
           // error al registar la transferencia
-          // alert('Error al registrar la transferencia');
+          alert('Error al registrar la transferencia');
           console.log(resultado.msg);
         }
       });
@@ -555,16 +502,6 @@ export class CartComponent implements OnInit {
       this.tiendaSelected = this.tiendas[0];
       console.log(this.tiendaSelected);
 
-      // Set default tiendaSelected to "Panaderia SlideDish" if not already set
-      // if (!this.tiendaSelected) {
-      //   const defaultTienda = this.tiendas.find(tienda => tienda.nombre === 'Appmovil');
-      //   if (defaultTienda) {
-      //     this.tiendaSelected = defaultTienda;
-      //     console.log(this.tiendaSelected);
-      //     this.tiendaService.setSelectedTienda(this.tiendaSelected);
-      //     localStorage.setItem('tiendaSelected', JSON.stringify(this.tiendaSelected));
-      //   }
-      // }
     })
   }
 
@@ -694,9 +631,6 @@ export class CartComponent implements OnInit {
         console.log(element);
         this._productoService.aumentar_ventas(element.producto._id).subscribe(
           response =>{
-            this.emptyCart();
-              this.remove_carrito();
-            this.router.navigateByUrl(`/app/wallet-order`);
           },
           error=>{
             console.log(error);
@@ -711,6 +645,7 @@ export class CartComponent implements OnInit {
               this.listar_carrito();
               this.socket.emit('save-carrito', {new:true});
               this.socket.emit('save-stock', {new:true});
+              
             },
             error=>{
               console.log(error);
