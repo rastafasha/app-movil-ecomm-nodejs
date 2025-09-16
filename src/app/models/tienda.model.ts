@@ -1,4 +1,5 @@
 import { environment } from "src/environments/environment";
+import { Categoria } from "./categoria.model";
 
 const base_url = environment.mediaUrlRemoto;
 
@@ -6,8 +7,10 @@ export class Tienda{
   constructor(
     public icono : string,
     public nombre: string,
+    public slug: string,
     public local: string,
     public state_banner : boolean,
+    public img: string,
     public redssociales?: string,
     public telefono?: string,
     public productos?: string,
@@ -16,11 +19,11 @@ export class Tienda{
     public ciudad?: string,
     public zip?: string,
     public user?: string,
-    public categoria?: string,
+    public categoria?: Categoria,
     public subcategoria?: string,
     public isFeatured?: boolean,
+    public iva?: number,
     public status?: boolean,
-      public img?: string,
     public _id?: string
 
   ){

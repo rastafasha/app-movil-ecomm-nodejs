@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Tienda } from '../models/tienda.model';
 
@@ -10,6 +10,10 @@ const base_url = environment.baseUrl;
   providedIn: 'root'
 })
 export class TiendaService {
+
+  private selectedTiendaSubject = new BehaviorSubject<Tienda | null>(null);
+  selectedTiendaObservable$ = this.selectedTiendaSubject.asObservable();
+
 
   
   constructor(
@@ -85,6 +89,10 @@ export class TiendaService {
   activar(id:string):Observable<any>{
     const url = `${base_url}/tiendas/admin/activar/`+id;
     return this.http.get(url,  this.headers);
+  }
+
+  setSelectedTienda(tienda: Tienda | null) {
+    this.selectedTiendaSubject.next(tienda);
   }
 
 }

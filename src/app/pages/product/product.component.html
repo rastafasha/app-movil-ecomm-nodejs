@@ -82,7 +82,7 @@
                                             <del class="text-muted font-size-lg mr-3">${{producto?.precio_antes}}</del>
                                             <span class="badge badge-danger badge-shadow align-middle mt-n2">Oferta</span>
                                         </div>
-                                        <div class="font-size-sm" *ngIf="producto?.subcategoria !== 'Comida Rápida'">
+                                        <div class="font-size-sm" *ngIf="producto?.subcategoria !== 'Comida Rápida' && producto?.subcategoria !== 'Alimentos'">
                                             <span class="text-heading font-weight-medium mr-1">
                                                   Colores:</span><br>
                                             <span class="row" id="colorOption">

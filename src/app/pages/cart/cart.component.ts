@@ -28,6 +28,8 @@ import {io} from 'socket.io-client';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PaymentMethod } from 'src/app/models/paymenthmethod.model';
 import { TransferenciasService } from 'src/app/services/transferencias.service';
+import { TiendaService } from 'src/app/services/tienda.service';
+import { Tienda } from 'src/app/models/tienda.model';
 
 @Component({
   selector: 'app-cart',
@@ -55,8 +57,12 @@ export class CartComponent implements OnInit {
   public data_save_carrito;
   public msm_error = '';
   public productos : any = {};
+  public localId!:string;
 
   public socket = io(environment.soketServer);
+  tiendas: Tienda[] = [];
+  tienda!:Tienda;
+  tiendaSelected!:Tienda;
   
   cartItems: any[] = [];
   total= 0;
@@ -109,6 +115,7 @@ export class CartComponent implements OnInit {
     private _ventaService :VentaService,
     private webSocketService: WebSocketService,
     private _trasferencias: TransferenciasService,
+    private tiendaService: TiendaService,
 
     handler: HttpBackend
     ) {
@@ -123,6 +130,7 @@ export class CartComponent implements OnInit {
     this.listar_direcciones();
     this.listar_postal();
     this.obtenerMetodosdePago();
+    this.getTiendas();
     
     console.log(this.identity);
     this.listar_carrito();
@@ -469,7 +477,7 @@ export class CartComponent implements OnInit {
     if(this.formTransferencia.valid){
       // llamo al servicio
       this._trasferencias.createTransfer(this.formTransferencia.value).subscribe(resultado => {
-        console.log('resultado: ',resultado);
+        // console.log('resultado: ',resultado);
         this.verify_dataComplete();
         if(resultado.ok){
           // transferencia registrada con exito
@@ -486,6 +494,25 @@ export class CartComponent implements OnInit {
         }
       });
     }
+  }
+  getTiendas(){
+    this.tiendaService.cargarTiendas().subscribe((resp: Tienda[]) => {
+      // Asignamos el array filtrado directamente
+      this.tiendas = resp.filter((tienda: Tienda) => tienda.categoria && tienda.nombre=== 'Appmovil');
+      this.tiendaSelected = this.tiendas[0];
+      console.log(this.tiendaSelected);
+
+      // Set default tiendaSelected to "Panaderia SlideDish" if not already set
+      // if (!this.tiendaSelected) {
+      //   const defaultTienda = this.tiendas.find(tienda => tienda.nombre === 'Appmovil');
+      //   if (defaultTienda) {
+      //     this.tiendaSelected = defaultTienda;
+      //     console.log(this.tiendaSelected);
+      //     this.tiendaService.setSelectedTienda(this.tiendaSelected);
+      //     localStorage.setItem('tiendaSelected', JSON.stringify(this.tiendaSelected));
+      //   }
+      // }
+    })
   }
 
   verify_data(){
@@ -518,6 +545,7 @@ export class CartComponent implements OnInit {
 
       this.data_venta = {
         user : this.identity.uid,
+        local : this.tiendaSelected._id,
         total_pagado : this.formTransferencia.value.amount,
         codigo_cupon : this.cupon,
         info_cupon :  this.info_cupon_string,
@@ -576,6 +604,7 @@ export class CartComponent implements OnInit {
 
       this.data_venta = {
         user : this.identity.uid,
+        local : this.tiendaSelected._id,
         total_pagado : this.formTransferencia.value.amount,
         codigo_cupon : this.cupon,
         info_cupon :  this.info_cupon_string,
