@@ -179,13 +179,13 @@
                             <!-- detalle envio -->
 
                             <!-- pago -->
-                            <!-- <div class="card" id="card-pay">
-                                <div class="card-header">
+                            <div class="card" id="card-pay">
+                                <!-- <div class="card-header">
                                     <h3 style="    font-size: 1rem;
                               margin-bottom: 0px;">Pagos</h3>
-                                </div>
-                                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-                            </div> -->
+                                </div> -->
+                                
+                            </div>
                             <!-- pago -->
 
                             <!-- codigo agregado por Jose Prados que reemplaza en anterior -->
@@ -193,13 +193,16 @@
                         <label class="form-label">Seleccione el método de pago</label>
                         <!-- select metodo de pago -->
                         <select id="paymentMethod" class="custom-select-large" (change)="onPaymentMethodChange($event)" [(ngModel)]="selectedMethod">
-                            <!-- <option>Selecciona un método de pago</option> -->
+                            <option value=" ">Selecciona un método de pago</option>
                             <option value="paypal">Paypal</option>
                             <option value="card">Tarjeta de Crédito/Débito</option>
                             <option value="transferencia">Transferencia Bancaria</option>
                         </select>
                         <!-- Contenedor para el botón de PayPal -->
-                        <div #paypal></div>
+                        <div #paypal *ngIf="paypal">
+                            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                        </div>
+                        <!-- Contenedor para el botón de habilitacionFormTransferencia -->
                         <div *ngIf="habilitacionFormTransferencia" class="mt-5">
                             <form [formGroup]="formTransferencia" (ngSubmit)="sendFormTransfer()">
 
