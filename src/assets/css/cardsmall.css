@@ -22,14 +22,14 @@
 }
 
 .cardsmall img {
-    width: 30%;
+    width: 60%;
     height: auto;
     position: relative;
     padding: 0;
-    border: 1px solid rgb(231, 231, 231);
+    /* border: 1px solid rgb(231, 231, 231);
     background-color: var(--white);
     border-radius: 50px;
-    box-shadow: var(--shadow-lightbrown);
+    box-shadow: var(--shadow-lightbrown); */
 }
 
 .cardsmall .itemFav .fa {

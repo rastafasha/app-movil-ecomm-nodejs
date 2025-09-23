@@ -82,9 +82,11 @@ export class CartComponent implements OnInit {
   public error_stock = false;
   public date_string;
 
-  selectedMethod: string = 'Selecciona un método de pago';
+  selectedMethod: string = '';
 
   habilitacionFormTransferencia:boolean = false;
+
+  paypal: boolean = false;
 
   paymentMethods:PaymentMethod[] = []; //array metodos de pago para transferencia (dolares, bolivares, movil)
   paymentSelected!:PaymentMethod; //metodo de pago seleccionado por el usuario para transferencia
@@ -146,6 +148,7 @@ export class CartComponent implements OnInit {
       $('#card-data-envio').hide();
 
       this.renderPayPalButton();
+      this.initPayPalConfig();
 
       this.url = environment.baseUrl;
 
@@ -664,14 +667,69 @@ export class CartComponent implements OnInit {
     if(this.selectedMethod==='card' || this.selectedMethod==='paypal'){
       // deshabilitar el formulario de pago con transferencia
       this.habilitacionFormTransferencia = false;
+      this.paypal = true;
       // Cargar el botón de PayPal con las opciones seleccionadas
-    this.paypalBotones();
+    this.initPayPalConfig();
     }
     else if(this.selectedMethod==='transferencia'){
       // transferencia bancaria => abrir formulario (en un futuro un modal con formulario)
       this.habilitacionFormTransferencia = true;
+      this.paypal = false;
     }
-    // 
+    else {
+      this.paypal = false;
+      this.habilitacionFormTransferencia = false;
+    }
+  }
+
+  private initPayPalConfig(): void {
+    this.payPalConfig = {
+      currency: 'USD',
+      clientId: environment.clientIdPaypal,
+      createOrderOnClient: (data) => <ICreateOrderRequest>{
+        intent: 'CAPTURE',
+        purchase_units: [{
+          amount: {
+            currency_code: 'USD',
+            value: Math.round(this.subtotal).toString(),
+            breakdown: {
+              item_total: {
+                currency_code: 'USD',
+                value: Math.round(this.subtotal).toString(),
+              }
+            }
+          },
+          items: this.getItemsList()
+        }]
+      },
+      advanced: {
+        commit: 'true'
+      },
+      style: {
+        label: 'paypal',
+        layout: 'vertical'
+      },
+      onApprove: (data, actions) => {
+        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        actions.order.get().then(details => {
+          console.log('onApprove - you can get full order details inside onApprove: ', details);
+        });
+      },
+      onClientAuthorization: (data) => {
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        this.data_venta.idtransaccion = data.id;
+        this.saveVenta();
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel', data, actions);
+      },
+      onError: err => {
+        console.log('OnError', err);
+      },
+      onClick: (data, actions) => {
+        console.log('onClick', data, actions);
+      },
+    };
   }
 
   private paypalBotones(){
