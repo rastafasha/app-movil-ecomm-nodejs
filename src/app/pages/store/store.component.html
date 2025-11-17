@@ -24,18 +24,15 @@
             <!-- mensaje -->
             </div>
         <div>
+            <app-loading *ngIf="isLoading"></app-loading>
 
             <!----info-->
-            <div class="areablanc areablanc-interna animated fadeInUp">
+            <div class="areablanc areablanc-interna animated fadeInUp" *ngIf="!isLoading">
                 <div class="div-responsive1">
 
                     <!---Slider-->
                    <!-- <app-cupones ></app-cupones> -->
-
-
-                    <!---Slider-->
-                    <div class="post-inner">
-                        <div class="carousel-inner-data">
+                    <div class="carousel-inner-data">
                             <div class="post navTabs" *ngFor="let producto of productos">
     
                                 <div class=" itemStore">
@@ -75,7 +72,6 @@
                             </div>
                         </div>
 
-                    </div>
                 </div>
                 <div class="div-responsive2">
 

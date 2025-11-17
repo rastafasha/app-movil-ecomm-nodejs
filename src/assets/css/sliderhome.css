@@ -131,7 +131,7 @@
         height: 50px;
         width: 50px;
         border-radius: 100px;
-        background-color: var(--dark-brown);
+        background-color: var(--blue);
         border: 2px solid #ffff;
         float: right;
         display: flex;
@@ -155,7 +155,7 @@
         height: 50px;
         width: 50px;
         border-radius: 100px;
-        background-color: var(--dark-brown);
+        background-color: var(--blue);
         border: 2px solid #ffff;
         float: right;
         display: flex;
@@ -199,18 +199,26 @@
 
     .categorylist {
         display: flex;
+        gap:5px;
+        
     }
 
     .categorylist .item {
+        background: var(--blue);
+        padding: 5px;
+        border-radius: 14px
+    }
+    /* .categorylist .item {
         border-radius: 4px;
         background: none;
-    }
+    } */
 
     .categorylist .item h2 {
         display: flex;
         text-align: center;
         flex-direction: row;
-        height: 30px;
+        /* height: 30px; */
+        width: max-content;
     }
 
     @media (min-width: 768px) {

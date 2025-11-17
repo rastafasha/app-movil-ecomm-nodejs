@@ -46,6 +46,11 @@
     --white: #ffffff;
     --white-menu: #f2f2f2;
     --star-color: #fea569;
+    --blue:#10455c;
+    --dark-blue:#073549;
+    --green:#6CB244;
+    --orange:#F06A25;
+    --magenta: #D5287B;
     --shadow: 0px 7px 10px #2525253d;
     --shadow-brown: 0px 7px 10px var(--dark-brown);
     --shadow-lightbrown: 0px 7px 10px var(--light-brown);
@@ -173,13 +178,18 @@ img {
 
 .post-inners2 {
     width: 100%;
-    height: 60dvh;
-    padding-bottom: 0px;
+    height: 85dvh;
     z-index: 90;
-    top: 15%;
+    top: -9%;
     position: relative;
     overflow: hidden;
     overflow-y: scroll;
+    background: #b0b0b0;
+    
+    /* background: linear-gradient(180deg,rgba(176, 176, 176, 0) 0%, rgba(255, 255, 255, 0.99) 52%, rgba(255, 255, 255, 1) 100%); */
+    /* background: linear-gradient(180deg,rgba(176, 176, 176, 0) 0%, rgba(40, 40, 40, 0.99) 52%, rgba(40, 40, 40, 1) 100%); */
+
+    background: linear-gradient(180deg,rgba(176, 176, 176, 0) 0%, rgba(0, 0, 0, 0.99) 52%, rgba(0, 0, 0, 1) 87%, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0) 100%);
 }
 
 .shadowSearch {
@@ -191,6 +201,13 @@ img {
     padding: 15px;
     border-radius: 14px;
     box-shadow: 0px 7px 6px rgba(0, 0, 0, 0.3);
+    padding-bottom: 15px;
+}
+
+.hidelogo{
+    display: none !important;
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
 }
 
 @media (min-width: 768px) {

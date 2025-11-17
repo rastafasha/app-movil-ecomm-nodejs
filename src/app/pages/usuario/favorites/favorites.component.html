@@ -20,8 +20,10 @@
          </div>
         <div>
 
+            <app-loading *ngIf="isLoading"></app-loading>
+
             <!----info-->
-            <div class="areablanc areablanc-interna animated fadeInUp">
+            <div class="areablanc areablanc-interna animated fadeInUp" *ngIf="!isLoading">
                 <div class="div-responsive1">
 
                     <!---Slider-->
@@ -30,9 +32,7 @@
                     <br>
                     <br>
                     <h5>Productos </h5>
-                    <div class="post-inner">
-
-                        <div class="carousel-inner-data">
+                    <div >
                             <div class="post navTabs" *ngFor="let producto of favoritos">
 
                                 <div class=" itemFav">
@@ -71,8 +71,6 @@
                             </div>
                         </div>
 
-
-                    </div>
                 </div>
                 <div class="div-responsive2">
 

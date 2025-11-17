@@ -4,6 +4,7 @@ $(document).ready(function() {
         if ($(this).scrollTop() > 0) {
             $('header').addClass('header2');
             $('.home .logo').addClass('logo2');
+            
             $('.statusOrder .titlePage').addClass('titlePage2');
             $('.wallet .titlePage').addClass('titlePage2');
             $('.shipping .titlePage').addClass('titlePage2');

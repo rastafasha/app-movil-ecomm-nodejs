@@ -21,8 +21,9 @@ export class StoreComponent implements OnInit {
   public usuario: Usuario;
   public producto: Producto;
   favoriteItem: Favorite;
-  public msm_error = false;
+  public isLoading = false;
   public msm_success = false;
+  public msm_error = false;
   public msm_success_fav = false;
 
   productoSeleccionado:Producto;
@@ -43,9 +44,11 @@ export class StoreComponent implements OnInit {
   }
 
   getAllProducts(){
+    this.isLoading = true;
     this.productService.getProductosActivos().subscribe((resp:any)=>{
-      console.log(resp);
       this.productos = resp;
+      
+      this.isLoading = false;
     })
   }
 

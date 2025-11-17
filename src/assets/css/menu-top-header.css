@@ -28,7 +28,7 @@
     height: 32px;
     width: 32px;
     border-radius: 100%;
-    background-color: var(--red);
+    background-color: var(--light-brown);
     flex-direction: column;
     overflow: hidden;
     margin-top: 5px;
@@ -79,7 +79,9 @@
     width: 100%;
     top: 0;
     height: 45px;
-    background-color: transparent;
+    
+    background-color: #56555545;
+    /* background-color: transparent; */
 }
 
 .header .wrap {
@@ -137,7 +139,7 @@
 
 .header .sidemenu-toggler>span {
     display: block;
-    background-color: var(--light-brown);
+    background-color: var(--lighter-brown);
     height: 2px;
 }
 

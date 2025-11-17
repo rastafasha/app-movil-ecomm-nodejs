@@ -23,7 +23,7 @@
     text-decoration: none;
     vertical-align: middle;
     cursor: pointer;
-    background-color: var(--dark-brown);
+    background-color: var(--blue);
     padding: 10px;
     color: var(--light-brown);
     font-size: 18px;
@@ -98,8 +98,8 @@
 .btn-full-dark {
     text-align: center;
     border-radius: var(--border-interno);
-    border: 1px solid var(--dark-brown) !important;
-    background-color: var(--dark-brown) !important;
+    border: 1px solid var(--blue) !important;
+    background-color: var(--blue) !important;
     color: var(--light-brown) !important;
     font-size: var(--texto-size);
     font-family: var(--fontFamily);
@@ -108,9 +108,9 @@
 .btn-full-border-dark {
     text-align: center;
     border-radius: var(--border-interno);
-    border: 1px solid var(--dark-brown) !important;
+    border: 1px solid var(--blue) !important;
     background-color: transparent !important;
-    color: var(--dark-brown) !important;
+    color: var(--blue) !important;
     font-size: var(--texto-size);
     font-family: var(--fontFamily);
 }
@@ -118,8 +118,8 @@
 .btn-full-dark-s {
     text-align: center;
     border-radius: var(--border-interno);
-    border: 1px solid var(--dark-brown) !important;
-    background-color: var(--dark-brown) !important;
+    border: 1px solid var(--blue) !important;
+    background-color: var(--blue) !important;
     color: var(--light-brown) !important;
     font-size: var(--texto-size);
     font-family: var(--fontFamily);
@@ -128,9 +128,9 @@
 .btn-full-border-dark-s {
     text-align: center;
     border-radius: var(--border-interno);
-    border: 1px solid var(--dark-brown) !important;
+    border: 1px solid var(--blue) !important;
     background-color: transparent !important;
-    color: var(--dark-brown) !important;
+    color: var(--blue) !important;
     font-size: var(--texto-size);
     font-family: var(--fontFamily);
 }
@@ -138,8 +138,8 @@
 .btn-search {
     text-align: center;
     border-radius: 80px !important;
-    border: 1px solid var(--dark-brown) !important;
-    color: var(--dark-brown) !important;
+    border: 1px solid var(--blue) !important;
+    color: var(--blue) !important;
     font-size: 18px;
     font-family: var(--fontFamily);
 }

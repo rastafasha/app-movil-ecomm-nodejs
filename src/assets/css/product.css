@@ -2,23 +2,7 @@
     width: 100w;
     height: 100vh;
     display: block;
-    /* -webkit-animation: productanimation 1s 1 ease;
-    -moz-animation: productanimation 1s 1 ease;
-    -o-animation: productanimation 1s 1 ease;
-    -ms-animation: productanimation 1s 1 ease;
-    animation: productanimation 1s 1 ease; */
-    background-color: var(--dark-brown);
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
-    background: rgb(125, 185, 232);
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #3c2415 -10%, #000000 70%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #3c2415 -10%, #000000 70%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #3c2415 -10%, #000000 70%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
-    /* IE6-9 */
+   background-color: var(--blue);
 }
 
 .productPage .logo {
@@ -33,15 +17,10 @@
 
 .productPage .cuadro-modal {
     bottom: 0%;
-    transform: translate(0px, 40%);
+    transform: translate(0px, 60%);
     background-color: var(--lighter-brown);
     padding: 20px;
     height: auto;
-    -webkit-animation: cuadro-modal 1s 1 ease;
-    -moz-animation: cuadro-modal 1s 1 ease;
-    -o-animation: cuadro-modal 1s 1 ease;
-    -ms-animation: cuadro-modal 1s 1 ease;
-    animation: cuadro-modal 1s 1 ease;
     padding-top: 90px;
 }
 
@@ -64,7 +43,7 @@
 }
 
 .productPage .product-item {
-    position: relative;
+    /* position: relative;
     top: 0px;
     z-index: 10;
     width: 100%;
@@ -72,7 +51,17 @@
     display: block;
     margin: auto;
     overflow: hidden;
-    transform: translate(0px, 60px);
+    transform: translate(0px, 60px); */
+
+    position: relative;
+    top: 0px;
+    z-index: 120;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+    overflow: hidden;
+    transform: translate(0px, 55px);
 }
 
 .productPage .titlePage {
@@ -225,7 +214,7 @@
 .productPage .product-item img {
     display: block;
     width: 90%;
-    height: 250px;
+    height: auto;
     position: relative;
     margin: auto;
     z-index: 20;

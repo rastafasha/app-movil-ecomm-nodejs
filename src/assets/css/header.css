@@ -1,25 +1,30 @@
-.home .logo2 {
-    position: fixed;
+.logo2 {
+    
+        position: fixed;
     z-index: 90;
-    left: calc(38%);
-    top: -15px;
-    width: 90px;
-    height: 100px;
+    left: calc(14%);
+    top: -17px;
+    width: 109px;
+    height: 113px;
     transform: translate(0px, 0%);
 }
 
 
 /*header fijo*/
 
-.header2 {
-    background-color: var(--dark-brown) !important;
+.header2 .logo2{
+    filter: contrast(0.5);
+    display: block;
 }
 
 
 /*header device*/
 
 .header3 {
-    background-color: var(--dark-brown) !important;
+    background-color: var(--dark-blue) !important;
+}
+.header3 .logo2{
+    filter: blur(3);
 }
 
 .titlePage2 {

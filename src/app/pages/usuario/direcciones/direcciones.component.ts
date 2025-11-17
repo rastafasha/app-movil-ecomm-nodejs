@@ -29,6 +29,7 @@ export class DireccionesComponent implements OnInit {
   public direcciones : Direccion[];
   public direccion_data : any = {};
   public msm_success_dos = false;
+  public isLoading = false;
 
   public direccionForm: FormGroup;
   pageTitle:string;
@@ -70,10 +71,11 @@ export class DireccionesComponent implements OnInit {
   }
 
   listar(){
+    this.isLoading = true
     this._direccionService.listarUsuario(this.usuario.uid).subscribe(
       response =>{
         this.direcciones = response.direcciones;
-        console.log(this.direcciones);
+        this.isLoading = false
       },
       error=>{
 

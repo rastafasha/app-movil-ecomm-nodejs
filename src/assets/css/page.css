@@ -2,78 +2,10 @@
     width: 100w;
     height: 100vh;
     display: block;
-    -webkit-animation: productanimation 1s 1 ease;
-    -moz-animation: productanimation 1s 1 ease;
-    -o-animation: productanimation 1s 1 ease;
-    -ms-animation: productanimation 1s 1 ease;
-    animation: productanimation 1s 1 ease;
-    background-color: var(--dark-brown);
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#3c2415+0,000000+60,000000+100 */
-    background: #3c2415;
-    /* Old browsers */
-    background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
-    /* FF3.6-15 */
-    background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-    /* IE6-9 fallback on horizontal gradient */
+    background-color: var(--blue);
 }
 
-@keyframes productanimation {
-    0% {
-        background: #3c2415;
-        /* Old browsers */
-        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* FF3.6-15 */
-        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-        /* IE6-9 fallback on horizontal gradient */
-    }
-    100% {
-        background: #3c2415;
-        /* Old browsers */
-        background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
-        /* FF3.6-15 */
-        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-        /* IE6-9 fallback on horizontal gradient */
-    }
-}
 
-@-webkit-keyframes productanimation {
-    0% {
-        background: #3c2415;
-        /* Old browsers */
-        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* FF3.6-15 */
-        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-        /* IE6-9 fallback on horizontal gradient */
-    }
-    100% {
-        background: #3c2415;
-        /* Old browsers */
-        background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
-        /* FF3.6-15 */
-        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-        /* IE6-9 fallback on horizontal gradient */
-    }
-}
 
 .page .logo {
     position: absolute;
@@ -90,6 +22,7 @@
     background-color: var(--lighter-brown);
     padding: 20px;
     position: relative;
+    height: auto;
 }
 
 .page .titlePage h3 {

@@ -6,10 +6,11 @@
         <h3>User Detail</h3>
     </div>
 
+    <app-loading *ngIf="isLoading"></app-loading>
 
 
     <!--cuadromodal-->
-    <div class="container-fluid cuadro-modal animated fadeInUp">
+    <div class="container-fluid cuadro-modal animated fadeInUp" *ngIf="!isLoading">
         <div class="lineamedio"></div>
         <div class="row">
 

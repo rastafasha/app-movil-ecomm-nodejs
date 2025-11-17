@@ -10,6 +10,8 @@
     bottom: 0;
     z-index: 99;
     bottom: 0;
+    /* background: linear-gradient(180deg,rgba(176, 176, 176, 0) 0%, rgba(255, 255, 255, 0.99) 52%, rgba(255, 255, 255, 1) 100%); */
+    background: linear-gradient(180deg,rgba(176, 176, 176, 0) 0%, rgba(40, 40, 40, 0.99) 52%, rgba(40, 40, 40, 1) 100%);
 }
 
 .menu-footer ul {
@@ -42,7 +44,7 @@
     display: flex;
     font-size: 24px !important;
     color: var(--light-brown);
-    background-color: var(--dark-brown);
+    background-color: var(--blue);
     border: 3px solid #fff;
     box-shadow: 0px 7px 10px #999;
     border-radius: 100px;

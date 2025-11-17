@@ -5,7 +5,7 @@
 .user,
 .wallet,
 .favorites {
-    background-color: var(--grisfondo);
+    background-color: var(--blue);
 }
 
 .user ul.post {

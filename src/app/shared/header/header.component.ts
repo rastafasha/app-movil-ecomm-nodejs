@@ -20,7 +20,7 @@ import { Categoria } from 'src/app/models/categoria.model';
 })
 export class HeaderComponent implements OnInit {
 
-
+  displaylogo: boolean = false;
   year = new Date().getFullYear();
   public usuario: Usuario;
 

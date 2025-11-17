@@ -87,6 +87,7 @@ export class CartComponent implements OnInit {
   habilitacionFormTransferencia:boolean = false;
 
   paypal: boolean = false;
+  isLoading: boolean = false;
 
   paymentMethods:PaymentMethod[] = []; //array metodos de pago para transferencia (dolares, bolivares, movil)
   paymentSelected!:PaymentMethod; //metodo de pago seleccionado por el usuario para transferencia
@@ -161,10 +162,12 @@ export class CartComponent implements OnInit {
 
 
   listar_direcciones(){
+    this.isLoading = true
     this._direccionService.listarUsuario(this.identity.uid).subscribe(
       response =>{
         this.direcciones = response.direcciones;
         // console.log(this.direcciones);
+        this.isLoading = false;
       },
       error=>{
 
@@ -177,7 +180,6 @@ export class CartComponent implements OnInit {
     this._direccionService.get_direccion(this.data_direccion).subscribe(
       response =>{
         this.data_direccion = response;
-        console.log(this.data_direccion);
       }
     );
 
@@ -185,6 +187,7 @@ export class CartComponent implements OnInit {
 
 
   listar_postal(){
+    this.isLoading = true
     this._postalService.listar().subscribe(
       response =>{
         this.postales = response.postales
@@ -200,6 +203,7 @@ export class CartComponent implements OnInit {
             this.precio_envio = element.precio;
           }
         });
+        this.isLoading = false
 
       },
       error=>{
@@ -223,6 +227,7 @@ export class CartComponent implements OnInit {
   }
 
   listar_carrito(){
+    this.isLoading = true
     this._carritoService.preview_carrito(this.identity.uid).subscribe(
       response =>{
         this.carrito = response.carrito;
@@ -241,7 +246,7 @@ export class CartComponent implements OnInit {
 
         });
         this.subtotal = Math.round(this.subtotal + parseInt(this.precio_envio));
-
+        this.isLoading = false
       },
       error=>{
 

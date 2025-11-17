@@ -2,81 +2,10 @@
     width: 100w;
     height: 100vh;
     display: block;
-    -webkit-animation: storeanimation 1s 1 ease;
-    -moz-animation: storeanimation 1s 1 ease;
-    -o-animation: storeanimation 1s 1 ease;
-    -ms-animation: storeanimation 1s 1 ease;
-    animation: storeanimation 1s 1 ease;
-    background-color: var(--dark-brown);
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#3c2415+0,000000+60,000000+100 */
-    background: #3c2415;
-    /* Old browsers */
-    background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
-    /* FF3.6-15 */
-    background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-    /* IE6-9 fallback on horizontal gradient */
-}
-
-@keyframes storeanimation {
-    0% {
-        background: #3c2415;
-        /* Old browsers */
-        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* FF3.6-15 */
-        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-        /* IE6-9 fallback on horizontal gradient */
-    }
-    100% {
-        background: #3c2415;
-        /* Old browsers */
-        background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
-        /* FF3.6-15 */
-        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-        /* IE6-9 fallback on horizontal gradient */
-    }
-}
-
-
-}
-@-webkit-keyframes storeanimation {
-    0% {
-        background: #3c2415;
-        /* Old browsers */
-        background: -moz-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* FF3.6-15 */
-        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 0%, #000000 60%, #000000 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at top, #3c2415 0%, #000000 60%, #000000 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-        /* IE6-9 fallback on horizontal gradient */
-    }
+    background-color: var(--blue);
     
-    100% {
-        background: #3c2415;
-        /* Old browsers */
-        background: -moz-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
-        /* FF3.6-15 */
-        background: -webkit-radial-gradient(top, ellipse cover, #3c2415 23%, #000000 60%, #000000 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: radial-gradient(ellipse at top, #3c2415 23%, #000000 60%, #000000 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3c2415', endColorstr='#000000', GradientType=1);
-        /* IE6-9 fallback on horizontal gradient */
-    }
 }
+
 .store .post-inner {
     overflow: hidden;
     overflow-y: scroll;
@@ -118,7 +47,7 @@
     transform: translate(0px, 0%);
     background-color: var(--lighter-brown);
     padding: 20px;
-    height: 94vh;
+    height: auto;
     padding-top: 70px;
 }
 .store .logo {
@@ -171,22 +100,7 @@
     width: 95%;
     margin: auto;
     box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
     
-    background: rgb(125, 185, 232);
-    /* Old browsers */
-    
-    background: -moz-linear-gradient(top, #3c2415) -10%, #000000 70%);
-    /* FF3.6-15 */
-    
-    background: -webkit-linear-gradient(top, #3c2415 -10%, #000000 70%);
-    /* Chrome10-25,Safari5.1-6 */
-    
-    background: linear-gradient(to bottom, #3c2415 -10%, #000000 70%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
-    /* IE6-9 */
 }
 .store .categorylist {
     grid-auto-columns: calc(45% - (var(--swiffy-slider-item-gap)/ 2) - 2.5rem)!important;

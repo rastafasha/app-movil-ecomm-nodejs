@@ -19,6 +19,7 @@ export class FavoritesComponent implements OnInit {
   public usuario: Usuario;
   public productos: Producto;
   public favoritos: any =[];
+  public isLoading = false;
   public msm_success_fav = false;
   constructor(
     private http: HttpClient,
@@ -39,9 +40,10 @@ export class FavoritesComponent implements OnInit {
   }
 
   getFavoritos(){
+    this.isLoading = true;
     this.favoritosService.listarFaoritosporUsuario(this.usuario.uid).subscribe((resp:any)=>{
       this.favoritos = resp.favoritos;
-      console.log(this.favoritos);
+      this.isLoading = false;
 
     })
   }

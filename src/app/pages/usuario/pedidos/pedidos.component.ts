@@ -14,13 +14,13 @@ import {Venta, Cancelacion} from '../../../models/ventas.model';
 })
 export class PedidosComponent implements OnInit {
   public currentPage: number = 1;
-  public loading: boolean = false;
+  public isLoading: boolean = false;
 
   @HostListener('window:scroll', [])
   onScroll() {
     const pos = (document.documentElement.scrollTop + window.innerHeight) >= document.documentElement.offsetHeight;
-    if (pos && !this.loading) {
-      this.loading = true;
+    if (pos && !this.isLoading) {
+      this.isLoading = true;
       this.listar_ordenes(this.currentPage);
     }
   }
@@ -70,11 +70,12 @@ export class PedidosComponent implements OnInit {
   }
 
   listar_ordenes(page: number, limit: number = 10){
+    this.isLoading = true;
     this.ventaService.listarporUser(this.usuario.uid, page, limit).subscribe(
       response=>{
         this.ventas.push(...response.ventas);
         this.currentPage++;
-        console.log(this.ventas);
+        this.isLoading = false;
       },
       error=>{
 
@@ -83,10 +84,11 @@ export class PedidosComponent implements OnInit {
   }
 
   listar_cancelacion(){
+    this.isLoading = true;
     this.ventaService.listarCancelacionporUser(this.usuario.uid).subscribe(
       response=>{
         this.cancelacion = response.cancelacion;
-        console.log(this.cancelacion);
+        this.isLoading = false;
       },
       error=>{
 

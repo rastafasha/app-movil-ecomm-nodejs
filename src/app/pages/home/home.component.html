@@ -1,40 +1,42 @@
 <section class="home">
-    <a routerLink="/app/home"><img class="logo animated fadeInUp logo-home" src="./assets/svg/logo_Mallconnect.svg" alt=""></a>
+    <a routerLink="/app/home"><img class="logo animated fadeInUp logo-home"  src="./assets/svg/logo_Mallconnect.svg" alt=""></a>
 
     <div class="container">
         <div class="row">
             <!--cuadro-modal--->
     <div class="cuadro-modal animated fadeInUp">
-        <div class="text-intro">
-            <h2 class="animated fadeInUp">Algo Sabroso</h2>
-            <h1 class="animated fadeInUp">Todos los días.</h1>
-        </div>
+        <div class="post-inners2" (scroll)="mostrarLogo($event)">
 
-        <div class="container">
-            <div class="row">
-        
-                <!--slider products-->
-                <div class="post-inners2">
-        
-                    <app-promocion></app-promocion>
-        
-                    <!--list horizontal-->
-                    <app-slide-productos-h></app-slide-productos-h>
-                    <!--list horizontal-->
-        
-                    <!--category name-->
-        
-                    <app-category-bar></app-category-bar>
-                    <!--category name-->
-        
-                    <!-- search -->
-                    <!-- <app-search-bar></app-search-bar> -->
-                    <!-- search -->
+            <div class="text-intro">
+                <h2 class="animated fadeInUp">Algo Sabroso</h2>
+                <h1 class="animated fadeInUp">Todos los días.</h1>
+            </div>
+    
+            <div class="container">
+                <div class="row">
+            
+                    <!--slider products-->
+                    <!-- <div class="post-inners2"> -->
+            
+                        <app-promocion></app-promocion>
+            
+                        <!--list horizontal-->
+                        <app-slide-productos-h></app-slide-productos-h>
+                        <!--list horizontal-->
+            
+                        <!--category name-->
+            
+                        <app-category-bar></app-category-bar>
+                        <!--category name-->
+                        <!-- search -->
+                        <!-- <app-search-bar></app-search-bar> -->
+                        <!-- search -->
+                    <!-- </div> -->
+            
+            
+                    <div class="gradient-home animated fadeIn"></div>
+            
                 </div>
-        
-        
-                <div class="gradient-home animated fadeIn"></div>
-        
             </div>
         </div>
     </div>
