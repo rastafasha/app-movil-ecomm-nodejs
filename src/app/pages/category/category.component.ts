@@ -60,23 +60,15 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    this.getCategories();
     this.activatedRoute.params.subscribe( ({id}) => this.getProductByCategory(id));
+    this.activatedRoute.params.subscribe( ({id}) => this.getCategory(id));
   }
 
-  getCategories(){
-    this.categoryService.getCategories().subscribe((resp:any)=>{
-      this.categorias = resp;
-      this.categoriaId = resp.id;
-      console.log(this.categorias);
-      console.log(this.categoriaId);
-      this.getCgetNameCategoryategories();
-    })
-  }
-  getCgetNameCategoryategories(){
-    this.categoryService.getCategoriaById(this.categoriaId).subscribe((resp:any)=>{
-      this.categoriaName = resp;
-      console.log(this.categoriaName);
+ 
+
+  getCategory(id){
+    this.categoryService.getCategoriaById(id).subscribe((resp:any)=>{
+      this.categoria = resp;
     })
   }
 
@@ -91,12 +83,8 @@ export class CategoryComponent implements OnInit {
 
 
   getProductByCategory(id: string){
-
-
     if(id){
-      this.productService.cat_by_name(id).subscribe( (res:any) =>{
-        
-        // console.log(res);
+      this.productService.cat_by_name(id).subscribe( (res:Producto) =>{
         this.productos = res;
         console.log(this.productos);
 

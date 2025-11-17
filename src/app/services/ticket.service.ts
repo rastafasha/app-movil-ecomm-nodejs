@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {environment} from 'src/environments/environment';
 import { map } from 'rxjs/operators';
-import { Ticket } from '../models/ticket.model';
+import { Mensaje, Ticket } from '../models/ticket.model';
 const base_url = environment.baseUrl;
 
 @Injectable({
@@ -40,10 +40,15 @@ export class TicketService {
     return this._http.post(url, ticket, this.headers);
   }
 
-  send(ticket: Ticket):Observable<any>{
-    console.log(ticket);
-    const url = `${base_url}/tickets/ticket_msm/send/`;
-    return this._http.post(url, ticket, this.headers);
+  // send(ticket: any):Observable<any>{
+  //   console.log(ticket);
+  //   const url = `${base_url}/tickets/ticket_msm/send/`;
+  //   return this._http.post(url, ticket, this.headers);
+  // }
+
+  send(data:any):Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    return this._http.post(this.url + '/tickets/ticket_msm/send',data,{headers:headers})
   }
 
   listar(id:string):Observable<any>{
@@ -59,12 +64,12 @@ export class TicketService {
 
   }
 
-  data(de:any,para:any):Observable<any>{
+  data(de:string, para:string ):Observable<any>{
 
     const url = `${base_url}/tickets/ticket_chat/chat/`+de+'/'+para;
     return this._http.get(url, this.headers)
     .pipe(
-      map((resp:{ok: boolean, ticket: Ticket}) => resp.ticket)
+      map((resp:{ok: boolean, messages: Mensaje}) => resp.messages)
       );
   }
 
@@ -74,6 +79,14 @@ export class TicketService {
     return this._http.get<any>(url, this.headers)
       .pipe(
         map((resp:{ok: boolean, ticket: Ticket}) => resp.ticket)
+        );
+  }
+  get_ticketMensajes(id:string):Observable<any>{
+
+    const url = `${base_url}/tickets/ticket_listar/listar/${id}`;
+    return this._http.get<any>(url, this.headers)
+      .pipe(
+        map((resp:{ok: boolean, mensajes: Mensaje}) => resp.mensajes)
         );
   }
 

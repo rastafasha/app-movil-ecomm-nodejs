@@ -5,7 +5,8 @@
     <div class="titlePage animated fadeIn">
         <h3>Favorites</h3>
     </div>
-    <div class="container-fluid cuadro-modal animated fadeInUp">
+    <app-loading *ngIf="isLoading"></app-loading>
+    <div class="container-fluid cuadro-modal animated fadeInUp" *ngIf="!isLoading">
         <div class="lineamedio"></div>
         <div class="container">
         
@@ -20,10 +21,10 @@
          </div>
         <div>
 
-            <app-loading *ngIf="isLoading"></app-loading>
+            
 
             <!----info-->
-            <div class="areablanc areablanc-interna animated fadeInUp" *ngIf="!isLoading">
+            <div class="areablanc areablanc-interna animated fadeInUp" >
                 <div class="div-responsive1">
 
                     <!---Slider-->

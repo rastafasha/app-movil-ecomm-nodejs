@@ -64,6 +64,7 @@ const childRoutes: Routes = [
   {path:'user/orders', component: PedidosComponent, data:{tituloPage:'Orders '}},
   {path:'user/order/:id', component: PedidoStatusComponent, data:{tituloPage:'Order Status '}},
   {path: 'account-settings', component: AccountSettingComponent, data:{tituloPage:'Ajustes de Cuenta'} },
+  
   {path: 'user/tickets/:id', component: TicketIndexComponent, data:{tituloPage:'Tickets'} },
   {path: 'user/ticket/chat/:id', component: TicketChatComponent, data:{tituloPage:'Ticket Chat'} },
 

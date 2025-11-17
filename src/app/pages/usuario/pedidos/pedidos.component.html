@@ -8,7 +8,7 @@
 
             <app-loading *ngIf="isLoading"></app-loading>
             <!--cuadromodal-->
-    <div class="cuadro-modal" >
+    <div class="cuadro-modal" *ngIf="!isLoading">
         <div class="lineamedio"></div>
         <div class="col-12">
             <!-- Nav tabs -->
@@ -19,7 +19,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <!--tab-->
-                <div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true" *ngIf="!isLoading">
+                <div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true" >
                     <div (scroll)="onScroll()" *ngFor="let vent of ventas">
                         <!--Pedido-->
                         <div class=" itemFav pedidoResumen">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <!--second tab-->
-                <div class="tab-pane" id="direccion" role="tabpanel" aria-expanded="false" *ngIf="!isLoading">
+                <div class="tab-pane" id="direccion" role="tabpanel" aria-expanded="false" >
                     <div *ngFor="let can of cancelacion">
                         <br>
                         <!--Pedido-->

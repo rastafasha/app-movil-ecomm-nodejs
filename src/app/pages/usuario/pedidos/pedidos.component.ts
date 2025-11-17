@@ -70,12 +70,10 @@ export class PedidosComponent implements OnInit {
   }
 
   listar_ordenes(page: number, limit: number = 10){
-    this.isLoading = true;
     this.ventaService.listarporUser(this.usuario.uid, page, limit).subscribe(
       response=>{
         this.ventas.push(...response.ventas);
         this.currentPage++;
-        this.isLoading = false;
       },
       error=>{
 
@@ -84,11 +82,9 @@ export class PedidosComponent implements OnInit {
   }
 
   listar_cancelacion(){
-    this.isLoading = true;
     this.ventaService.listarCancelacionporUser(this.usuario.uid).subscribe(
       response=>{
         this.cancelacion = response.cancelacion;
-        this.isLoading = false;
       },
       error=>{
 

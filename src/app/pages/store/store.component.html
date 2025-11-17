@@ -3,17 +3,11 @@
     <div class="titlePage animated fadeIn">
         <h3>Tienda</h3>
     </div>
-    <div class="container-fluid cuadro-modal animated fadeInUp">
+    <app-loading *ngIf="isLoading"></app-loading>
+    <div class="container-fluid cuadro-modal animated fadeInUp" *ngIf="!isLoading">
         <div class="lineamedio"></div>
         <div class="container">
-            <!-- mensaje -->
-            <!-- <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="msm_success">
-                Artículo agregado al <a [routerLink]="['/app/cart']"><b>Carrito!</b></a>.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div> -->
-            <!-- mensaje -->
+            
             <!-- mensaje -->
             <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="msm_success_fav">
                 Artículo agregado a <a [routerLink]="['/app/user/favorites']"><b>Favoritos!</b></a>.
@@ -24,10 +18,10 @@
             <!-- mensaje -->
             </div>
         <div>
-            <app-loading *ngIf="isLoading"></app-loading>
+            
 
             <!----info-->
-            <div class="areablanc areablanc-interna animated fadeInUp" *ngIf="!isLoading">
+            <div class="areablanc areablanc-interna animated fadeInUp" >
                 <div class="div-responsive1">
 
                     <!---Slider-->
@@ -50,20 +44,10 @@
                                                 <p>$ {{producto.precio_antes}}</p>
                                                 <p>$ {{producto.precio_ahora}}</p>
                                             </div>
-                                            <!-- <div class="stars">
-                                                <ul>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                </ul>
-                                            </div> -->
                                         </div>
                                         <div class="botones">
                                             <button class="button-add-favorite " (click)="addToFavoritoos(producto)"><i class="fa  fa-heart " id="myBtn "></i></button>
                                             <button class="button-add-favorite " [routerLink]="['/app/product', producto._id]"><i class="fa  fa-eye " id="myBtn "></i></button>
-                                        <!-- <button class="button-add-cart" (click)="addToCart(producto)"><i class="fa  fa-shopping-bag" id="myBtn "></i></button> -->
                                         </div>
     
                                     </div>
@@ -73,11 +57,6 @@
                         </div>
 
                 </div>
-                <div class="div-responsive2">
-
-                    <!-- <app-lateral></app-lateral> -->
-                </div>
-
 
             </div>
 

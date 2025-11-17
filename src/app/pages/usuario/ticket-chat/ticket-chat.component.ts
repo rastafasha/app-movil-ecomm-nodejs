@@ -6,7 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { TicketService } from "src/app/services/ticket.service";
 import {io} from 'socket.io-client';
-import {Ticket} from '../../../models/ticket.model';
+import {Mensaje, Ticket} from '../../../models/ticket.model';
 import { Usuario } from 'src/app/models/usuario.model';
 
 declare var jQuery:any;
@@ -23,7 +23,7 @@ export class TicketChatComponent implements OnInit{
 
   urlSocket = environment.soketServer;
   public identity: Usuario;
-  public usuario: Usuario;
+  public usuario : any = {};
   public url;
   public id;
   public msm = '';
@@ -31,6 +31,7 @@ export class TicketChatComponent implements OnInit{
   public mensajes : Array<any> = [];
   public poster_admin;
   public ticket : Ticket;
+  public mesaje : Mensaje;
   public socket = io(this.urlSocket);
   
   public close_ticket = false;
@@ -91,8 +92,10 @@ export class TicketChatComponent implements OnInit{
 
       this._ticketService.get_ticket(this.id).subscribe(
         response =>{
-          this.ticket = response;
-          this.estado_ticket = this.ticket.estado;
+          // console.log(response)
+           this.ticket = response;
+           this.estado_ticket = this.ticket.estado;
+        this.usuario = this.ticket.user
         },
         error=>{
 
@@ -111,9 +114,9 @@ export class TicketChatComponent implements OnInit{
   }
 
   listar_msms(){
-    this._ticketService.data(this.usuario.uid, '627ec91529881af6cb899f79').subscribe(
-      response=>{
-
+    this._ticketService.get_ticketMensajes(this.id).subscribe(
+      (response:any)=>{
+        this.mensajes = response;
         response.mensajes.forEach(element => {
           if(element.ticket == this.id){
             this.mensajes.push(element);
@@ -136,20 +139,20 @@ export class TicketChatComponent implements OnInit{
       if(this.close_ticket){
         //  enviar y cerrar ticket
         let data={
-          de:this.usuario.uid,
-          para:'627ec91529881af6cb899f79',
+          de:this.identity.uid,
+          para:this.usuario.uid,
           msm:msmForm.value.msm,
           ticket:this.id,
           status: 0,
           estado: 0
         }
-        this._ticketService.send(this.ticket).subscribe(
+        this._ticketService.send(data).subscribe(
           response =>{
             console.log(response);
             this.msm = '';
-            // this.socket.emit('save-mensaje', {new:true});
+            this.socket.emit('save-mensaje', {new:true});
             this.scrollToBottom();
-            // this.socket.emit('save-formmsm', {data:true});
+            this.socket.emit('save-formmsm', {data:true});
           },
           error=>{
             console.log(error);
@@ -159,18 +162,18 @@ export class TicketChatComponent implements OnInit{
       }
       else{
         let data={
-          de:this.usuario.uid,
-          para:'627ec91529881af6cb899f79',
+          de:this.identity.uid,
+          para:this.usuario.uid,
           msm:msmForm.value.msm,
           ticket:this.id,
-          status: 0,
-          estado: null
+           status: 1,
+          estado: 1
         }
-        this._ticketService.send(this.ticket).subscribe(
+        this._ticketService.send(data).subscribe(
           response =>{
             console.log(response);
             this.msm = '';
-            // this.socket.emit('save-mensaje', {new:true});
+            this.socket.emit('save-mensaje', {new:true});
             this.scrollToBottom();
           },
           error=>{

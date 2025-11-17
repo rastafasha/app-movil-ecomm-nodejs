@@ -8,3 +8,11 @@ export class Ticket {
   createdAt:Date;
 }
 
+export class Mensaje {
+  de:string;
+  para:string;
+  msn: number;
+  ticket:string;
+  _id:string;
+  createdAt:Date;
+}

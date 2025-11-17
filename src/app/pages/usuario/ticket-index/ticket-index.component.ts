@@ -77,6 +77,8 @@ export class TicketIndexComponent implements OnInit {
         tema : this.data_titulo,
         venta : this.id,
         user : this.usuario.uid,
+        status: 0,
+        estado: 1
       }
 
       

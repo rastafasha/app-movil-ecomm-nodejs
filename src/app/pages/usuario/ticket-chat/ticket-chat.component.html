@@ -27,10 +27,12 @@
                                 overflow-y: auto;padding-top: 0px;" #scrollMe>
                                         <div class="row">
                                             <ng-container *ngFor="let item of mensajes; let indice = index">
-                                                <div class="col-lg-12 p-4" *ngIf="item.de == '627ec91529881af6cb899f79'" style="background: #ededed;">
-                                                    <div class="media border-bottom"><img class="rounded-circle" width="50" [src]="url+'user/data/'+poster_admin">
+                                                <!-- *ngIf="item.de == '627ec91529881af6cb899f79'" -->
+                                                <div class="col-lg-12 p-4"  style="background: #ededed;">
+                                                    <div class="media border-bottom">
+                                                        <!-- <img class="rounded-circle" width="50" [src]="url+'user/data/'+poster_admin"> -->
                                                         <div class="media-body pl-3">
-                                                            <h6 class="font-size-md mb-2">Moderador: {{identity.first_name}} {{identity.last_name}}</h6>
+                                                            <h6 class="font-size-md mb-2">Yo: {{identity.first_name}} {{identity.last_name}}</h6>
                                                             <p class="font-size-md mb-1">{{item.msm}}</p><span class="font-size-ms text-muted"><i class="czi-time align-middle mr-2"></i>{{item.createdAt}}</span>
                                                             <!-- <p class="font-size-md mb-1">{{item.msm}}</p><span class="font-size-ms text-muted"><i class="czi-time align-middle mr-2"></i>{{item.createdAt | dateAgo}}</span> -->
                                                         </div>
@@ -41,7 +43,7 @@
                                                     <div class="media">
 
                                                         <div class="media-body pl-3">
-                                                            <h6 class="font-size-md mb-2">Yo:</h6>
+                                                            <h6 class="font-size-md mb-2">Moderador:</h6>
                                                             <p class="font-size-md mb-1">{{item.msm}}</p><span class="font-size-ms text-muted"><i class="czi-time align-middle mr-2"></i>{{item.createdAt }}</span>
                                                             <!-- <p class="font-size-md mb-1">{{item.msm}}</p><span class="font-size-ms text-muted"><i class="czi-time align-middle mr-2"></i>{{item.createdAt | dateAgo}}</span> -->
                                                         </div>

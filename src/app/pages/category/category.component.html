@@ -3,7 +3,7 @@
         <a href="javascript:void(0)" (click)="goBack()"><i class="fa fa-angle-left"></i></a>
     </div>
     <div class="titlePage ">
-        <h3>Category: {{productos[0].categoria.subcategorias}}</h3>
+        <h3>Category: {{categoria.subcategorias}}</h3>
     </div>
     <div class="container-fluid cuadro-modal animated fadeInUp">
         <div class="container">
@@ -30,10 +30,7 @@
             <!----info-->
             <div class="areablanc areablanc-interna animated fadeInUp">
                 <div class="div-responsive1">
-
-                    <div class="post-inner">
-
-                        <div class="carousel-inner-data">
+<div class="carousel-inner-data">
                             <div class="post navTabs" *ngFor="let producto of productos">
                                 <div class=" itemFav">
                                     <div class="group  itemFav lastposthome">
@@ -72,10 +69,6 @@
 
                             </div>
                         </div>
-
-                        
-
-                    </div>
 
                 </div>
                 <div class="div-responsive2">
