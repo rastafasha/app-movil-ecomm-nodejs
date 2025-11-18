@@ -17,6 +17,7 @@ declare var $:any;
 export class PromocionComponent implements OnInit {
 
   promocion: Promocion;
+  isLoading:boolean = false;
   // public promocion:any=[];
   imagenUrl = environment.baseUrl;
 
@@ -51,11 +52,11 @@ export class PromocionComponent implements OnInit {
   }
 
   data_banner(){
-
+    this.isLoading=true;
     this.promocionService.cargarPromocionsActive().subscribe(
       (response:any) =>{
-        console.log(response);
         this.promocion = response[0];
+        this.isLoading = false;
         this.data_countdown(this.promocion.end);
 
       },error=>{

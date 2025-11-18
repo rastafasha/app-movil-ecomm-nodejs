@@ -158,7 +158,7 @@
 
 
                             <!-- detalle envio -->
-                            <div class="bg-secondary rounded-lg px-4 pt-4 pb-2 mb-4" id="card-data-envio" *ngIf="direccion || data_direccion">
+                            <div class=" px-4 pt-4 pb-2 mb-4" id="card-data-envio" *ngIf="direccion || data_direccion">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <h4 class="h6">Detalles de envío:</h4>
@@ -174,101 +174,139 @@
 
                             <!-- detalle envio -->
 
-                            <!-- pago -->
-                            <div class="card" id="card-pay">
-                                <!-- <div class="card-header">
-                                    <h3 style="    font-size: 1rem;
-                              margin-bottom: 0px;">Pagos</h3>
-                                </div> -->
-                                
-                            </div>
-                            <!-- pago -->
-
                             <!-- codigo agregado por Jose Prados que reemplaza en anterior -->
-                    <div class="card" id="card-pay">
-                        <label class="form-label">Seleccione el método de pago</label>
-                        <!-- select metodo de pago -->
-                        <select id="paymentMethod" class="custom-select-large" (change)="onPaymentMethodChange($event)" [(ngModel)]="selectedMethod">
-                            <option value=" ">Selecciona un método de pago</option>
-                            <option value="paypal">Paypal</option>
-                            <option value="card">Tarjeta de Crédito/Débito</option>
-                            <option value="transferencia">Transferencia Bancaria</option>
-                        </select>
-                        <!-- Contenedor para el botón de PayPal -->
-                        <div #paypal *ngIf="paypal">
-                            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-                        </div>
-                        <!-- Contenedor para el botón de habilitacionFormTransferencia -->
-                        <div *ngIf="habilitacionFormTransferencia" class="mt-5">
-                            <form [formGroup]="formTransferencia" (ngSubmit)="sendFormTransfer()">
-
-                                <!-- metodo de pago -->
-                                <div class="mb-3 mt-2">
-                                    <label form="metodo_pago" class="form-label">Tipo de Transferencia</label>
-
-                                    <select formControlName="metodo_pago" (change)="onChangePayment($event)" class="custom-select-large" name="metodo_pago" id="metodo_pago">
-                                        <option [value]="metodo_pago._id" *ngFor="let metodo_pago of paymentMethods">
-                                            {{metodo_pago.tipo}}
-                                        </option>
-                                    </select>
+                             <!-- arreglado por malcolm -->
+                            <div class="card" id="card-pay">
+                                <label class="form-label">Seleccione el método de pago</label>
+                                <!-- select metodo de pago -->
+                                <select id="paymentMethod" class="custom-select-large" (change)="onPaymentMethodChange($event)" [(ngModel)]="selectedMethod">
+                                    <option value=" ">Selecciona un método de pago</option>
+                                    <option value="paypal">Paypal</option>
+                                    <option value="card">Tarjeta de Crédito/Débito</option>
+                                    <option value="transferencia">Transferencia Bancaria</option>
+                                </select>
+                                <!-- Contenedor para el botón de PayPal -->
+                                <div #paypal *ngIf="paypal">
+                                    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
                                 </div>
-                                <div class="card">
-                                    <div class="card-body p-4" *ngIf="paymentSelected">
-                                        <p>Nombre del Banco:&nbsp;{{paymentSelected.bankName}}</p>
-                                        <p *ngIf="paymentSelected.bankAccount">Numero de Cuenta:&nbsp;{{paymentSelected.bankAccount}}</p>
-                                        <p *ngIf="paymentSelected.phone">Numero de Teléfono:&nbsp;{{paymentSelected.phone}}</p>
-                                        <p *ngIf="paymentSelected.email">Email:&nbsp;{{paymentSelected.email}}</p>
-                                        <p>Ciorif:&nbsp;{{paymentSelected.ciorif}}</p>
-                                    </div>
-                                </div>
+                                <!-- Contenedor para el botón de habilitacionFormTransferencia -->
+                                <div *ngIf="habilitacionFormTransferencia" class="mt-5">
+                                    <form [formGroup]="formTransferencia" (ngSubmit)="sendFormTransfer()">
 
-                                <!-- nombre del banco -->
-                                <div class="mb-3">
-                                    <label for="bankName" class="form-label">Nombre del Banco</label>
-                                    <input type="text" formControlName="bankName" class="form-control" name="bankName" id="bankName">
-                                </div>
+                                        <!-- metodo de pago -->
+                                        <div class="mb-3 mt-2">
+                                            <label form="metodo_pago" class="form-label">Tipo de Transferencia</label>
 
-                                <!-- numero de referencia -->
-                                <div class="mb-3">
-                                    <label for="referencia" class="form-label">Num. referencia</label>
-                                    <input type="text" formControlName="referencia" class="form-control" name="referencia" id="referencia">
-                                </div>
+                                            <select formControlName="metodo_pago" (change)="onChangePayment($event)" class="custom-select-large" name="metodo_pago" id="metodo_pago">
+                                                <option [value]="metodo_pago._id" *ngFor="let metodo_pago of paymentMethods">
+                                                    {{metodo_pago.tipo}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body p-4" *ngIf="paymentSelected">
+                                                <p>Nombre del Banco:&nbsp;{{paymentSelected.bankName}}</p>
+                                                <p *ngIf="paymentSelected.bankAccount">Numero de Cuenta:&nbsp;{{paymentSelected.bankAccount}}</p>
+                                                <p *ngIf="paymentSelected.phone">Numero de Teléfono:&nbsp;{{paymentSelected.phone}}</p>
+                                                <p *ngIf="paymentSelected.email">Email:&nbsp;{{paymentSelected.email}}</p>
+                                                <p>Ciorif:&nbsp;{{paymentSelected.ciorif}}</p>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="paymentSelected && paymentSelected?.tipo === 'Transferencia Dólares'|| paymentSelected && paymentSelected?.tipo === 'Transferencia Bolivares'">
+                                             <!-- nombre del banco -->
+                                            <div class="mb-3">
+                                                <label for="bankName" class="form-label">Nombre del Banco</label>
+                                                <input type="text" formControlName="bankName" class="form-control" name="bankName" id="bankName">
+                                            </div>
 
-                                <!-- monto -->
-                                <div class="mb-3">
-                                    <label for="amount" class="form-label">Monto</label>
-                                    <input type="number" formControlName="amount" class="form-control" name="amount" id="amount">
-                                </div>
+                                            <!-- numero de referencia -->
+                                            <div class="mb-3">
+                                                <label for="referencia" class="form-label">Num. referencia</label>
+                                                <input type="text" formControlName="referencia" class="form-control" name="referencia" id="referencia">
+                                            </div>
 
-                                <!-- teléfono de la persona que hace la transferencia -->
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">Num. teléfono</label>
-                                    <input type="number" formControlName="phone" class="form-control" name="phone" id="phone">
-                                </div>
+                                            <!-- monto -->
+                                            <div class="mb-3">
+                                                <label for="amount" class="form-label">Monto</label>
+                                                <input type="number" formControlName="amount" class="form-control" name="amount" id="amount">
+                                            </div>
 
-                                <!-- nombre de la persona que hace la transferencia -->
-                                <div class="mb-3">
-                                    <label for="name_person" class="form-label">
-                                        Nombre y Apellido(en cuenta pagadora)
-                                    </label>
-                                    <input type="text" formControlName="name_person" class="form-control" name="name_person" id="name_person">
-                                </div>
+                                            <!-- botones -->
+                                            <div class="d-grid gap-2">
+                                                <button class="btn btn-primary" type="submit">
+                                                    Enviar
+                                                </button>
+                                            </div>
+                                            
+                                        </div>
+                                        <div *ngIf="paymentSelected && paymentSelected?.tipo === 'pagomovil'">
+                                            <!-- numero de referencia -->
+                                            <div class="mb-3">
+                                                <label for="phone" class="form-label">Num. Teléfono</label>
+                                                <input type="text" formControlName="phone" class="form-control" name="referencia" id="referencia">
+                                            </div>
+                                             <!-- nombre del banco -->
+                                            <div class="mb-3">
+                                                <label for="bankName" class="form-label">Nombre del Banco</label>
+                                                <input type="text" formControlName="bankName" class="form-control" name="bankName" id="bankName">
+                                            </div>
 
-                                <!-- fecha de pago -->
-                                <div class="mb-3">
-                                    <label for="paymentday" class="form-label">Fecha de Pago</label>
-                                    <input type="date" formControlName="paymentday" class="form-control" name="paymentday" id="paymentday">
-                                </div>
+                                            <!-- numero de referencia -->
+                                            <div class="mb-3">
+                                                <label for="referencia" class="form-label">Num. referencia</label>
+                                                <input type="text" formControlName="referencia" class="form-control" name="referencia" id="referencia">
+                                            </div>
 
-                                <!-- botones -->
-                                <div class="d-grid gap-2">
-                                    <button class="btn btn-primary" type="submit">
-                                        Enviar
-                                    </button>
+                                            <!-- monto -->
+                                            <div class="mb-3">
+                                                <label for="amount" class="form-label">Monto</label>
+                                                <input type="number" formControlName="amount" class="form-control" name="amount" id="amount">
+                                            </div>
+
+                                            <!-- botones -->
+                                            <div class="d-grid gap-2">
+                                                <button class="btn btn-primary" type="submit">
+                                                    Enviar
+                                                </button>
+                                            </div>
+                                            
+                                        </div>
+                                        <div *ngIf="paymentSelected && paymentSelected?.tipo === 'zelle'">
+                                            <!-- numero de referencia -->
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="text" formControlName="email" class="form-control" name="email" id="email">
+                                            </div>
+                                             <!-- nombre del banco -->
+                                            <div class="mb-3">
+                                                <label for="bankName" class="form-label">Nombre del Banco</label>
+                                                <input type="text" formControlName="bankName" class="form-control" name="bankName" id="bankName">
+                                            </div>
+
+                                            <!-- numero de referencia -->
+                                            <div class="mb-3">
+                                                <label for="referencia" class="form-label">Num. referencia</label>
+                                                <input type="text" formControlName="referencia" class="form-control" name="referencia" id="referencia">
+                                            </div>
+
+                                            <!-- monto -->
+                                            <div class="mb-3">
+                                                <label for="amount" class="form-label">Monto</label>
+                                                <input type="number" formControlName="amount" class="form-control" name="amount" id="amount">
+                                            </div>
+
+                                            <!-- botones -->
+                                            <div class="d-grid gap-2">
+                                                <button class="btn btn-primary" type="submit">
+                                                    Enviar
+                                                </button>
+                                            </div>
+                                            
+                                        </div>
+                                       
+                                    </form>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
+                            </div>
 
                         </div>
 

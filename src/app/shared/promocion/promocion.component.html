@@ -1,5 +1,8 @@
+
+<app-loading *ngIf="isLoading"></app-loading>
 <!-- <section class="container mt-4 mb-grid-gutter" *ngIf="promocion.estado"> -->
-<section class=" promocion" *ngIf="promocion" [style.background]="promocion.colorfondo">
+
+<section class=" promocion" *ngIf="promocion && !isLoading" [style.background]="promocion.colorfondo">
     <div class="container">
         <div class="col-12 ">
             <div class="col-md-4">

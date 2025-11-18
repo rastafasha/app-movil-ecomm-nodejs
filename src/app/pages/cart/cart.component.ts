@@ -460,19 +460,19 @@ export class CartComponent implements OnInit {
   }
 
   private obtenerMetodosdePago(){
-    this._trasferencias.getPayments().subscribe(data => {
+    this._trasferencias.getPaymentsActive().subscribe(data => {
       // console.log('metodos de pago: ',data.paymentMethods)
       this.paymentMethods = data.paymentMethods;
-      // console.log('metodos de pago: ',this.paymentMethods)
     });
   }
   // metodo para el cambio del select 'tipo de transferencia'
   onChangePayment(event:Event){
     const target = event.target as HTMLSelectElement; //obtengo el valor
-    // console.log(target.value)
+    console.log(target.value)
 
     // guardo el metodo seleccionado en la variable de clase paymentSelected
     this.paymentSelected = this.paymentMethods.filter(method => method._id===target.value)[0]
+    console.log(this.paymentSelected)
   }
 
   // Método que se llama cuando cambia el select
@@ -572,7 +572,7 @@ export class CartComponent implements OnInit {
 
   }
   
-  verify_dataComplete(){debugger
+  verify_dataComplete(){
     if(this.id_direccion){
       this.msm_error = '';
       $('#btn-verify-data').animate().hide();

@@ -15,13 +15,15 @@ import {Venta, Cancelacion} from '../../../models/ventas.model';
 export class PedidosComponent implements OnInit {
   public currentPage: number = 1;
   public isLoading: boolean = false;
+  public loading: boolean = false;
 
   @HostListener('window:scroll', [])
   onScroll() {
     const pos = (document.documentElement.scrollTop + window.innerHeight) >= document.documentElement.offsetHeight;
-    if (pos && !this.isLoading) {
-      this.isLoading = true;
+    if (pos && !this.loading) {
+      this.loading = true;
       this.listar_ordenes(this.currentPage);
+      // this.loading = false;
     }
   }
 
@@ -74,6 +76,7 @@ export class PedidosComponent implements OnInit {
       response=>{
         this.ventas.push(...response.ventas);
         this.currentPage++;
+        // this.loading=false;
       },
       error=>{
 

@@ -87,7 +87,7 @@
             overflow-x: auto;
         }
         .home .slideh-list {
-            --swiffy-slider-item-width: calc((55% - var(--swiffy-slider-item-reveal) - var(--swiffy-slider-item-gap-totalwidth)) / var(--swiffy-slider-item-count)) !important;
+            --swiffy-slider-item-width: calc((40% - var(--swiffy-slider-item-reveal) - var(--swiffy-slider-item-gap-totalwidth)) / var(--swiffy-slider-item-count)) !important;
             overflow-x: auto;
         }
         .store .slideh-list {

@@ -28,6 +28,7 @@ export class SlideProductosHComponent implements OnInit {
   cartItems: any[] = [];
   @Input() categories: Categoria[] = [];
   @Input() index: number;
+  isLoading:boolean = false;
 
   public socket = io(environment.soketServer);
 
@@ -73,10 +74,11 @@ export class SlideProductosHComponent implements OnInit {
 
   }
   loadProducts(){
+    this.isLoading = true;
     this.productoService.getProductosActivosDestacados().subscribe(
       resp => {
         this.productos = resp;
-        console.log(this.productos);
+        this.isLoading = false;
       }
     )
   }
