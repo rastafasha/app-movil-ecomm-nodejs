@@ -65,7 +65,9 @@ export class TicketChatComponent implements OnInit{
         if(data.data){
           this._ticketService.get_ticket(this.id).subscribe(
             response =>{
+              console.log(response)
               this.ticket = response.ticket;
+              this.usuario = this.ticket.usuario;
               this.estado_ticket = this.ticket.estado;
             },
             error=>{
@@ -140,7 +142,7 @@ export class TicketChatComponent implements OnInit{
         //  enviar y cerrar ticket
         let data={
           de:this.identity.uid,
-          para:this.usuario.uid,
+          para:this.usuario,
           msm:msmForm.value.msm,
           ticket:this.id,
           status: 0,
@@ -163,11 +165,11 @@ export class TicketChatComponent implements OnInit{
       else{
         let data={
           de:this.identity.uid,
-          para:this.usuario.uid,
+          para:this.usuario,
           msm:msmForm.value.msm,
           ticket:this.id,
            status: 1,
-          estado: 1
+          estado: null
         }
         this._ticketService.send(data).subscribe(
           response =>{

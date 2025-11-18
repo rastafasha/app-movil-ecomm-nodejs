@@ -71,6 +71,10 @@ export class TicketIndexComponent implements OnInit {
     );
   }
 
+  PageSize(){
+    this.ngOnInit();
+  }
+
   createTicket(ticketForm){
     if(ticketForm.valid){
       const data = {
