@@ -10,9 +10,9 @@ export const environment = {
   mediaUrlRemoto: 'https://res.cloudinary.com/dmv6aukai/image/upload/v1741218430/mallConnect',
   soketServer : 'http://localhost:3000',
   //remoto
-  // baseUrl: 'https://backend-mean-eccm-main.vercel.app/api',
-  // mediaUrl: 'https://backend-mean-eccm-main.vercel.app/api/uploads/',
-  // soketServer : 'https://backend-mean-eccm-main.vercel.app/',
+  // baseUrl: 'https://back-ecomm-mall.onrender.com/api',
+  // mediaUrl: 'https://back-ecomm-mall.onrender.com/api/uploads/',
+  // soketServer : 'https://back-ecomm-mall.onrender.com/',
   //plugins
   rapidapiKey: 'a7036a3222mshc2920e679cd1cafp141e56jsn81cbe707ac15',
   rapidapiHost: 'apidojo-17track-v1.p.rapidapi.com',
