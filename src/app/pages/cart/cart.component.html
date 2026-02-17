@@ -15,8 +15,8 @@
             <div class="total">
                 <!-- <i class="fa fa-trash" aria-hidden="true" (click)="emptyCart()"></i> -->
                 
-                                <p *ngIf="!subtotal">Total:  ${{total}}</p>
-                                <p *ngIf="subtotal">Total:  ${{subtotal + total}}</p>
+                                <p *ngIf="!subtotal">Total:  {{total |number:'1.2-2'|currency}}</p>
+                                <p *ngIf="subtotal">Total:  {{subtotal + total |number:'1.2-2'|currency}}</p>
             </div>
             <div class="lineamedio"></div>
             <div class="row">
@@ -44,7 +44,7 @@
                                             </div>
                                             <div class="addCompradiv2 addInfo">
                                                 <p>200gm</p>
-                                                <p>${{item.precio}}</p>
+                                                <p>{{item.precio |number:'1.2-2'|currency}}</p>
                                             </div>
                                             <div class="addCompradiv3 buttonsAdd">
                                                 <!-- <i class="fa fa-minus" (click)="deletItem(i)"></i> -->
@@ -54,7 +54,7 @@
                                             </div>
                                             <div class="addCompradiv4 subtotal">
                                                 <p>Cant: {{item.cantidad }}</p>
-                                                <p>${{item.cantidad * item.precio| number: '1.1-2'}}</p>
+                                                <p>{{item.cantidad * item.precio |number:'1.2-2'|currency}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -97,7 +97,7 @@
                                                 </blockquote>
 
                                             </td>
-                                            <td>${{item.precio}}</td>
+                                            <td>{{item.precio |number:'1.2-2'|currency}}</td>
 
                                         </tr>
                                     </tbody>
@@ -193,7 +193,7 @@
                                 <div *ngIf="habilitacionFormTransferencia" class="mt-5">
                                     <form [formGroup]="formTransferencia" (ngSubmit)="sendFormTransfer()">
 
-                                        <!-- metodo de pago -->
+                                        <!-- Tipo de Transferencia -->
                                         <div class="mb-3 mt-2">
                                             <label form="metodo_pago" class="form-label">Tipo de Transferencia</label>
 

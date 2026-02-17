@@ -17,11 +17,6 @@ import { CarritoService } from 'src/app/services/carrito.service';
 import { ProductoService } from 'src/app/services/product.service';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import { environment } from '../../../environments/environment';
-
-
-declare var jQuery:any;
-declare var $:any;
-declare var paypal;
 import { WebSocketService } from 'src/app/services/web-socket.service';
 // import * as io from "socket.io-client";
 import {io} from 'socket.io-client';
@@ -30,6 +25,11 @@ import { PaymentMethod } from 'src/app/models/paymenthmethod.model';
 import { TransferenciasService } from 'src/app/services/transferencias.service';
 import { TiendaService } from 'src/app/services/tienda.service';
 import { Tienda } from 'src/app/models/tienda.model';
+
+
+declare var jQuery:any;
+declare var $:any;
+declare var paypal;
 
 @Component({
   selector: 'app-cart',
